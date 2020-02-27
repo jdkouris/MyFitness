@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D22240756A500639A8F /* MFTabBarController.swift */; };
+		CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D24240756F200639A8F /* GymFinderVC.swift */; };
+		CC0C7D282407574600639A8F /* MealsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D272407574600639A8F /* MealsVC.swift */; };
+		CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D292407576500639A8F /* ProgressVC.swift */; };
+		CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */; };
 		CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC87240624C7008F4FC6 /* AppDelegate.swift */; };
 		CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */; };
-		CC58AC8C240624C7008F4FC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC8B240624C7008F4FC6 /* ViewController.swift */; };
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
 		CC58AC94240624C8008F4FC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC92240624C8008F4FC6 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC0C7D22240756A500639A8F /* MFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTabBarController.swift; sourceTree = "<group>"; };
+		CC0C7D24240756F200639A8F /* GymFinderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymFinderVC.swift; sourceTree = "<group>"; };
+		CC0C7D272407574600639A8F /* MealsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsVC.swift; sourceTree = "<group>"; };
+		CC0C7D292407576500639A8F /* ProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressVC.swift; sourceTree = "<group>"; };
+		CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutJournalVC.swift; sourceTree = "<group>"; };
 		CC58AC84240624C7008F4FC6 /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC58AC87240624C7008F4FC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CC58AC8B240624C7008F4FC6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CC58AC90240624C8008F4FC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC58AC93240624C8008F4FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC58AC95240624C8008F4FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,6 +43,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC0C7D19240755AF00639A8F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CC58AC87240624C7008F4FC6 /* AppDelegate.swift */,
+				CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */,
+				CC58AC90240624C8008F4FC6 /* Assets.xcassets */,
+				CC58AC92240624C8008F4FC6 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		CC0C7D1A240755DB00639A8F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */,
+				CC0C7D292407576500639A8F /* ProgressVC.swift */,
+				CC0C7D272407574600639A8F /* MealsVC.swift */,
+				CC0C7D24240756F200639A8F /* GymFinderVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		CC0C7D1B240755EC00639A8F /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				CC0C7D202407564400639A8F /* Tab Bar Controllers */,
+				CC0C7D212407566500639A8F /* View Controllers */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		CC0C7D1C240755FC00639A8F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CC0C7D1D2407560100639A8F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CC0C7D1E2407560F00639A8F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CC0C7D1F2407563000639A8F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CC0C7D202407564400639A8F /* Tab Bar Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC0C7D22240756A500639A8F /* MFTabBarController.swift */,
+			);
+			path = "Tab Bar Controllers";
+			sourceTree = "<group>";
+		};
+		CC0C7D212407566500639A8F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		CC58AC7B240624C7008F4FC6 = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +136,13 @@
 		CC58AC86240624C7008F4FC6 /* MyFitness */ = {
 			isa = PBXGroup;
 			children = (
-				CC58AC87240624C7008F4FC6 /* AppDelegate.swift */,
-				CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */,
-				CC58AC8B240624C7008F4FC6 /* ViewController.swift */,
-				CC58AC90240624C8008F4FC6 /* Assets.xcassets */,
-				CC58AC92240624C8008F4FC6 /* LaunchScreen.storyboard */,
+				CC0C7D1F2407563000639A8F /* Utilities */,
+				CC0C7D1E2407560F00639A8F /* Managers */,
+				CC0C7D1D2407560100639A8F /* Models */,
+				CC0C7D1C240755FC00639A8F /* Extensions */,
+				CC0C7D1B240755EC00639A8F /* Custom Views */,
+				CC0C7D1A240755DB00639A8F /* Screens */,
+				CC0C7D19240755AF00639A8F /* Support */,
 				CC58AC95240624C8008F4FC6 /* Info.plist */,
 			);
 			path = MyFitness;
@@ -134,9 +218,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC58AC8C240624C7008F4FC6 /* ViewController.swift in Sources */,
+				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
+				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
 				CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */,
+				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
 				CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */,
+				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
+				CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
