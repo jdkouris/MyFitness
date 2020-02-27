@@ -35,12 +35,6 @@ class GymFinderVC: UIViewController {
         let request = MKLocalSearch.Request()
         // Including array of MLPointOfInterestCategory
         request.pointOfInterestFilter = MKPointOfInterestFilter(including: [gym])
-        
-        // Create span
-        let span = MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
-        
-        // Request region
-        request.region = MKCoordinateRegion(center: CLLocation(latitude: 0, longitude: 0).coordinate, span: span)
         // Run search
         let search = MKLocalSearch(request: request)
         search.start(completionHandler: {(response, error) in
