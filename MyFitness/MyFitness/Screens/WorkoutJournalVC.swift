@@ -9,6 +9,8 @@
 import UIKit
 
 class WorkoutJournalVC: UIViewController {
+    
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
