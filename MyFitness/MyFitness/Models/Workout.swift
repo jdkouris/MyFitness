@@ -24,6 +24,7 @@ enum WorkoutType {
 }
 
 struct Workout {
+    var date: Date
     var workoutType: WorkoutType
     var exercises: [Exercise]
     var notes: String?

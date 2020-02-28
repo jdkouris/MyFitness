@@ -19,6 +19,12 @@
 		CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */; };
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
 		CC58AC94240624C8008F4FC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC92240624C8008F4FC6 /* LaunchScreen.storyboard */; };
+		CC87088B2408BD100065D328 /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088A2408BD100065D328 /* JournalCell.swift */; };
+		CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088D2408BD5E0065D328 /* MFTitleLabel.swift */; };
+		CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088F2408BD870065D328 /* MFAlertVC.swift */; };
+		CC8708922408BF5C0065D328 /* MFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708912408BF5C0065D328 /* MFBodyLabel.swift */; };
+		CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708932408C59A0065D328 /* AddWorkoutVC.swift */; };
+		CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708952408C8450065D328 /* WorkoutCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,12 @@
 		CC58AC90240624C8008F4FC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC58AC93240624C8008F4FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC58AC95240624C8008F4FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC87088A2408BD100065D328 /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
+		CC87088D2408BD5E0065D328 /* MFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTitleLabel.swift; sourceTree = "<group>"; };
+		CC87088F2408BD870065D328 /* MFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFAlertVC.swift; path = "MyFitness/Custom Views/Labels/MFAlertVC.swift"; sourceTree = SOURCE_ROOT; };
+		CC8708912408BF5C0065D328 /* MFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFBodyLabel.swift; sourceTree = "<group>"; };
+		CC8708932408C59A0065D328 /* AddWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutVC.swift; sourceTree = "<group>"; };
+		CC8708952408C8450065D328 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */,
+				CC8708932408C59A0065D328 /* AddWorkoutVC.swift */,
 				CC0C7D292407576500639A8F /* ProgressVC.swift */,
 				CC0C7D272407574600639A8F /* MealsVC.swift */,
 				CC0C7D24240756F200639A8F /* GymFinderVC.swift */,
@@ -74,8 +87,10 @@
 		CC0C7D1B240755EC00639A8F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				CC87088C2408BD2E0065D328 /* Labels */,
 				CC0C7D202407564400639A8F /* Tab Bar Controllers */,
 				CC0C7D212407566500639A8F /* View Controllers */,
+				CC8708892408BCE60065D328 /* Cells */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -122,6 +137,7 @@
 		CC0C7D212407566500639A8F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CC87088F2408BD870065D328 /* MFAlertVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -155,6 +171,24 @@
 				CC58AC95240624C8008F4FC6 /* Info.plist */,
 			);
 			path = MyFitness;
+			sourceTree = "<group>";
+		};
+		CC8708892408BCE60065D328 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CC87088A2408BD100065D328 /* JournalCell.swift */,
+				CC8708952408C8450065D328 /* WorkoutCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CC87088C2408BD2E0065D328 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				CC87088D2408BD5E0065D328 /* MFTitleLabel.swift */,
+				CC8708912408BF5C0065D328 /* MFBodyLabel.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,11 +264,17 @@
 				CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
+				CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */,
+				CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */,
+				CC8708922408BF5C0065D328 /* MFBodyLabel.swift in Sources */,
 				CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */,
 				CC0C7D2E24075A8E00639A8F /* Workout.swift in Sources */,
+				CC87088B2408BD100065D328 /* JournalCell.swift in Sources */,
+				CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */,
 				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
 				CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */,
 				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
+				CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */,
 				CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */,
 				CC0C7D3024075B2B00639A8F /* Exercise.swift in Sources */,
 			);

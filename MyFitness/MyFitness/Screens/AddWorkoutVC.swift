@@ -1,31 +1,28 @@
 //
-//  WorkoutJournalVC.swift
+//  AddWorkoutVC.swift
 //  MyFitness
 //
-//  Created by John Kouris on 2/26/20.
+//  Created by John Kouris on 2/27/20.
 //  Copyright © 2020 John Kouris. All rights reserved.
 //
 
 import UIKit
 
-class WorkoutJournalVC: UIViewController {
+class AddWorkoutVC: UIViewController {
     
     let tableView = UITableView()
-    var workouts = [Workout]()
+    let workoutTypePickerView = UIPickerView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureVC()
         configureTableView()
     }
     
     func configureVC() {
         view.backgroundColor = .systemBackground
+        title = "Add Exercises"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addBarButton
     }
     
     func configureTableView() {
@@ -36,14 +33,9 @@ class WorkoutJournalVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(JournalCell.self, forCellReuseIdentifier: JournalCell.reuseID)
+        tableView.register(WorkoutCell.self, forCellReuseIdentifier: WorkoutCell.reuseID)
     }
     
-    @objc func addButtonTapped() {
-        let addWorkoutVC = AddWorkoutVC()
-        navigationController?.pushViewController(addWorkoutVC, animated: true)
-    }
-
     /*
     // MARK: - Navigation
 
@@ -56,17 +48,13 @@ class WorkoutJournalVC: UIViewController {
 
 }
 
-extension WorkoutJournalVC: UITableViewDataSource, UITableViewDelegate {
+extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workouts.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: JournalCell.reuseID) as? JournalCell else { return UITableViewCell() }
-        
-        let workout = workouts[indexPath.row]
-        cell.set(workout: workout)
-        
+        let cell = UITableViewCell()
         return cell
     }
     
