@@ -8,19 +8,46 @@
 
 import Foundation
 
-enum WorkoutType {
+enum WorkoutType: CaseIterable {
     case chest
     case back
     case quads
     case hamstrings
     case abs
+    case biceps
+    case triceps
+    case shoulders
     case upperBody
+    case upperBodyPush
+    case upperBodyPull
     case lowerBody
     case fullBody
     case chestBack
     case armsShoulders
     case backBiceps
     case chestTriceps
+    
+    var description: String {
+        switch self {
+        case .chest: return "Chest"
+        case .back: return "Back"
+        case .quads: return "Quads"
+        case .hamstrings: return "Hamstrings"
+        case .abs: return "Abs"
+        case .biceps: return "Biceps"
+        case .triceps: return "Triceps"
+        case .shoulders: return "Shoulders"
+        case .upperBody: return "Upper Body"
+        case .upperBodyPush: return "Upper Body Push"
+        case .upperBodyPull: return "Upper Body Pull"
+        case .lowerBody: return "Lower Body"
+        case .fullBody: return "Full Body"
+        case .chestBack: return "Chest & Back"
+        case .armsShoulders: return "Arms & Shoulders"
+        case .backBiceps: return "Back & Biceps"
+        case .chestTriceps: return "Chest & Triceps"
+        }
+    }
 }
 
 struct Workout {

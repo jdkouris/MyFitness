@@ -12,5 +12,4 @@ struct Exercise {
     var name: String
     var reps: Int
     var weight: Double
-    var description: String?
 }
