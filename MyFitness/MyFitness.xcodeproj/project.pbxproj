@@ -25,6 +25,7 @@
 		CC8708922408BF5C0065D328 /* MFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708912408BF5C0065D328 /* MFBodyLabel.swift */; };
 		CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708932408C59A0065D328 /* AddWorkoutVC.swift */; };
 		CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708952408C8450065D328 /* WorkoutCell.swift */; };
+		CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE387C240ADD0600130347 /* MFTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		CC8708912408BF5C0065D328 /* MFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFBodyLabel.swift; sourceTree = "<group>"; };
 		CC8708932408C59A0065D328 /* AddWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutVC.swift; sourceTree = "<group>"; };
 		CC8708952408C8450065D328 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
+		CCBE387C240ADD0600130347 /* MFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		CC0C7D1B240755EC00639A8F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				CCBE387B240ADCF400130347 /* TextFields */,
 				CC87088C2408BD2E0065D328 /* Labels */,
 				CC0C7D202407564400639A8F /* Tab Bar Controllers */,
 				CC0C7D212407566500639A8F /* View Controllers */,
@@ -191,6 +194,14 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		CCBE387B240ADCF400130347 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE387C240ADD0600130347 /* MFTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -262,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */,
+				CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
 				CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */,
