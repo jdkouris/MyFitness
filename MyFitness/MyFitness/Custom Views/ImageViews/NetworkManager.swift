@@ -9,7 +9,7 @@
 import UIKit
 
 class NetworkManager {
-    static let share = NetworkManager()
+    static let shared = NetworkManager()
     private let baseURL = "https://api.spoonacular.com/recipes/random/"
     private let apiKey = APIKeys.recipeApiKey
     let cache = NSCache<NSString, UIImage>()
