@@ -35,7 +35,7 @@ class MFTabBarController: UITabBarController {
     
     func createMealsNC() -> UINavigationController {
         let mealsVC = MealsVC()
-        mealsVC.title = "Meals"
+        mealsVC.title = "Recipes"
         mealsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
         
         return UINavigationController(rootViewController: mealsVC)
