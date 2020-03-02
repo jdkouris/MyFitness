@@ -32,6 +32,7 @@
 		CCBE3886240D76BF00130347 /* MFMealImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3885240D76BF00130347 /* MFMealImageView.swift */; };
 		CCBE3888240D820800130347 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3887240D820800130347 /* NetworkManager.swift */; };
 		CCBE388A240D841400130347 /* MFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3889240D841400130347 /* MFError.swift */; };
+		CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388B240D88BB00130347 /* APIKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		CCBE3885240D76BF00130347 /* MFMealImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFMealImageView.swift; sourceTree = "<group>"; };
 		CCBE3887240D820800130347 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = "MyFitness/Custom Views/ImageViews/NetworkManager.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE3889240D841400130347 /* MFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFError.swift; path = "MyFitness/Custom Views/ImageViews/MFError.swift"; sourceTree = SOURCE_ROOT; };
+		CCBE388B240D88BB00130347 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIKeys.swift; path = "MyFitness/Custom Views/ImageViews/APIKeys.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				CCBE3880240D752800130347 /* UIHelper.swift */,
 				CCBE3889240D841400130347 /* MFError.swift */,
+				CCBE388B240D88BB00130347 /* APIKeys.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */,
 				CCBE3888240D820800130347 /* NetworkManager.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
+				CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */,
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
 				CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */,
 				CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */,
