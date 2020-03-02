@@ -31,6 +31,7 @@
 		CCBE3883240D765D00130347 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3882240D765D00130347 /* MealCell.swift */; };
 		CCBE3886240D76BF00130347 /* MFMealImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3885240D76BF00130347 /* MFMealImageView.swift */; };
 		CCBE3888240D820800130347 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3887240D820800130347 /* NetworkManager.swift */; };
+		CCBE388A240D841400130347 /* MFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3889240D841400130347 /* MFError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		CCBE3882240D765D00130347 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		CCBE3885240D76BF00130347 /* MFMealImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFMealImageView.swift; sourceTree = "<group>"; };
 		CCBE3887240D820800130347 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = "MyFitness/Custom Views/ImageViews/NetworkManager.swift"; sourceTree = SOURCE_ROOT; };
+		CCBE3889240D841400130347 /* MFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFError.swift; path = "MyFitness/Custom Views/ImageViews/MFError.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBE3880240D752800130347 /* UIHelper.swift */,
+				CCBE3889240D841400130347 /* MFError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
 				CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */,
 				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
+				CCBE388A240D841400130347 /* MFError.swift in Sources */,
 				CCBE3881240D752800130347 /* UIHelper.swift in Sources */,
 				CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */,
 				CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */,
