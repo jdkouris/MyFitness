@@ -13,7 +13,7 @@ struct Recipe: Codable, Hashable {
     let title: String
     let readyInMinutes: Int
     let servings: Int
-    let image: URL
+    let image: String
     let summary: String
     let instructions: String
 }
