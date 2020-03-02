@@ -16,6 +16,10 @@ struct Recipe: Codable, Hashable {
     let image: String
     let summary: String
     let instructions: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 struct RecipeList: Codable, Hashable {
