@@ -26,6 +26,8 @@
 		CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708932408C59A0065D328 /* AddWorkoutVC.swift */; };
 		CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708952408C8450065D328 /* WorkoutCell.swift */; };
 		CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE387C240ADD0600130347 /* MFTextField.swift */; };
+		CCBE387F240D74BA00130347 /* MealDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE387E240D74BA00130347 /* MealDetailsVC.swift */; };
+		CCBE3881240D752800130347 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3880240D752800130347 /* UIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		CC8708932408C59A0065D328 /* AddWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutVC.swift; sourceTree = "<group>"; };
 		CC8708952408C8450065D328 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		CCBE387C240ADD0600130347 /* MFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTextField.swift; sourceTree = "<group>"; };
+		CCBE387E240D74BA00130347 /* MealDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsVC.swift; sourceTree = "<group>"; };
+		CCBE3880240D752800130347 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIHelper.swift; path = MyFitness/Screens/UIHelper.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 				CC8708932408C59A0065D328 /* AddWorkoutVC.swift */,
 				CC0C7D292407576500639A8F /* ProgressVC.swift */,
 				CC0C7D272407574600639A8F /* MealsVC.swift */,
+				CCBE387E240D74BA00130347 /* MealDetailsVC.swift */,
 				CC0C7D24240756F200639A8F /* GymFinderVC.swift */,
 			);
 			path = Screens;
@@ -125,6 +130,7 @@
 		CC0C7D1F2407563000639A8F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CCBE3880240D752800130347 /* UIHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
 				CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */,
 				CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */,
+				CCBE387F240D74BA00130347 /* MealDetailsVC.swift in Sources */,
 				CC8708922408BF5C0065D328 /* MFBodyLabel.swift in Sources */,
 				CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */,
 				CC0C7D2E24075A8E00639A8F /* Workout.swift in Sources */,
@@ -286,6 +293,7 @@
 				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
 				CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */,
 				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
+				CCBE3881240D752800130347 /* UIHelper.swift in Sources */,
 				CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */,
 				CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */,
 				CC0C7D3024075B2B00639A8F /* Exercise.swift in Sources */,
