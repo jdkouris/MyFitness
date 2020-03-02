@@ -101,6 +101,7 @@ extension MealsVC: UICollectionViewDelegate {
         let recipe = activeArray[indexPath.item]
         
         let destinationVC = MealDetailsVC()
+        destinationVC.recipe = recipe
         
         let navController = UINavigationController(rootViewController: destinationVC)
         present(navController, animated: true, completion: nil)

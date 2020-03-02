@@ -9,11 +9,28 @@
 import UIKit
 
 class MealDetailsVC: UIViewController {
+    
+    var recipe: Recipe!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureViewController()
+    }
+    
+    private func configureViewController() {
+        view.backgroundColor = .systemBackground
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = doneBarButton
+    }
+    
+    private func configureUIElements(with recipe: Recipe) {
         
+    }
+    
+    
+    @objc func dismissVC() {
+        dismiss(animated: true, completion: nil)
     }
 
 }
