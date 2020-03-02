@@ -11,7 +11,7 @@ import UIKit
 class MealCell: UICollectionViewCell {
     static let reuseID = "MealCell"
     let mealImageView = MFMealImageView(frame: .zero)
-    let mealTitleLabel = MFTitleLabel(textAlignment: .center, fontSize: 16)
+    let mealTitleLabel = MFTitleLabel(textAlignment: .center, fontSize: 14)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +24,13 @@ class MealCell: UICollectionViewCell {
     
     func set(recipe: Recipe) {
         mealTitleLabel.text = recipe.title
-        // TODO: - Add networking code to download the recipe image
+        NetworkManager.shared.downloadImage(from: recipe.image) { [weak self](image) in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.mealImageView.image = image
+            }
+        }
     }
     
     private func configure() {
