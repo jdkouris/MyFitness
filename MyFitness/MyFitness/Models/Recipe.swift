@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Recipe: Codable {
+struct Recipe: Codable, Hashable {
     let id: Int
     let title: String
     let readyInMinutes: Int
