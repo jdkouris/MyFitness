@@ -18,6 +18,6 @@ struct Recipe: Codable, Hashable {
     let instructions: String
 }
 
-struct RecipeList: Codable {
-    let recipes: [Recipe]
+struct RecipeList: Codable, Hashable {
+    var recipes: [Recipe]
 }
