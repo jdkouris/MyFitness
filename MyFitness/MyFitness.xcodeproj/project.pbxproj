@@ -28,6 +28,8 @@
 		CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE387C240ADD0600130347 /* MFTextField.swift */; };
 		CCBE387F240D74BA00130347 /* MealDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE387E240D74BA00130347 /* MealDetailsVC.swift */; };
 		CCBE3881240D752800130347 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3880240D752800130347 /* UIHelper.swift */; };
+		CCBE3883240D765D00130347 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3882240D765D00130347 /* MealCell.swift */; };
+		CCBE3886240D76BF00130347 /* MFMealImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3885240D76BF00130347 /* MFMealImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		CCBE387C240ADD0600130347 /* MFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTextField.swift; sourceTree = "<group>"; };
 		CCBE387E240D74BA00130347 /* MealDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsVC.swift; sourceTree = "<group>"; };
 		CCBE3880240D752800130347 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIHelper.swift; path = MyFitness/Screens/UIHelper.swift; sourceTree = SOURCE_ROOT; };
+		CCBE3882240D765D00130347 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
+		CCBE3885240D76BF00130347 /* MFMealImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFMealImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 		CC0C7D1B240755EC00639A8F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				CCBE3884240D76A500130347 /* ImageViews */,
 				CCBE387B240ADCF400130347 /* TextFields */,
 				CC87088C2408BD2E0065D328 /* Labels */,
 				CC0C7D202407564400639A8F /* Tab Bar Controllers */,
@@ -187,6 +192,7 @@
 			children = (
 				CC87088A2408BD100065D328 /* JournalCell.swift */,
 				CC8708952408C8450065D328 /* WorkoutCell.swift */,
+				CCBE3882240D765D00130347 /* MealCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -206,6 +212,14 @@
 				CCBE387C240ADD0600130347 /* MFTextField.swift */,
 			);
 			path = TextFields;
+			sourceTree = "<group>";
+		};
+		CCBE3884240D76A500130347 /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE3885240D76BF00130347 /* MFMealImageView.swift */,
+			);
+			path = ImageViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +292,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBE3886240D76BF00130347 /* MFMealImageView.swift in Sources */,
+				CCBE3883240D765D00130347 /* MealCell.swift in Sources */,
 				CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */,
 				CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
