@@ -17,8 +17,6 @@ class MealsVC: UIViewController {
     var recipeName: String!
     var recipes: [Recipe] = []
     var filteredRecipes: [Recipe] = []
-    var page = 1
-    var hasMoreRecipes = true
     var isSearching = false
     
     var collectionView: UICollectionView!
@@ -37,7 +35,7 @@ class MealsVC: UIViewController {
         configureViewController()
         configureCollectionView()
         configureSearchController()
-        
+        getMeals()
         configureDataSource()
     }
     
@@ -63,6 +61,21 @@ class MealsVC: UIViewController {
         navigationItem.searchController = searchController
     }
     
+    func getMeals() {
+        NetworkManager.shared.getRecipes { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let recipes):
+                self.recipes.append(contentsOf: recipes.recipes)
+                self.updateData(on: self.recipes)
+                
+            case .failure(let error):
+                print("Error fetching: \(error)")
+            }
+        }
+    }
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Recipe>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, recipe) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCell.reuseID, for: indexPath) as! MealCell
@@ -83,18 +96,6 @@ class MealsVC: UIViewController {
 }
 
 extension MealsVC: UICollectionViewDelegate {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.frame.size.height
-        
-        if offsetY > contentHeight - height {
-            guard hasMoreRecipes else { return }
-            page += 1
-            // getRecipes()
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray = isSearching ? filteredRecipes : recipes
         let recipe = activeArray[indexPath.item]
