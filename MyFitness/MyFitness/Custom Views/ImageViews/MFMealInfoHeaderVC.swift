@@ -11,7 +11,7 @@ import UIKit
 class MFMealInfoHeaderVC: UIViewController {
     
     let recipeImageView = MFMealImageView(frame: .zero)
-    let recipeNameLabel = MFTitleLabel(textAlignment: .left, fontSize: 30)
+    let recipeNameLabel = MFTitleLabel(textAlignment: .left, fontSize: 22)
     let timeToCookImageView = UIImageView()
     let timeLabel = MFBodyLabel(textAlignment: .left)
     
@@ -42,14 +42,25 @@ class MFMealInfoHeaderVC: UIViewController {
     
     func layoutUI() {
         let padding: CGFloat = 20
-        let textImagePadding: CGFloat = 12
+        let textImagePadding: CGFloat = 8
         timeToCookImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             recipeImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
             recipeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             recipeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            recipeImageView.heightAnchor.constraint(equalTo: view.widthAnchor)
+            recipeImageView.heightAnchor.constraint(equalTo: view.widthAnchor),
+            
+            recipeNameLabel.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: textImagePadding),
+            recipeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            recipeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            timeToCookImageView.topAnchor.constraint(equalTo: recipeNameLabel.bottomAnchor, constant: textImagePadding),
+            timeToCookImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            timeLabel.topAnchor.constraint(equalTo: recipeNameLabel.bottomAnchor),
+            timeLabel.leadingAnchor.constraint(equalTo: timeToCookImageView.trailingAnchor, constant: textImagePadding),
+            timeLabel.centerYAnchor.constraint(equalTo: timeToCookImageView.centerYAnchor)
         ])
     }
     
@@ -57,7 +68,7 @@ class MFMealInfoHeaderVC: UIViewController {
         downloadRecipeImage()
         
         recipeNameLabel.text = recipe.title
-        timeLabel.text = String(recipe.readyInMinutes)
+        timeLabel.text = "\(recipe.readyInMinutes) minutes"
         
         timeToCookImageView.image = UIImage(systemName: SFSymbols.timer)
         timeToCookImageView.tintColor = .secondaryLabel

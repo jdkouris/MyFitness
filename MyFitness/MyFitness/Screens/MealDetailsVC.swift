@@ -12,12 +12,15 @@ class MealDetailsVC: UIViewController {
     
     let headerView = UIView()
     
+    var itemViews: [UIView] = []
+    
     var recipe: Recipe!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureViewController()
+        layoutUI()
+        configureUIElements(with: recipe)
     }
     
     private func configureViewController() {
@@ -28,6 +31,28 @@ class MealDetailsVC: UIViewController {
     
     private func configureUIElements(with recipe: Recipe) {
         self.add(childVC: MFMealInfoHeaderVC(recipe: recipe), to: self.headerView)
+    }
+    
+    func layoutUI() {
+        let padding: CGFloat = 20
+        let itemHeight: CGFloat = 140
+        
+        itemViews = [headerView]
+        
+        for itemView in itemViews {
+            view.addSubview(itemView)
+            itemView.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+            ])
+        }
+        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 180)
+        ])
     }
     
     func add(childVC: UIViewController, to containerView: UIView) {
