@@ -45,7 +45,7 @@ class MealCell: UICollectionViewCell {
             mealImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             mealImageView.heightAnchor.constraint(equalTo: mealImageView.widthAnchor),
             
-            mealTitleLabel.topAnchor.constraint(equalTo: mealImageView.bottomAnchor, constant: 12),
+            mealTitleLabel.topAnchor.constraint(equalTo: mealImageView.bottomAnchor, constant: padding),
             mealTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             mealTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             mealTitleLabel.heightAnchor.constraint(equalToConstant: 20)

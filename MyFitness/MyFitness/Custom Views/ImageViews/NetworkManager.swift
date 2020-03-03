@@ -22,32 +22,44 @@ class NetworkManager {
         urlComponent.queryItems = queryItems
         
         guard let url = urlComponent.url else {
-            completion(.failure(.invalidResponse))
+            DispatchQueue.main.async {
+                completion(.failure(.invalidResponse))
+            }
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let _ = error {
-                completion(.failure(.unableToComplete))
+                DispatchQueue.main.async {
+                    completion(.failure(.unableToComplete))
+                }
                 return
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(.invalidResponse))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidResponse))
+                }
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.invalidData))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
                 return
             }
             
             do {
                 let decoder = JSONDecoder()
                 let recipes = try decoder.decode(RecipeList.self, from: data)
-                completion(.success(recipes))
+                DispatchQueue.main.async {
+                    completion(.success(recipes))
+                }
             } catch {
-                completion(.failure(.invalidData))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
             }
         }
         
@@ -74,13 +86,19 @@ class NetworkManager {
                 response.statusCode == 200,
                 let data = data,
                 let image = UIImage(data: data) else {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                     return
             }
             
             self.cache.setObject(image, forKey: cacheKey)
-            completion(image)
+            
+            DispatchQueue.main.async {
+                completion(image)
+            }
         }
+        
         task.resume()
     }
 }
