@@ -33,6 +33,8 @@
 		CCBE3888240D820800130347 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3887240D820800130347 /* NetworkManager.swift */; };
 		CCBE388A240D841400130347 /* MFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3889240D841400130347 /* MFError.swift */; };
 		CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388B240D88BB00130347 /* APIKeys.swift */; };
+		CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */; };
+		CCBE3890240E003F00130347 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388F240E003F00130347 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		CCBE3887240D820800130347 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = "MyFitness/Custom Views/ImageViews/NetworkManager.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE3889240D841400130347 /* MFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFError.swift; path = "MyFitness/Custom Views/ImageViews/MFError.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE388B240D88BB00130347 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIKeys.swift; path = "MyFitness/Custom Views/ImageViews/APIKeys.swift"; sourceTree = SOURCE_ROOT; };
+		CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFMealInfoHeaderVC.swift; path = "MyFitness/Custom Views/ImageViews/MFMealInfoHeaderVC.swift"; sourceTree = SOURCE_ROOT; };
+		CCBE388F240E003F00130347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "MyFitness/Custom Views/ImageViews/Constants.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 				CCBE3880240D752800130347 /* UIHelper.swift */,
 				CCBE3889240D841400130347 /* MFError.swift */,
 				CCBE388B240D88BB00130347 /* APIKeys.swift */,
+				CCBE388F240E003F00130347 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				CC87088F2408BD870065D328 /* MFAlertVC.swift */,
+				CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 				CCBE3888240D820800130347 /* NetworkManager.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
 				CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */,
+				CCBE3890240E003F00130347 /* Constants.swift in Sources */,
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
 				CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */,
 				CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */,
@@ -322,6 +329,7 @@
 				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
 				CCBE388A240D841400130347 /* MFError.swift in Sources */,
 				CCBE3881240D752800130347 /* UIHelper.swift in Sources */,
+				CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */,
 				CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */,
 				CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */,
 				CC0C7D3024075B2B00639A8F /* Exercise.swift in Sources */,
