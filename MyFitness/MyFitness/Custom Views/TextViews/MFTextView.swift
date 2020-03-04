@@ -28,7 +28,7 @@ class MFTextView: UITextView {
         
         textColor = .label
         tintColor = .label
-//        textAlignment = .center
+        font = UIFont.systemFont(ofSize: 14)
         
         isEditable = false
         isSelectable = false

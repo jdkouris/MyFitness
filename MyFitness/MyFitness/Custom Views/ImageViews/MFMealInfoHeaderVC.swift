@@ -49,7 +49,7 @@ class MFMealInfoHeaderVC: UIViewController {
             recipeImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
             recipeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             recipeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            recipeImageView.heightAnchor.constraint(equalTo: view.widthAnchor),
+            recipeImageView.heightAnchor.constraint(equalToConstant: view.bounds.height / 4),
             
             recipeNameLabel.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: textImagePadding),
             recipeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),

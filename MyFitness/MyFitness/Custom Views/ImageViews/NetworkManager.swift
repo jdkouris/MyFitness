@@ -17,7 +17,7 @@ class NetworkManager {
     private init() {}
     
     func getRecipes(completion: @escaping (Result<RecipeList, MFError>) -> Void) {
-        let queryItems = [URLQueryItem(name: "apiKey", value: apiKey), URLQueryItem(name: "number", value: "2"), URLQueryItem(name: "tag", value: "healthy")]
+        let queryItems = [URLQueryItem(name: "apiKey", value: apiKey), URLQueryItem(name: "number", value: "20"), URLQueryItem(name: "tag", value: "healthy")]
         var urlComponent = URLComponents(string: baseURL)!
         urlComponent.queryItems = queryItems
         

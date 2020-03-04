@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct RecipeList: Codable, Hashable {
+    var recipes: [Recipe]
+}
+
 struct Recipe: Codable, Hashable {
     let id: Int
     let title: String
@@ -16,12 +20,13 @@ struct Recipe: Codable, Hashable {
     let image: String
     let summary: String
     let instructions: String
+    let extendedIngredients: [Ingredients]
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }
 
-struct RecipeList: Codable, Hashable {
-    var recipes: [Recipe]
+struct Ingredients: Codable, Hashable {
+    var originalString: String
 }

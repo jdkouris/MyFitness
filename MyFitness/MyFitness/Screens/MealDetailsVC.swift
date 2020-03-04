@@ -32,13 +32,21 @@ class MealDetailsVC: UIViewController {
     
     private func configureUIElements(with recipe: Recipe) {
         self.add(childVC: MFMealInfoHeaderVC(recipe: recipe), to: self.headerView)
+        
+        for ingredient in recipe.extendedIngredients {
+            recipeInstructionsTextView.text += ingredient.originalString + "\n"
+            if ingredient == recipe.extendedIngredients.last {
+                recipeInstructionsTextView.text += "\n\n"
+            }
+        }
+        
+        recipeInstructionsTextView.text += recipe.instructions.replacingOccurrences(of: ".", with: ".\n\n").replacingOccurrences(of: "<ol>", with: "").replacingOccurrences(of: "<li>", with: "").replacingOccurrences(of: "</li>", with: "").replacingOccurrences(of: "</ol>", with: "")
     }
     
     func layoutUI() {
         let padding: CGFloat = 20
-        let itemHeight: CGFloat = 140
         
-        itemViews = [headerView]
+        itemViews = [headerView, recipeInstructionsTextView]
         
         for itemView in itemViews {
             view.addSubview(itemView)
@@ -52,7 +60,10 @@ class MealDetailsVC: UIViewController {
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 180)
+            headerView.heightAnchor.constraint(equalToConstant: view.bounds.height / 3),
+            
+            recipeInstructionsTextView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            recipeInstructionsTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding)
         ])
     }
     
