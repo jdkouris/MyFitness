@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,6 +37,7 @@
 		CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388B240D88BB00130347 /* APIKeys.swift */; };
 		CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */; };
 		CCBE3890240E003F00130347 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388F240E003F00130347 /* Constants.swift */; };
+		CCFC4D1424105680000D1740 /* MFLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC4D1324105680000D1740 /* MFLineChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		CCBE388B240D88BB00130347 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIKeys.swift; path = "MyFitness/Custom Views/ImageViews/APIKeys.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFMealInfoHeaderVC.swift; path = "MyFitness/Custom Views/ImageViews/MFMealInfoHeaderVC.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE388F240E003F00130347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "MyFitness/Custom Views/ImageViews/Constants.swift"; sourceTree = SOURCE_ROOT; };
+		CCFC4D1324105680000D1740 /* MFLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFLineChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +104,6 @@
 				B93347B68824A3AF137D9B24 /* Pods-MyFitness.debug.xcconfig */,
 				C8506F6B2D9B997573B11C75 /* Pods-MyFitness.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -133,6 +134,7 @@
 		CC0C7D1B240755EC00639A8F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				CCFC4D1224105594000D1740 /* Chart Views */,
 				CC937A65240F46730062D8C0 /* TextViews */,
 				CCBE3884240D76A500130347 /* ImageViews */,
 				CCBE387B240ADCF400130347 /* TextFields */,
@@ -273,6 +275,14 @@
 			path = ImageViews;
 			sourceTree = "<group>";
 		};
+		CCFC4D1224105594000D1740 /* Chart Views */ = {
+			isa = PBXGroup;
+			children = (
+				CCFC4D1324105680000D1740 /* MFLineChart.swift */,
+			);
+			path = "Chart Views";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -400,6 +410,7 @@
 				CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */,
 				CCBE387F240D74BA00130347 /* MealDetailsVC.swift in Sources */,
 				CC8708922408BF5C0065D328 /* MFBodyLabel.swift in Sources */,
+				CCFC4D1424105680000D1740 /* MFLineChart.swift in Sources */,
 				CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */,
 				CC0C7D2E24075A8E00639A8F /* Workout.swift in Sources */,
 				CC87088B2408BD100065D328 /* JournalCell.swift in Sources */,
