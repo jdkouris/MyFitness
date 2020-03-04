@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-MyFitness/Pods-MyFitness-frameworks.sh
-${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework

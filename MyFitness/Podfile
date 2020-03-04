@@ -6,6 +6,6 @@ target 'MyFitness' do
   use_frameworks!
 
   # Pods for MyFitness
-  pod 'Charts'
+  pod 'SwiftChart'
 
 end
