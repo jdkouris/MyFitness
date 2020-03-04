@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F17C9F9F6C8A36BD6937386 /* Pods_MyFitness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */; };
 		CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D22240756A500639A8F /* MFTabBarController.swift */; };
 		CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D24240756F200639A8F /* GymFinderVC.swift */; };
 		CC0C7D282407574600639A8F /* MealsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D272407574600639A8F /* MealsVC.swift */; };
@@ -39,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFitness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B93347B68824A3AF137D9B24 /* Pods-MyFitness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.debug.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.debug.xcconfig"; sourceTree = "<group>"; };
+		C8506F6B2D9B997573B11C75 /* Pods-MyFitness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.release.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.release.xcconfig"; sourceTree = "<group>"; };
 		CC0C7D22240756A500639A8F /* MFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTabBarController.swift; sourceTree = "<group>"; };
 		CC0C7D24240756F200639A8F /* GymFinderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymFinderVC.swift; sourceTree = "<group>"; };
 		CC0C7D272407574600639A8F /* MealsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsVC.swift; sourceTree = "<group>"; };
@@ -77,12 +81,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F17C9F9F6C8A36BD6937386 /* Pods_MyFitness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E9F3D9CA5DCD7CD2FE3AA2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD38D9D453ED971C1349E3D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B93347B68824A3AF137D9B24 /* Pods-MyFitness.debug.xcconfig */,
+				C8506F6B2D9B997573B11C75 /* Pods-MyFitness.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CC0C7D19240755AF00639A8F /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +202,8 @@
 			children = (
 				CC58AC86240624C7008F4FC6 /* MyFitness */,
 				CC58AC85240624C7008F4FC6 /* Products */,
+				BD38D9D453ED971C1349E3D9 /* Pods */,
+				3E9F3D9CA5DCD7CD2FE3AA2C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -255,9 +280,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC58AC98240624C8008F4FC6 /* Build configuration list for PBXNativeTarget "MyFitness" */;
 			buildPhases = (
+				B76B0D610F5EB4D9FE7379BB /* [CP] Check Pods Manifest.lock */,
 				CC58AC80240624C7008F4FC6 /* Sources */,
 				CC58AC81240624C7008F4FC6 /* Frameworks */,
 				CC58AC82240624C7008F4FC6 /* Resources */,
+				84C32FD8AD32B390CA6CE403 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,6 +339,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84C32FD8AD32B390CA6CE403 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyFitness/Pods-MyFitness-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyFitness/Pods-MyFitness-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyFitness/Pods-MyFitness-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B76B0D610F5EB4D9FE7379BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyFitness-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CC58AC80240624C7008F4FC6 /* Sources */ = {
@@ -478,6 +547,7 @@
 		};
 		CC58AC99240624C8008F4FC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B93347B68824A3AF137D9B24 /* Pods-MyFitness.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -496,6 +566,7 @@
 		};
 		CC58AC9A240624C8008F4FC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8506F6B2D9B997573B11C75 /* Pods-MyFitness.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
