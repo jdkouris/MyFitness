@@ -11,6 +11,7 @@ import UIKit
 class MealDetailsVC: UIViewController {
     
     let headerView = UIView()
+    let recipeInstructionsTextView = MFTextView()
     
     var itemViews: [UIView] = []
     
