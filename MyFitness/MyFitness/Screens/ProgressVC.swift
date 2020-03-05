@@ -24,6 +24,30 @@ class ProgressVC: UIViewController {
         configureTableView()
         layoutUIElements()
         NotificationCenter.default.addObserver(self, selector: #selector(updateWeightLog), name: .weightLogChanged, object: nil)
+        
+        getWeights()
+    }
+    
+    func getWeights() {
+        PersistenceManager.retrieveWeights { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let weights):
+                if weights.isEmpty {
+                    print("no weights saved")
+                } else {
+                    self.weightLog = weights
+                    NotificationCenter.default.post(name: .weightLogChanged, object: nil)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+                
+            case .failure(let error):
+                print("Error retrieving weights: \(error)")
+            }
+        }
     }
     
     func configureVC() {
@@ -54,6 +78,18 @@ class ProgressVC: UIViewController {
             }
             
             self.weightLog.append(entryAsDouble)
+            
+            PersistenceManager.updateWith(weight: entryAsDouble, actionType: .add) { (error) in
+//                guard let self = self else { return }
+                
+                guard let error = error else {
+                    print("Successfully added weight")
+                    return
+                }
+                
+                print("Error: \(error)")
+            }
+            
             NotificationCenter.default.post(name: .weightLogChanged, object: nil)
         }))
         
