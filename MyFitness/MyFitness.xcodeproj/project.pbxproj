@@ -37,6 +37,7 @@
 		CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388B240D88BB00130347 /* APIKeys.swift */; };
 		CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */; };
 		CCBE3890240E003F00130347 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388F240E003F00130347 /* Constants.swift */; };
+		CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC4D162410A209000D1740 /* Notification+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		CCBE388B240D88BB00130347 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIKeys.swift; path = "MyFitness/Custom Views/ImageViews/APIKeys.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFMealInfoHeaderVC.swift; path = "MyFitness/Custom Views/ImageViews/MFMealInfoHeaderVC.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE388F240E003F00130347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "MyFitness/Custom Views/ImageViews/Constants.swift"; sourceTree = SOURCE_ROOT; };
+		CCFC4D162410A209000D1740 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Notification+Extension.swift"; path = "MyFitness/Custom Views/Chart Views/Notification+Extension.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		CC0C7D1C240755FC00639A8F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CCFC4D162410A209000D1740 /* Notification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				CC87088B2408BD100065D328 /* JournalCell.swift in Sources */,
 				CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */,
 				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
+				CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */,
 				CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */,
 				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
 				CCBE388A240D841400130347 /* MFError.swift in Sources */,
