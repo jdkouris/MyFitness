@@ -27,6 +27,7 @@
 		CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708932408C59A0065D328 /* AddWorkoutVC.swift */; };
 		CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8708952408C8450065D328 /* WorkoutCell.swift */; };
 		CC937A67240F46890062D8C0 /* MFTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC937A66240F46890062D8C0 /* MFTextView.swift */; };
+		CCBB28472411A6C9001FF616 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBB28462411A6C9001FF616 /* PersistenceManager.swift */; };
 		CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE387C240ADD0600130347 /* MFTextField.swift */; };
 		CCBE387F240D74BA00130347 /* MealDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE387E240D74BA00130347 /* MealDetailsVC.swift */; };
 		CCBE3881240D752800130347 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3880240D752800130347 /* UIHelper.swift */; };
@@ -66,6 +67,7 @@
 		CC8708932408C59A0065D328 /* AddWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutVC.swift; sourceTree = "<group>"; };
 		CC8708952408C8450065D328 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		CC937A66240F46890062D8C0 /* MFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTextView.swift; sourceTree = "<group>"; };
+		CCBB28462411A6C9001FF616 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersistenceManager.swift; path = MyFitness/Screens/PersistenceManager.swift; sourceTree = SOURCE_ROOT; };
 		CCBE387C240ADD0600130347 /* MFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTextField.swift; sourceTree = "<group>"; };
 		CCBE387E240D74BA00130347 /* MealDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsVC.swift; sourceTree = "<group>"; };
 		CCBE3880240D752800130347 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIHelper.swift; path = MyFitness/Screens/UIHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBE3887240D820800130347 /* NetworkManager.swift */,
+				CCBB28462411A6C9001FF616 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
 				CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */,
 				CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */,
+				CCBB28472411A6C9001FF616 /* PersistenceManager.swift in Sources */,
 				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
 				CCBE388A240D841400130347 /* MFError.swift in Sources */,
 				CCBE3881240D752800130347 /* UIHelper.swift in Sources */,
