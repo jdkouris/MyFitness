@@ -27,12 +27,11 @@ enum PersistenceManager {
                 
                 switch actionType {
                 case .add:
-//                    guard !retrievedWeights.contains(weight) else {
-//                        completion(.alreadyLoggedWeight)
-//                        return
-//                    }
                     retrievedWeights.append(weight)
                 }
+                
+                completion(save(weightEntries: retrievedWeights))
+                
             case .failure(let error):
                 completion(error)
             }
