@@ -38,6 +38,7 @@
 		CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */; };
 		CCBE3890240E003F00130347 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388F240E003F00130347 /* Constants.swift */; };
 		CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC4D162410A209000D1740 /* Notification+Extension.swift */; };
+		CCFC4D192410A43F000D1740 /* WeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC4D182410A43F000D1740 /* WeightCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFMealInfoHeaderVC.swift; path = "MyFitness/Custom Views/ImageViews/MFMealInfoHeaderVC.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE388F240E003F00130347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "MyFitness/Custom Views/ImageViews/Constants.swift"; sourceTree = SOURCE_ROOT; };
 		CCFC4D162410A209000D1740 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Notification+Extension.swift"; path = "MyFitness/Custom Views/Chart Views/Notification+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		CCFC4D182410A43F000D1740 /* WeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 				CC87088A2408BD100065D328 /* JournalCell.swift */,
 				CC8708952408C8450065D328 /* WorkoutCell.swift */,
 				CCBE3882240D765D00130347 /* MealCell.swift */,
+				CCFC4D182410A43F000D1740 /* WeightCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				CC8708922408BF5C0065D328 /* MFBodyLabel.swift in Sources */,
 				CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */,
 				CC0C7D2E24075A8E00639A8F /* Workout.swift in Sources */,
+				CCFC4D192410A43F000D1740 /* WeightCell.swift in Sources */,
 				CC87088B2408BD100065D328 /* JournalCell.swift in Sources */,
 				CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */,
 				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
