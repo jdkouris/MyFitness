@@ -136,7 +136,6 @@
 		CC0C7D1B240755EC00639A8F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				CCFC4D1224105594000D1740 /* Chart Views */,
 				CC937A65240F46730062D8C0 /* TextViews */,
 				CCBE3884240D76A500130347 /* ImageViews */,
 				CCBE387B240ADCF400130347 /* TextFields */,
@@ -277,13 +276,6 @@
 				CCBE3885240D76BF00130347 /* MFMealImageView.swift */,
 			);
 			path = ImageViews;
-			sourceTree = "<group>";
-		};
-		CCFC4D1224105594000D1740 /* Chart Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Chart Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
