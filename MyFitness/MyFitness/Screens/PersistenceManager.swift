@@ -13,5 +13,55 @@ enum PersistenceActionType {
 }
 
 enum PersistenceManager {
+    static private let defaults = UserDefaults.standard
     
+    enum Keys {
+        static let weightEntry = "weightEntry"
+    }
+    
+    static func updateWith(weight: Double, actionType: PersistenceActionType, completion: @escaping (MFError?) -> Void) {
+        retrieveWeights { (result) in
+            switch result {
+            case .success(let weights):
+                var retrievedWeights = weights
+                
+                switch actionType {
+                case .add:
+//                    guard !retrievedWeights.contains(weight) else {
+//                        completion(.alreadyLoggedWeight)
+//                        return
+//                    }
+                    retrievedWeights.append(weight)
+                }
+            case .failure(let error):
+                completion(error)
+            }
+        }
+    }
+    
+    static func retrieveWeights(completion: @escaping (Result<[Double], MFError>) -> Void) {
+        guard let weightsData = defaults.object(forKey: Keys.weightEntry) as? Data else {
+            completion(.success([]))
+            return
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let weights = try decoder.decode([Double].self, from: weightsData)
+            completion(.success(weights))
+        } catch {
+            completion(.failure(.unableToRetrieveWeights))
+        }
+    }
+    
+    static func save(weightEntries: [Double]) -> MFError? {
+        do {
+            let encoder = JSONEncoder()
+            let encodedWeights = try encoder.encode(weightEntries)
+            defaults.set(encodedWeights, forKey: Keys.weightEntry)
+            return nil
+        } catch {
+            return .unableToSaveWeights
+        }
+    }
 }
