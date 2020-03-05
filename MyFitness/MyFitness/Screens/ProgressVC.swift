@@ -86,13 +86,14 @@ class ProgressVC: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
+        tableView.frame = view.bounds
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = 120
+        tableView.rowHeight = 80
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(WorkoutCell.self, forCellReuseIdentifier: WorkoutCell.reuseID)
+        tableView.register(WeightCell.self, forCellReuseIdentifier: WeightCell.reuseID)
     }
     
     private func layoutUIElements() {
