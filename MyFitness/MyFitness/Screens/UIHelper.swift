@@ -31,7 +31,7 @@ struct UIHelper {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize = CGSize(width: availableWidth, height: availableWidth / 2)
+        flowLayout.itemSize = CGSize(width: availableWidth, height: availableWidth / 3)
         
         return flowLayout
     }
