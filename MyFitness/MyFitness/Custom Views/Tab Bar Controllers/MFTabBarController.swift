@@ -19,7 +19,7 @@ class MFTabBarController: UITabBarController {
     
     func createWorkoutJournalNC() -> UINavigationController {
         let workoutJournalVC = WorkoutJournalVC()
-        workoutJournalVC.title = "Workouts"
+        workoutJournalVC.title = "Workout Journal"
         workoutJournalVC.tabBarItem = UITabBarItem(title: "Journal", image: UIImage(systemName: SFSymbols.journal), tag: 0)
         
         return UINavigationController(rootViewController: workoutJournalVC)
