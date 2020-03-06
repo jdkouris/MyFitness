@@ -10,14 +10,19 @@ import UIKit
 
 class WorkoutJournalVC: UIViewController {
     
-    let tableView = UITableView()
+    enum Section {
+        case main
+    }
+    
+    var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Workout>!
     var workouts = [Workout]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureVC()
-        configureTableView()
+        
     }
     
     func configureVC() {
@@ -26,17 +31,6 @@ class WorkoutJournalVC: UIViewController {
         
         let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addBarButton
-    }
-    
-    func configureTableView() {
-        view.addSubview(tableView)
-        tableView.frame = view.bounds
-        tableView.rowHeight = 80
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        tableView.register(JournalCell.self, forCellReuseIdentifier: JournalCell.reuseID)
     }
     
     @objc func addButtonTapped() {
@@ -54,21 +48,4 @@ class WorkoutJournalVC: UIViewController {
     }
     */
 
-}
-
-extension WorkoutJournalVC: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workouts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: JournalCell.reuseID) as? JournalCell else { return UITableViewCell() }
-        
-        let workout = workouts[indexPath.row]
-        cell.set(workout: workout)
-        
-        return cell
-    }
-    
-    
 }

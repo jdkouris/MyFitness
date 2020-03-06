@@ -163,7 +163,7 @@ extension AddWorkoutVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return WorkoutType.allCases[row].description
+        return WorkoutType.allCases[row].rawValue
     }
     
 }
