@@ -29,6 +29,7 @@ enum WorkoutType: String, CaseIterable, Codable, Hashable {
 }
 
 struct Workout: Codable, Hashable {
+    var id: UUID
     var date: Date
     var workoutType: WorkoutType
     var exercises: [Exercise]
