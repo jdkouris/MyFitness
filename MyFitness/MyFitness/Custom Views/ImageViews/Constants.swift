@@ -10,4 +10,8 @@ import UIKit
 
 enum SFSymbols {
     static let timer = "timer"
+    static let recipe = "book.fill"
+    static let journal = "square.and.pencil"
+    static let progress = "heart.fill"
+    static let gymSearch = "magnifyingglass"
 }

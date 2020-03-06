@@ -20,7 +20,7 @@ class MFTabBarController: UITabBarController {
     func createWorkoutJournalNC() -> UINavigationController {
         let workoutJournalVC = WorkoutJournalVC()
         workoutJournalVC.title = "Workouts"
-        workoutJournalVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        workoutJournalVC.tabBarItem = UITabBarItem(title: "Journal", image: UIImage(systemName: SFSymbols.journal), tag: 0)
         
         return UINavigationController(rootViewController: workoutJournalVC)
     }
@@ -28,7 +28,7 @@ class MFTabBarController: UITabBarController {
     func createProgressNC() -> UINavigationController {
         let progressVC = ProgressVC()
         progressVC.title = "Progress"
-        progressVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        progressVC.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: SFSymbols.progress), tag: 1)
         
         return UINavigationController(rootViewController: progressVC)
     }
@@ -36,7 +36,7 @@ class MFTabBarController: UITabBarController {
     func createMealsNC() -> UINavigationController {
         let mealsVC = MealsVC()
         mealsVC.title = "Recipes"
-        mealsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
+        mealsVC.tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: SFSymbols.recipe), tag: 2)
         
         return UINavigationController(rootViewController: mealsVC)
     }
@@ -44,7 +44,7 @@ class MFTabBarController: UITabBarController {
     func createGymFinderNC() -> UINavigationController {
         let gymFinderVC = GymFinderVC()
         gymFinderVC.title = "Find Gym"
-        gymFinderVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 3)
+        gymFinderVC.tabBarItem = UITabBarItem(title: "Gym Finder", image: UIImage(systemName: SFSymbols.gymSearch), tag: 3)
         
         return UINavigationController(rootViewController: gymFinderVC)
     }
