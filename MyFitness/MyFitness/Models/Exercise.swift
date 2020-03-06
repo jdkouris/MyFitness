@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Exercise {
+struct Exercise: Codable, Hashable {
     var name: String
     var reps: Int
     var weight: Double
