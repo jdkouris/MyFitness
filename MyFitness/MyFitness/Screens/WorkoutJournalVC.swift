@@ -45,7 +45,7 @@ class WorkoutJournalVC: UIViewController {
             switch result {
             case .success(let workouts):
                 if workouts.isEmpty {
-                    print("no weights saved")
+                    print("no workouts saved")
                 } else {
                     self.workouts = workouts
                     self.updateData(on: workouts)
