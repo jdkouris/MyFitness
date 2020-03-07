@@ -53,7 +53,7 @@ class AddWorkoutVC: UIViewController {
         
         alertController.addTextField { (textField) in
             textField.placeholder = "Enter the weight you lifted here"
-            textField.keyboardType = .numberPad
+            textField.keyboardType = .decimalPad
         }
         
         alertController.addTextField { (textField) in
@@ -74,6 +74,7 @@ class AddWorkoutVC: UIViewController {
             }
             
             self.exercises.append(Exercise(name: exerciseNameText, reps: exerciseRepsAsInt, weight: exerciseWeightAsDouble))
+            self.tableView.reloadData()
         }))
         
         self.present(alertController, animated: true, completion: nil)
