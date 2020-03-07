@@ -11,9 +11,9 @@ import UIKit
 class WorkoutCell: UITableViewCell {
     static let reuseID = "WorkoutCell"
 
-    let exerciseNameTextField = MFTextField()
-    let exerciseWeightTextField = MFTextField()
-    let exerciseRepsTextField = MFTextField()
+    let exerciseNameLabel = MFTitleLabel(textAlignment: .left, fontSize: 24)
+    let exerciseWeightLabel = MFSecondaryTitleLabel(fontSize: 24)
+    let exerciseRepsLabel = MFSecondaryTitleLabel(fontSize: 24)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,37 +25,33 @@ class WorkoutCell: UITableViewCell {
     }
     
     func set(exercise: Exercise) {
-        exerciseNameTextField.text = exercise.name
-        exerciseWeightTextField.text = String(exercise.weight)
-        exerciseRepsTextField.text = String(exercise.reps)
+        exerciseNameLabel.text = exercise.name
+        exerciseWeightLabel.text = "Weight: \(exercise.weight)"
+        exerciseRepsLabel.text = "Reps: \(exercise.reps)"
     }
     
     private func configure() {
-        addSubview(exerciseNameTextField)
-        addSubview(exerciseWeightTextField)
-        addSubview(exerciseRepsTextField)
+        addSubview(exerciseNameLabel)
+        addSubview(exerciseWeightLabel)
+        addSubview(exerciseRepsLabel)
         
-        exerciseNameTextField.placeholder = "Exercise name"
-        exerciseWeightTextField.placeholder = "Weight"
-        exerciseRepsTextField.placeholder = "Reps"
-        
-        let padding: CGFloat = 12
+        let padding: CGFloat = 16
         
         NSLayoutConstraint.activate([
-            exerciseNameTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
-            exerciseNameTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            exerciseNameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            exerciseNameTextField.heightAnchor.constraint(equalToConstant: 30),
+            exerciseNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 6),
+            exerciseNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            exerciseNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            exerciseNameLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            exerciseWeightTextField.topAnchor.constraint(equalTo: exerciseNameTextField.bottomAnchor, constant: 6),
-            exerciseWeightTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            exerciseWeightTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            exerciseWeightTextField.heightAnchor.constraint(equalToConstant: 30),
+            exerciseWeightLabel.topAnchor.constraint(equalTo: exerciseNameLabel.bottomAnchor, constant: 6),
+            exerciseWeightLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            exerciseWeightLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            exerciseWeightLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            exerciseRepsTextField.topAnchor.constraint(equalTo: exerciseWeightTextField.bottomAnchor, constant: 6),
-            exerciseRepsTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            exerciseRepsTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 30),
+            exerciseRepsLabel.topAnchor.constraint(equalTo: exerciseWeightLabel.bottomAnchor, constant: 6),
+            exerciseRepsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            exerciseRepsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            exerciseRepsLabel.heightAnchor.constraint(equalToConstant: 30),
         ])
     }
 
