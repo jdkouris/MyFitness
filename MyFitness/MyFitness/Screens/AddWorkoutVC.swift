@@ -16,7 +16,7 @@ class AddWorkoutVC: UIViewController {
     let addExercisesLabel = MFTitleLabel(textAlignment: .left, fontSize: 24)
     let saveButton = UIButton()
     
-    var workout: Workout!
+    var workout: Workout?
     
     var exercises = [Exercise]()
 
@@ -78,6 +78,8 @@ class AddWorkoutVC: UIViewController {
             self.tableView.reloadData()
         }))
         
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -110,7 +112,7 @@ class AddWorkoutVC: UIViewController {
     
     private func configureExercisesLabel() {
         view.addSubview(addExercisesLabel)
-        addExercisesLabel.text = "Add Exercises"
+        addExercisesLabel.text = "ADD EXERCISES"
         
         NSLayoutConstraint.activate([
             addExercisesLabel.topAnchor.constraint(equalTo: workoutTypePickerView.bottomAnchor, constant: 16),
@@ -138,6 +140,7 @@ class AddWorkoutVC: UIViewController {
         
         saveButton.setTitle("Save", for: .normal)
         saveButton.backgroundColor = .systemBlue
+        saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             saveButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16),
@@ -145,6 +148,22 @@ class AddWorkoutVC: UIViewController {
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    @objc func saveTapped() {
+        let selectedWorkoutType = WorkoutType.allCases[workoutTypePickerView.selectedRow(inComponent: 0)]
+        let workout = Workout(workoutType: selectedWorkoutType, exercises: exercises, notes: "")
+        
+        PersistenceManager.updateWith(workout: workout, actionType: .add) { (error) in
+            guard let error = error else {
+                print("Successfully added workout")
+                return
+            }
+            
+            print("Error: \(error)")
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
     func createDismissKeyboardTapGesture() {
@@ -167,6 +186,10 @@ extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
         cell.set(exercise: exercise)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
