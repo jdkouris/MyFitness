@@ -26,7 +26,7 @@ class WorkoutCell: UITableViewCell {
     
     func set(exercise: Exercise) {
         exerciseNameLabel.text = exercise.name
-        exerciseWeightLabel.text = "Weight: \(exercise.weight)"
+        exerciseWeightLabel.text = "Weight: \(exercise.weight) lbs"
         exerciseRepsLabel.text = "Reps: \(exercise.reps)"
     }
     

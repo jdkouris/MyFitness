@@ -16,5 +16,6 @@ enum MFError: String, Error {
     case alreadyInFavorites = "You've already added this recipe to favorites."
     case unableToSaveWeights = "There was an error saving the weight entries. Please try again."
     case unableToRetrieveWeights = "There was an error retrieving your weight entries. Please try again."
-    case alreadyLoggedWeight = "The weight was already added to the log."
+    case unableToSaveWorkouts = "There was an error saving the workouts. Please try again."
+    case unableToRetrieveWorkouts = "There was an error retrieving your workouts. Please try again."
 }
