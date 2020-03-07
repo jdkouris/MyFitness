@@ -28,26 +28,36 @@ class WorkoutJournalVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureVC()
         configureCollectionView()
         configureDataSource()
-        
-        mockWorkoutsLoad()
     }
     
-    func mockWorkoutsLoad() {
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 16, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .chest, exercises: [Exercise(name: "Bench Press", reps: 12, weight: 180)], notes: "Short chest workout. Went for high reps, lighter weights. Started to feel tired later. balskdflkansdlfkanslfkjasldfkjaosdifnalsdknflaksdnflsdkflaksdnf"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        workouts.append(Workout(id: UUID(), date: Date(), workoutType: .abs, exercises: [Exercise(name: "Crunch", reps: 12, weight: 0)], notes: "Short ab workout"))
-        updateData(on: workouts)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getWorkouts()
+    }
+    
+    func getWorkouts() {
+        PersistenceManager.retrieveWorkouts { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let workouts):
+                if workouts.isEmpty {
+                    print("no weights saved")
+                } else {
+                    self.workouts = workouts
+                    self.updateData(on: workouts)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+                
+            case .failure(let error):
+                print("Error retrieving workouts: \(error)")
+            }
+        }
     }
     
     func configureVC() {
