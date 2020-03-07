@@ -29,8 +29,8 @@ enum WorkoutType: String, CaseIterable, Codable, Hashable {
 }
 
 struct Workout: Codable, Hashable {
-    var id: UUID
-    var date: Date
+    var id: UUID = UUID()
+    var date: Date = Date()
     var workoutType: WorkoutType
     var exercises: [Exercise]
     var notes: String?
