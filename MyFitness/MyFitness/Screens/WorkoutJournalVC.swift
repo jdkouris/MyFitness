@@ -95,6 +95,7 @@ extension WorkoutJournalVC: UICollectionViewDelegate {
         let workout = workouts[indexPath.item]
         
         let destinationVC = AddWorkoutVC()
+        destinationVC.workout = workout
         
     }
 }
