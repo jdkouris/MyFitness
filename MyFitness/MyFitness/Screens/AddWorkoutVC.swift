@@ -13,9 +13,10 @@ class AddWorkoutVC: UIViewController {
     let tableView = UITableView()
     let workoutTypeLabel = MFTitleLabel(textAlignment: .left, fontSize: 24)
     let workoutTypePickerView = UIPickerView()
-    let notesLabel = MFTitleLabel(textAlignment: .left, fontSize: 24)
-    let workoutNotesTextView = UITextView()
     let addExercisesLabel = MFTitleLabel(textAlignment: .left, fontSize: 24)
+    let saveButton = UIButton()
+    
+    var workout: Workout!
     
     var exercises = [Exercise]()
 
@@ -24,17 +25,9 @@ class AddWorkoutVC: UIViewController {
         configureVC()
         configureWorkoutTypeLabel()
         configureWorkoutType()
-        configureNotesLabel()
-        configureWorkoutNotes()
         configureExercisesLabel()
         configureTableView()
-        
-        mockExerciseLoad()
 //        createDismissKeyboardTapGesture()
-    }
-    
-    func mockExerciseLoad() {
-        exercises.append(Exercise(name: "Bench Press", reps: 30, weight: 20))
     }
     
     func configureVC() {
@@ -42,12 +35,48 @@ class AddWorkoutVC: UIViewController {
         title = "Add Workout Details"
         navigationItem.largeTitleDisplayMode = .never
         
-        let saveBarButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
-        navigationItem.rightBarButtonItem = saveBarButton
+        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addBarButton
     }
     
-    @objc func saveButtonTapped() {
+    @objc func addButtonTapped() {
+        presentAlert()
+    }
+    
+    func presentAlert() {
+        let alertController = UIAlertController(title: "Add Exercise", message: "", preferredStyle: .alert)
         
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter the exercise name here"
+            textField.keyboardType = .default
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter the weight you lifted here"
+            textField.keyboardType = .numberPad
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter the number of reps here"
+            textField.keyboardType = .numberPad
+        }
+        
+        alertController.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (action) in
+            let exerciseNameText = alertController.textFields![0].text!
+            let exerciseWeightText = alertController.textFields![1].text!
+            let exerciseRepsText = alertController.textFields![2].text!
+            
+            guard !exerciseNameText.isEmpty,
+                let exerciseWeightAsDouble = Double(exerciseWeightText),
+                let exerciseRepsAsInt = Int(exerciseRepsText) else {
+                print("Error")
+                return
+            }
+            
+            self.exercises.append(Exercise(name: exerciseNameText, reps: exerciseRepsAsInt, weight: exerciseWeightAsDouble))
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func configureWorkoutTypeLabel() {
@@ -77,39 +106,12 @@ class AddWorkoutVC: UIViewController {
         ])
     }
     
-    private func configureNotesLabel() {
-        view.addSubview(notesLabel)
-        notesLabel.text = "NOTES"
-        
-        NSLayoutConstraint.activate([
-            notesLabel.topAnchor.constraint(equalTo: workoutTypePickerView.bottomAnchor, constant: 8),
-            notesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            notesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            notesLabel.heightAnchor.constraint(equalToConstant: 30)
-        ])
-    }
-    
-    private func configureWorkoutNotes() {
-        view.addSubview(workoutNotesTextView)
-        workoutNotesTextView.translatesAutoresizingMaskIntoConstraints = false
-        workoutNotesTextView.layer.cornerRadius = 10
-        workoutNotesTextView.layer.borderWidth = 1
-        workoutNotesTextView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
-        
-        NSLayoutConstraint.activate([
-            workoutNotesTextView.topAnchor.constraint(equalTo: notesLabel.bottomAnchor, constant: 8),
-            workoutNotesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            workoutNotesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutNotesTextView.heightAnchor.constraint(equalToConstant: view.bounds.height / 9)
-        ])
-    }
-    
     private func configureExercisesLabel() {
         view.addSubview(addExercisesLabel)
         addExercisesLabel.text = "Add Exercises"
         
         NSLayoutConstraint.activate([
-            addExercisesLabel.topAnchor.constraint(equalTo: workoutNotesTextView.bottomAnchor, constant: 16),
+            addExercisesLabel.topAnchor.constraint(equalTo: workoutTypePickerView.bottomAnchor, constant: 16),
             addExercisesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             addExercisesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             addExercisesLabel.heightAnchor.constraint(equalToConstant: 40)
@@ -118,7 +120,7 @@ class AddWorkoutVC: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.frame = CGRect(x: 0, y: view.bounds.height / 2, width: view.bounds.width, height: view.bounds.height)
+        tableView.frame = CGRect(x: 0, y: view.bounds.height / 3, width: view.bounds.width, height: view.bounds.height)
         tableView.rowHeight = 120
 //        tableView.separatorStyle = .none
         
