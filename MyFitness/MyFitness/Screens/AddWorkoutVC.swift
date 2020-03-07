@@ -27,6 +27,7 @@ class AddWorkoutVC: UIViewController {
         configureWorkoutType()
         configureExercisesLabel()
         configureTableView()
+        configureSaveButton()
 //        createDismissKeyboardTapGesture()
     }
     
@@ -121,7 +122,7 @@ class AddWorkoutVC: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.frame = CGRect(x: 0, y: view.bounds.height / 3, width: view.bounds.width, height: view.bounds.height)
+        tableView.frame = CGRect(x: 0, y: view.bounds.height / 3, width: view.bounds.width, height: view.bounds.height / 2)
         tableView.rowHeight = 120
 //        tableView.separatorStyle = .none
         
@@ -129,6 +130,21 @@ class AddWorkoutVC: UIViewController {
         tableView.dataSource = self
         
         tableView.register(WorkoutCell.self, forCellReuseIdentifier: WorkoutCell.reuseID)
+    }
+    
+    func configureSaveButton() {
+        view.addSubview(saveButton)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.backgroundColor = .systemBlue
+        
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     func createDismissKeyboardTapGesture() {
