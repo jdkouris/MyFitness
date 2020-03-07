@@ -17,6 +17,7 @@ enum PersistenceManager {
     
     enum Keys {
         static let weightEntry = "weightEntry"
+        static let workoutEntry = "workoutEntry"
     }
     
     static func updateWith(weight: Double, actionType: PersistenceActionType, completion: @escaping (MFError?) -> Void) {
@@ -61,6 +62,52 @@ enum PersistenceManager {
             return nil
         } catch {
             return .unableToSaveWeights
+        }
+    }
+    
+    static func updateWith(workout: Workout, actionType: PersistenceActionType, completion: @escaping (MFError?) -> Void) {
+        retrieveWorkouts { (result) in
+            switch result {
+            case .success(let workouts):
+                var retrievedWorkouts = workouts
+                
+                switch actionType {
+                case .add:
+                    retrievedWorkouts.append(workout)
+                }
+                
+                completion(save(workouts: retrievedWorkouts))
+                
+            case .failure(let error):
+                completion(error)
+            }
+        }
+    }
+    
+    static func retrieveWorkouts(completion: @escaping (Result<[Workout], MFError>) -> Void) {
+        guard let workoutData = defaults.object(forKey: Keys.workoutEntry) as? Data else {
+            completion(.success([]))
+            return
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let workouts = try decoder.decode([Workout].self, from: workoutData)
+            completion(.success(workouts))
+        } catch {
+            completion(.failure(.unableToRetrieveWorkouts))
+        }
+        
+    }
+    
+    static func save(workouts: [Workout]) -> MFError? {
+        do {
+            let encoder = JSONEncoder()
+            let encodedWorkouts = try encoder.encode(workouts)
+            defaults.set(encodedWorkouts, forKey: Keys.workoutEntry)
+            return nil
+        } catch {
+            return .unableToSaveWorkouts
         }
     }
 }
