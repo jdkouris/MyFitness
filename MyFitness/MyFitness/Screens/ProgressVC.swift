@@ -80,7 +80,6 @@ class ProgressVC: UIViewController {
             self.weightLog.append(entryAsDouble)
             
             PersistenceManager.updateWith(weight: entryAsDouble, actionType: .add) { (error) in
-//                guard let self = self else { return }
                 
                 guard let error = error else {
                     print("Successfully added weight")
@@ -117,6 +116,7 @@ class ProgressVC: UIViewController {
     
     func configureChartView() {
         chartView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.hideHighlightLineOnTouchEnd = true
         view.addSubview(chartView)
     }
     
@@ -160,5 +160,9 @@ extension ProgressVC: UITableViewDataSource, UITableViewDelegate {
         cell.set(weight: weight)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
