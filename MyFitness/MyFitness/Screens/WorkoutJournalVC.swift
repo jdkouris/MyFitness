@@ -106,6 +106,7 @@ extension WorkoutJournalVC: UICollectionViewDelegate {
         
         let destinationVC = AddWorkoutVC()
         destinationVC.workout = workout
+        destinationVC.notesTextView.text = workout.notes
         
         let navController = UINavigationController(rootViewController: destinationVC)
         present(navController, animated: true, completion: nil)

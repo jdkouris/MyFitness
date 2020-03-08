@@ -19,10 +19,11 @@ class AddWorkoutVC: UIViewController {
     var workout: Workout?
     
     var exercises = [Exercise]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
+        configureWorkoutDetails()
         configureWorkoutTypeLabel()
         configureWorkoutType()
         configureNotesTextView()
@@ -42,6 +43,12 @@ class AddWorkoutVC: UIViewController {
     
     @objc func addButtonTapped() {
         presentAlert()
+    }
+    
+    func configureWorkoutDetails() {
+        guard let workout = workout else { return }
+        notesTextView.text = workout.notes
+        exercises = workout.exercises
     }
     
     func presentAlert() {
