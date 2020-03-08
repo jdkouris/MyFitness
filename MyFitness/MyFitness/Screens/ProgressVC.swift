@@ -70,6 +70,8 @@ class ProgressVC: UIViewController {
             textField.keyboardType = .numberPad
         }
         
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         alertController.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (action) in
             let textFieldEntry = alertController.textFields![0].text
             guard let entryAsDouble = Double(textFieldEntry!) else {
