@@ -11,9 +11,9 @@ import UIKit
 class AddWorkoutVC: UIViewController {
     
     let tableView = UITableView()
-    let workoutTypeLabel = MFTitleLabel(textAlignment: .left, fontSize: 24)
+    let workoutTypeLabel = MFTitleLabel(textAlignment: .left, fontSize: 20)
     let workoutTypePickerView = UIPickerView()
-    let addExercisesLabel = MFTitleLabel(textAlignment: .left, fontSize: 24)
+    let notesTextView = MFTextView(frame: .zero)
     let saveButton = UIButton()
     
     var workout: Workout?
@@ -25,10 +25,10 @@ class AddWorkoutVC: UIViewController {
         configureVC()
         configureWorkoutTypeLabel()
         configureWorkoutType()
-        configureExercisesLabel()
+        configureNotesTextView()
         configureTableView()
         configureSaveButton()
-//        createDismissKeyboardTapGesture()
+        createDismissKeyboardTapGesture()
     }
     
     func configureVC() {
@@ -91,7 +91,7 @@ class AddWorkoutVC: UIViewController {
             workoutTypeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             workoutTypeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             workoutTypeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutTypeLabel.heightAnchor.constraint(equalToConstant: 30)
+            workoutTypeLabel.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
@@ -106,19 +106,24 @@ class AddWorkoutVC: UIViewController {
             workoutTypePickerView.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor, constant: 8),
             workoutTypePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             workoutTypePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutTypePickerView.heightAnchor.constraint(equalToConstant: 100)
+            workoutTypePickerView.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
     
-    private func configureExercisesLabel() {
-        view.addSubview(addExercisesLabel)
-        addExercisesLabel.text = "ADD EXERCISES"
+    private func configureNotesTextView() {
+        view.addSubview(notesTextView)
+        
+        notesTextView.delegate = self
+        notesTextView.isEditable = true
+        notesTextView.isSelectable = true
+        notesTextView.isScrollEnabled = true
+        notesTextView.text = "Add workout notes here"
         
         NSLayoutConstraint.activate([
-            addExercisesLabel.topAnchor.constraint(equalTo: workoutTypePickerView.bottomAnchor, constant: 16),
-            addExercisesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            addExercisesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            addExercisesLabel.heightAnchor.constraint(equalToConstant: 40)
+            notesTextView.topAnchor.constraint(equalTo: workoutTypePickerView.bottomAnchor, constant: 8),
+            notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            notesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            notesTextView.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     
@@ -152,7 +157,7 @@ class AddWorkoutVC: UIViewController {
     
     @objc func saveTapped() {
         let selectedWorkoutType = WorkoutType.allCases[workoutTypePickerView.selectedRow(inComponent: 0)]
-        let workout = Workout(workoutType: selectedWorkoutType, exercises: exercises, notes: "")
+        let workout = Workout(workoutType: selectedWorkoutType, exercises: exercises, notes: notesTextView.text)
         
         PersistenceManager.updateWith(workout: workout, actionType: .add) { (error) in
             guard let error = error else {
@@ -208,4 +213,10 @@ extension AddWorkoutVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return WorkoutType.allCases[row].rawValue
     }
     
+}
+
+extension AddWorkoutVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        notesTextView.text = ""
+    }
 }
