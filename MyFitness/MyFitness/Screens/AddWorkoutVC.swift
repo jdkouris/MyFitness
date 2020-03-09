@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddWorkoutVCDelegate: class {
+    func updateWorkout()
+}
+
 class AddWorkoutVC: UIViewController {
     
     let tableView = UITableView()
@@ -16,14 +20,19 @@ class AddWorkoutVC: UIViewController {
     let notesTextView = MFTextView(frame: .zero)
     let saveButton = UIButton()
     
-    var workout: Workout?
+    var workout: Workout? {
+        didSet {
+            configureWorkoutDetails()
+        }
+    }
+    
+    var delegate: AddWorkoutVCDelegate?
     
     var exercises = [Exercise]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
-        configureWorkoutDetails()
         configureWorkoutTypeLabel()
         configureWorkoutType()
         configureNotesTextView()
@@ -39,10 +48,17 @@ class AddWorkoutVC: UIViewController {
         
         let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addBarButton
+        
+        let closeBarButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(close))
+        navigationItem.leftBarButtonItem = closeBarButton
     }
     
     @objc func addButtonTapped() {
         presentAlert()
+    }
+    
+    @objc func close() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func configureWorkoutDetails() {
@@ -120,11 +136,9 @@ class AddWorkoutVC: UIViewController {
     private func configureNotesTextView() {
         view.addSubview(notesTextView)
         
-        notesTextView.delegate = self
         notesTextView.isEditable = true
         notesTextView.isSelectable = true
         notesTextView.isScrollEnabled = true
-        notesTextView.text = "Add workout notes here"
         
         NSLayoutConstraint.activate([
             notesTextView.topAnchor.constraint(equalTo: workoutTypePickerView.bottomAnchor, constant: 8),
@@ -138,7 +152,6 @@ class AddWorkoutVC: UIViewController {
         view.addSubview(tableView)
         tableView.frame = CGRect(x: 0, y: view.bounds.height / 3, width: view.bounds.width, height: view.bounds.height / 2)
         tableView.rowHeight = 120
-//        tableView.separatorStyle = .none
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -175,7 +188,9 @@ class AddWorkoutVC: UIViewController {
             print("Error: \(error)")
         }
         
-        navigationController?.popViewController(animated: true)
+        delegate?.updateWorkout()
+        
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func createDismissKeyboardTapGesture() {
@@ -220,10 +235,8 @@ extension AddWorkoutVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return WorkoutType.allCases[row].rawValue
     }
     
-}
-
-extension AddWorkoutVC: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        notesTextView.text = ""
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        workout?.workoutType = WorkoutType.allCases[workoutTypePickerView.selectedRow(inComponent: component)]
     }
+    
 }

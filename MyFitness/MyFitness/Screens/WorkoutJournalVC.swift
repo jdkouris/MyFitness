@@ -94,8 +94,10 @@ class WorkoutJournalVC: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        let addWorkoutVC = AddWorkoutVC()
-        navigationController?.pushViewController(addWorkoutVC, animated: true)
+        let destinationVC = AddWorkoutVC()
+        destinationVC.delegate = self
+        let navController = UINavigationController(rootViewController: destinationVC)
+        present(navController, animated: true, completion: nil)
     }
 
 }
@@ -107,8 +109,16 @@ extension WorkoutJournalVC: UICollectionViewDelegate {
         let destinationVC = AddWorkoutVC()
         destinationVC.workout = workout
         destinationVC.notesTextView.text = workout.notes
+        destinationVC.delegate = self
         
         let navController = UINavigationController(rootViewController: destinationVC)
         present(navController, animated: true, completion: nil)
+    }
+}
+
+extension WorkoutJournalVC: AddWorkoutVCDelegate {
+    func updateWorkout() {
+        getWorkouts()
+        collectionView.reloadData()
     }
 }
