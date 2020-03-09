@@ -76,10 +76,32 @@ class WorkoutJournalVC: UIViewController {
         collectionView.register(JournalCell.self, forCellWithReuseIdentifier: JournalCell.reuseID)
     }
     
+    @objc func swipeToDelete(sender: UISwipeGestureRecognizer) {
+        let cell = sender.view as! JournalCell
+        let itemIndex = self.collectionView.indexPath(for: cell)!.item
+        
+        let workout = workouts[itemIndex]
+        
+        workouts.remove(at: itemIndex)
+        updateData(on: workouts)
+        
+        PersistenceManager.updateWith(workout: workout, actionType: .remove) { (error) in
+            guard let error = error else { return }
+            print("unable to remove: \(error)")
+        }
+        
+        self.collectionView.reloadData()
+    }
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Workout>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, workout) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JournalCell.reuseID, for: indexPath) as! JournalCell
             cell.set(workout: workout)
+            
+            let swipeAction = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeToDelete(sender:)))
+            swipeAction.direction = UISwipeGestureRecognizer.Direction.right
+            cell.addGestureRecognizer(swipeAction)
+            
             return cell
         })
     }

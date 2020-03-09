@@ -10,6 +10,7 @@ import Foundation
 
 enum PersistenceActionType {
     case add
+    case remove
 }
 
 enum PersistenceManager {
@@ -29,6 +30,9 @@ enum PersistenceManager {
                 switch actionType {
                 case .add:
                     retrievedWeights.append(weight)
+                    
+                case .remove:
+                    retrievedWeights.removeAll { $0 == weight }
                 }
                 
                 completion(save(weightEntries: retrievedWeights))
@@ -74,6 +78,9 @@ enum PersistenceManager {
                 switch actionType {
                 case .add:
                     retrievedWorkouts.append(workout)
+                    
+                case .remove:
+                    retrievedWorkouts.removeAll { $0.id == workout.id }
                 }
                 
                 completion(save(workouts: retrievedWorkouts))
