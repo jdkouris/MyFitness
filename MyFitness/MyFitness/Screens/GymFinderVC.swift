@@ -37,7 +37,7 @@ class GymFinderVC: UIViewController {
         request.pointOfInterestFilter = MKPointOfInterestFilter(including: [gym])
         // Run search
         let search = MKLocalSearch(request: request)
-        search.start(completionHandler: {(response, error) in
+        search.start(completionHandler: { (response, error) in
             
             if response == nil {
                 print("error")
@@ -49,9 +49,6 @@ class GymFinderVC: UIViewController {
                                          latitude: item.placemark.location!.coordinate.latitude,
                                          longitude: item.placemark.location!.coordinate.longitude)
                     self.arrayOfResults.append(item)
-                    
-                    print("\(self.arrayOfResults)")
-                    
                 }
             }
         })
@@ -59,8 +56,7 @@ class GymFinderVC: UIViewController {
     
     func addPinToMapView(title: String?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         if let title = title {
-            let location = CLLocationCoordinate2D(latitude: latitude,
-                                                  longitude: longitude)
+            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
             annotation.title = title
@@ -74,10 +70,10 @@ class GymFinderVC: UIViewController {
         view.addSubview(gymMapView)
         
         NSLayoutConstraint.activate([
-            gymMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            gymMapView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            gymMapView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            gymMapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            gymMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            gymMapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gymMapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            gymMapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -90,14 +86,6 @@ class GymFinderVC: UIViewController {
             userTrackingButton.leadingAnchor.constraint(equalTo: gymMapView.leadingAnchor, constant: 30),
             userTrackingButton.bottomAnchor.constraint(equalTo: gymMapView.bottomAnchor, constant: -30)
         ])
-    }
-    
-}
-
-extension GymFinderVC: MKMapViewDelegate, CLLocationManagerDelegate {
-    
-    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        searchInMap()
     }
     
 }
