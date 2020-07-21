@@ -39,6 +39,11 @@ class AddWorkoutVC: UIViewController {
         configureTableView()
         configureSaveButton()
         createDismissKeyboardTapGesture()
+        guard let workoutTypeValue = workout?.workoutType.rawValue else {
+            workoutTypePickerView.selectRow(0, inComponent: 0, animated: true)
+            return
+        }
+        workoutTypePickerView.selectRow(workoutTypeValue, inComponent: 0, animated: true)
     }
     
     func configureVC() {
@@ -232,7 +237,7 @@ extension AddWorkoutVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return WorkoutType.allCases[row].rawValue
+        return WorkoutType.allCases[row].description
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

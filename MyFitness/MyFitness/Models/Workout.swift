@@ -8,24 +8,67 @@
 
 import Foundation
 
-enum WorkoutType: String, CaseIterable, Codable, Hashable {
-    case chest = "Chest"
-    case back = "Back"
-    case quads = "Quads"
-    case hamstrings = "Hamstrings"
-    case abs = "Abs"
-    case biceps = "Biceps"
-    case triceps = "Triceps"
-    case shoulders = "Shoulders"
-    case upperBody = "Upper Body"
-    case upperBodyPush = "Upper Body Push"
-    case upperBodyPull = "Upper Body Pull"
-    case lowerBody = "Lower Body"
-    case fullBody = "Full Body"
-    case chestBack = "Chest & Back"
-    case armsShoulders = "Arms & Shoulders"
-    case backBiceps = "Back & Biceps"
-    case chestTriceps = "Chest & Tricpes"
+protocol WorkoutTypeProtocol {
+    var description: String { get }
+}
+
+enum WorkoutType: Int, CaseIterable, Codable, Hashable, WorkoutTypeProtocol {
+    case chest 
+    case back
+    case quads
+    case hamstrings
+    case abs
+    case biceps
+    case triceps
+    case shoulders
+    case upperBody
+    case upperBodyPush
+    case upperBodyPull
+    case lowerBody
+    case fullBody
+    case chestBack
+    case armsShoulders
+    case backBiceps
+    case chestTriceps
+    
+    var description: String {
+        switch self {
+        case .chest:
+            return "Chest"
+        case .back:
+            return "Back"
+        case .quads:
+            return "Quadriceps"
+        case .hamstrings:
+            return "Hamstrings"
+        case .abs:
+            return "Abs"
+        case .biceps:
+            return "Biceps"
+        case .triceps:
+            return "Triceps"
+        case .shoulders:
+            return "Shoulders"
+        case .upperBody:
+            return "Upper Body"
+        case .upperBodyPush:
+            return "Upper Body Push"
+        case .upperBodyPull:
+            return "Upper Body Pull"
+        case .lowerBody:
+            return "Lower Body"
+        case .fullBody:
+            return "Full Body"
+        case .chestBack:
+            return "Chest & Back"
+        case .armsShoulders:
+            return "Arms & Shoulders"
+        case .backBiceps:
+            return "Back & Biceps"
+        case .chestTriceps:
+            return "Chest & Triceps"
+        }
+    }
 }
 
 struct Workout: Codable, Hashable {

@@ -27,7 +27,7 @@ class JournalCell: UICollectionViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
         titleDateLabel.text = dateFormatter.string(from: Date())
-        workoutTypeLabel.text = workout.workoutType.rawValue
+        workoutTypeLabel.text = workout.workoutType.description
         bodyLabel.text = workout.notes
     }
     
