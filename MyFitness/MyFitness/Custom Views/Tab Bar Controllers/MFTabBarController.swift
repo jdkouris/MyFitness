@@ -14,7 +14,11 @@ class MFTabBarController: UITabBarController {
         super.viewDidLoad()
 
         UITabBar.appearance().tintColor = .systemBlue
-        viewControllers = [createWorkoutJournalNC(), createProgressNC(), createMealsNC(), createGymFinderNC()]
+        viewControllers = [createWorkoutJournalNC(),
+                           createProgressNC(),
+                           createMealsNC()
+//                           ,createGymFinderNC()
+        ]
     }
     
     func createWorkoutJournalNC() -> UINavigationController {

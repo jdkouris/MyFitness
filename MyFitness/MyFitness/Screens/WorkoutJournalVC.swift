@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class WorkoutJournalVC: UIViewController {
     
@@ -17,6 +18,7 @@ class WorkoutJournalVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Workout>!
     var workouts = [Workout]()
+    let healthStore = HKHealthStore()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -36,6 +38,9 @@ class WorkoutJournalVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getWorkouts()
+        if HKHealthStore.isHealthDataAvailable() {
+            
+        }
     }
     
     func getWorkouts() {
