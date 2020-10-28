@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		294205C7254919B1009BB963 /* Weight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294205C5254919B1009BB963 /* Weight+CoreDataClass.swift */; };
-		294205C8254919B1009BB963 /* Weight+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294205C6254919B1009BB963 /* Weight+CoreDataProperties.swift */; };
+		294205D925491AED009BB963 /* Weight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294205D825491AED009BB963 /* Weight+CoreDataClass.swift */; };
+		294205DA25491AED009BB963 /* Weight+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294205D725491AED009BB963 /* Weight+CoreDataProperties.swift */; };
 		299016E825490AEE0071079F /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299016E725490AEE0071079F /* APIKeys.swift */; };
 		29D6B23D2549117B00E4BD1C /* MyFitness.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29D6B23B2549117B00E4BD1C /* MyFitness.xcdatamodeld */; };
 		29D6B2432549144500E4BD1C /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D6B2422549144500E4BD1C /* Workout+CoreDataProperties.swift */; };
@@ -51,8 +51,8 @@
 
 /* Begin PBXFileReference section */
 		03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFitness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		294205C5254919B1009BB963 /* Weight+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Weight+CoreDataClass.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Weight+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		294205C6254919B1009BB963 /* Weight+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Weight+CoreDataProperties.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Weight+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		294205D725491AED009BB963 /* Weight+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Weight+CoreDataProperties.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Weight+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		294205D825491AED009BB963 /* Weight+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Weight+CoreDataClass.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Weight+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		299016E725490AEE0071079F /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		29D6B23C2549117B00E4BD1C /* MyFitness.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFitness.xcdatamodel; sourceTree = "<group>"; };
 		29D6B23F2549144500E4BD1C /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataClass.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Exercise+CoreDataClass.swift"; sourceTree = "<absolute>"; };
@@ -217,8 +217,8 @@
 				29D6B2422549144500E4BD1C /* Workout+CoreDataProperties.swift */,
 				29D6B23F2549144500E4BD1C /* Exercise+CoreDataClass.swift */,
 				29D6B2402549144500E4BD1C /* Exercise+CoreDataProperties.swift */,
-				294205C5254919B1009BB963 /* Weight+CoreDataClass.swift */,
-				294205C6254919B1009BB963 /* Weight+CoreDataProperties.swift */,
+				294205D825491AED009BB963 /* Weight+CoreDataClass.swift */,
+				294205D725491AED009BB963 /* Weight+CoreDataProperties.swift */,
 				CC0C7D3124075BBF00639A8F /* Recipe.swift */,
 			);
 			path = Models;
@@ -340,7 +340,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "John Kouris";
 				TargetAttributes = {
 					CC58AC83240624C7008F4FC6 = {
@@ -430,7 +430,7 @@
 				CCBE3883240D765D00130347 /* MealCell.swift in Sources */,
 				CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */,
 				CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */,
-				294205C7254919B1009BB963 /* Weight+CoreDataClass.swift in Sources */,
+				294205D925491AED009BB963 /* Weight+CoreDataClass.swift in Sources */,
 				CCBE3888240D820800130347 /* NetworkManager.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
 				CCBE3890240E003F00130347 /* Constants.swift in Sources */,
@@ -454,7 +454,7 @@
 				CC0C7D282407574600639A8F /* MealsVC.swift in Sources */,
 				CCBE388A240D841400130347 /* MFError.swift in Sources */,
 				CCBE3881240D752800130347 /* UIHelper.swift in Sources */,
-				294205C8254919B1009BB963 /* Weight+CoreDataProperties.swift in Sources */,
+				294205DA25491AED009BB963 /* Weight+CoreDataProperties.swift in Sources */,
 				CC937A67240F46890062D8C0 /* MFTextView.swift in Sources */,
 				CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */,
 				CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */,
@@ -504,6 +504,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -564,6 +565,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

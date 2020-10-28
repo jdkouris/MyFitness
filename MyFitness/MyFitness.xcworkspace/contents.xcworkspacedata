@@ -8,12 +8,6 @@
       location = "group:/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Weight+CoreDataProperties.swift">
    </FileRef>
    <FileRef
-      location = "absolute:/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Weight+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "absolute:/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Weight+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:MyFitness.xcodeproj">
    </FileRef>
    <FileRef

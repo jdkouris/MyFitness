@@ -16,7 +16,7 @@ extension Weight {
         return NSFetchRequest<Weight>(entityName: "Weight")
     }
 
-    @NSManaged public var weight: Double
     @NSManaged public var date: Date?
+    @NSManaged public var value: Double
 
 }
