@@ -16,7 +16,7 @@ class AddWorkoutVC: UIViewController {
     
     let tableView = UITableView()
     let workoutTypeLabel = MFTitleLabel(textAlignment: .left, fontSize: 20)
-    let workoutTypePickerView = UIPickerView()
+    let workoutNameTextField = UITextField()
     let notesTextView = MFTextView(frame: .zero)
     let saveButton = UIButton()
     
@@ -34,16 +34,11 @@ class AddWorkoutVC: UIViewController {
         super.viewDidLoad()
         configureVC()
         configureWorkoutTypeLabel()
-        configureWorkoutType()
+        configureWorkoutName()
         configureNotesTextView()
         configureTableView()
         configureSaveButton()
         createDismissKeyboardTapGesture()
-        guard let workoutTypeValue = workout?.workoutType.rawValue else {
-            workoutTypePickerView.selectRow(0, inComponent: 0, animated: true)
-            return
-        }
-        workoutTypePickerView.selectRow(workoutTypeValue, inComponent: 0, animated: true)
     }
     
     func configureVC() {
@@ -69,7 +64,6 @@ class AddWorkoutVC: UIViewController {
     func configureWorkoutDetails() {
         guard let workout = workout else { return }
         notesTextView.text = workout.notes
-        exercises = workout.exercises
     }
     
     func presentAlert() {
@@ -102,7 +96,7 @@ class AddWorkoutVC: UIViewController {
                 return
             }
             
-            self.exercises.append(Exercise(name: exerciseNameText, reps: exerciseRepsAsInt, weight: exerciseWeightAsDouble))
+            
             self.tableView.reloadData()
         }))
         
@@ -123,18 +117,15 @@ class AddWorkoutVC: UIViewController {
         ])
     }
     
-    private func configureWorkoutType() {
-        view.addSubview(workoutTypePickerView)
-        workoutTypePickerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.workoutTypePickerView.delegate = self
-        self.workoutTypePickerView.dataSource = self
+    private func configureWorkoutName() {
+        view.addSubview(workoutNameTextField)
+        workoutNameTextField.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            workoutTypePickerView.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor, constant: 8),
-            workoutTypePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            workoutTypePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutTypePickerView.heightAnchor.constraint(equalToConstant: 80)
+            workoutNameTextField.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor, constant: 8),
+            workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            workoutNameTextField.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
     
@@ -146,7 +137,7 @@ class AddWorkoutVC: UIViewController {
         notesTextView.isScrollEnabled = true
         
         NSLayoutConstraint.activate([
-            notesTextView.topAnchor.constraint(equalTo: workoutTypePickerView.bottomAnchor, constant: 8),
+            notesTextView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 8),
             notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             notesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             notesTextView.heightAnchor.constraint(equalToConstant: 70)
@@ -181,19 +172,7 @@ class AddWorkoutVC: UIViewController {
     }
     
     @objc func saveTapped() {
-        let selectedWorkoutType = WorkoutType.allCases[workoutTypePickerView.selectedRow(inComponent: 0)]
-        let workout = Workout(workoutType: selectedWorkoutType, exercises: exercises, notes: notesTextView.text)
         
-        PersistenceManager.updateWith(workout: workout, actionType: .add) { (error) in
-            guard let error = error else {
-                print("Successfully added workout")
-                return
-            }
-            
-            print("Error: \(error)")
-        }
-        
-        delegate?.updateWorkout()
         
         navigationController?.dismiss(animated: true, completion: nil)
     }
@@ -222,26 +201,6 @@ extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-}
-
-extension AddWorkoutVC: UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return WorkoutType.allCases.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return WorkoutType.allCases[row].description
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        workout?.workoutType = WorkoutType.allCases[workoutTypePickerView.selectedRow(inComponent: component)]
     }
     
 }

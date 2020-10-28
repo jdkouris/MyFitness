@@ -80,7 +80,8 @@ enum PersistenceManager {
                     retrievedWorkouts.append(workout)
                     
                 case .remove:
-                    retrievedWorkouts.removeAll { $0.id == workout.id }
+//                    retrievedWorkouts.removeAll { $0.id == workout.id }
+                    return
                 }
                 
                 completion(save(workouts: retrievedWorkouts))
@@ -99,8 +100,8 @@ enum PersistenceManager {
         
         do {
             let decoder = JSONDecoder()
-            let workouts = try decoder.decode([Workout].self, from: workoutData)
-            completion(.success(workouts))
+//            let workouts = try decoder.decode([Workout].self, from: workoutData)
+//            completion(.success(workouts))
         } catch {
             completion(.failure(.unableToRetrieveWorkouts))
         }
@@ -110,8 +111,8 @@ enum PersistenceManager {
     static func save(workouts: [Workout]) -> MFError? {
         do {
             let encoder = JSONEncoder()
-            let encodedWorkouts = try encoder.encode(workouts)
-            defaults.set(encodedWorkouts, forKey: Keys.workoutEntry)
+//            let encodedWorkouts = try encoder.encode(workouts)
+//            defaults.set(encodedWorkouts, forKey: Keys.workoutEntry)
             return nil
         } catch {
             return .unableToSaveWorkouts
