@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		299016E825490AEE0071079F /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299016E725490AEE0071079F /* APIKeys.swift */; };
+		29D6B23D2549117B00E4BD1C /* MyFitness.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29D6B23B2549117B00E4BD1C /* MyFitness.xcdatamodeld */; };
 		5F17C9F9F6C8A36BD6937386 /* Pods_MyFitness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */; };
 		CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D22240756A500639A8F /* MFTabBarController.swift */; };
 		CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D24240756F200639A8F /* GymFinderVC.swift */; };
@@ -22,7 +23,6 @@
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
 		CC58AC94240624C8008F4FC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC92240624C8008F4FC6 /* LaunchScreen.storyboard */; };
 		CC64240724C8A68E004107C8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC64240624C8A68E004107C8 /* HealthKit.framework */; };
-		CC64240B24C8A88B004107C8 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64240A24C8A88B004107C8 /* HealthKitSetupAssistant.swift */; };
 		CC87088B2408BD100065D328 /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088A2408BD100065D328 /* JournalCell.swift */; };
 		CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088D2408BD5E0065D328 /* MFTitleLabel.swift */; };
 		CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088F2408BD870065D328 /* MFAlertVC.swift */; };
@@ -48,6 +48,7 @@
 /* Begin PBXFileReference section */
 		03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFitness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		299016E725490AEE0071079F /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		29D6B23C2549117B00E4BD1C /* MyFitness.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFitness.xcdatamodel; sourceTree = "<group>"; };
 		B93347B68824A3AF137D9B24 /* Pods-MyFitness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.debug.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.debug.xcconfig"; sourceTree = "<group>"; };
 		C8506F6B2D9B997573B11C75 /* Pods-MyFitness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.release.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.release.xcconfig"; sourceTree = "<group>"; };
 		CC0C7D22240756A500639A8F /* MFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTabBarController.swift; sourceTree = "<group>"; };
@@ -64,9 +65,7 @@
 		CC58AC90240624C8008F4FC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC58AC93240624C8008F4FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC58AC95240624C8008F4FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC64240524C8A68E004107C8 /* MyFitness.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyFitness.entitlements; sourceTree = "<group>"; };
 		CC64240624C8A68E004107C8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		CC64240A24C8A88B004107C8 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthKitSetupAssistant.swift; path = MyFitness/Models/HealthKitSetupAssistant.swift; sourceTree = SOURCE_ROOT; };
 		CC87088A2408BD100065D328 /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
 		CC87088D2408BD5E0065D328 /* MFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTitleLabel.swift; sourceTree = "<group>"; };
 		CC87088F2408BD870065D328 /* MFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFAlertVC.swift; path = "MyFitness/Custom Views/View Controllers/MFAlertVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -139,6 +138,14 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		29D6B23A2549116B00E4BD1C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				29D6B23B2549117B00E4BD1C /* MyFitness.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		3E9F3D9CA5DCD7CD2FE3AA2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,27 +212,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CC0C7D1E2407560F00639A8F /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				CCBE3887240D820800130347 /* NetworkManager.swift */,
-				CCBB28462411A6C9001FF616 /* PersistenceManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		CC0C7D1F2407563000639A8F /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				CCBE3880240D752800130347 /* UIHelper.swift */,
-				CCBE3889240D841400130347 /* MFError.swift */,
-				CCBE388B240D88BB00130347 /* APIKeys.swift */,
-				CCBE388F240E003F00130347 /* Constants.swift */,
-				CC64240A24C8A88B004107C8 /* HealthKitSetupAssistant.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		CC0C7D202407564400639A8F /* Tab Bar Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +241,7 @@
 		CC58AC86240624C7008F4FC6 /* MyFitness */ = {
 			isa = PBXGroup;
 			children = (
+				29D6B23A2549116B00E4BD1C /* Data */,
 				29D6B22925490EB200E4BD1C /* Extensions */,
 				29D6B22825490E9800E4BD1C /* Managers */,
 				29D6B22725490E7800E4BD1C /* Utilities */,
@@ -442,6 +429,7 @@
 				CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */,
 				CC0C7D2E24075A8E00639A8F /* Workout.swift in Sources */,
 				CCFC4D192410A43F000D1740 /* WeightCell.swift in Sources */,
+				29D6B23D2549117B00E4BD1C /* MyFitness.xcdatamodeld in Sources */,
 				CC87088B2408BD100065D328 /* JournalCell.swift in Sources */,
 				CCBB28492412C381001FF616 /* MFSecondaryTitleLabel.swift in Sources */,
 				CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */,
@@ -650,6 +638,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		29D6B23B2549117B00E4BD1C /* MyFitness.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				29D6B23C2549117B00E4BD1C /* MyFitness.xcdatamodel */,
+			);
+			currentVersion = 29D6B23C2549117B00E4BD1C /* MyFitness.xcdatamodel */;
+			path = MyFitness.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CC58AC7C240624C7008F4FC6 /* Project object */;
 }
