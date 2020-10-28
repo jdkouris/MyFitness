@@ -40,7 +40,7 @@ class MealDetailsVC: UIViewController {
             }
         }
         
-        recipeInstructionsTextView.text += recipe.instructions.replacingOccurrences(of: ".", with: ".\n\n").replacingOccurrences(of: "<ol>", with: "").replacingOccurrences(of: "<li>", with: "").replacingOccurrences(of: "</li>", with: "").replacingOccurrences(of: "</ol>", with: "")
+        recipeInstructionsTextView.text += recipe.instructions.replacingOccurrences(of: ".", with: ".\n\n").replacingOccurrences(of: "<ol>", with: "").replacingOccurrences(of: "<li>", with: "").replacingOccurrences(of: "</li>", with: "").replacingOccurrences(of: "</ol>", with: "").replacingOccurrences(of: "<span>", with: "").replacingOccurrences(of: "</span>", with: "")
     }
     
     func layoutUI() {
