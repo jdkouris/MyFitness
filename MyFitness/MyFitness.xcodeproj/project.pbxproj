@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		299016E825490AEE0071079F /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299016E725490AEE0071079F /* APIKeys.swift */; };
 		5F17C9F9F6C8A36BD6937386 /* Pods_MyFitness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */; };
 		CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D22240756A500639A8F /* MFTabBarController.swift */; };
 		CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D24240756F200639A8F /* GymFinderVC.swift */; };
@@ -38,7 +39,6 @@
 		CCBE3886240D76BF00130347 /* MFMealImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3885240D76BF00130347 /* MFMealImageView.swift */; };
 		CCBE3888240D820800130347 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3887240D820800130347 /* NetworkManager.swift */; };
 		CCBE388A240D841400130347 /* MFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3889240D841400130347 /* MFError.swift */; };
-		CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388B240D88BB00130347 /* APIKeys.swift */; };
 		CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */; };
 		CCBE3890240E003F00130347 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388F240E003F00130347 /* Constants.swift */; };
 		CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC4D162410A209000D1740 /* Notification+Extension.swift */; };
@@ -47,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFitness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		299016E725490AEE0071079F /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		B93347B68824A3AF137D9B24 /* Pods-MyFitness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.debug.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.debug.xcconfig"; sourceTree = "<group>"; };
 		C8506F6B2D9B997573B11C75 /* Pods-MyFitness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.release.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.release.xcconfig"; sourceTree = "<group>"; };
 		CC0C7D22240756A500639A8F /* MFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTabBarController.swift; sourceTree = "<group>"; };
@@ -68,24 +69,23 @@
 		CC64240A24C8A88B004107C8 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthKitSetupAssistant.swift; path = MyFitness/Models/HealthKitSetupAssistant.swift; sourceTree = SOURCE_ROOT; };
 		CC87088A2408BD100065D328 /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
 		CC87088D2408BD5E0065D328 /* MFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTitleLabel.swift; sourceTree = "<group>"; };
-		CC87088F2408BD870065D328 /* MFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFAlertVC.swift; path = "MyFitness/Custom Views/Labels/MFAlertVC.swift"; sourceTree = SOURCE_ROOT; };
+		CC87088F2408BD870065D328 /* MFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFAlertVC.swift; path = "MyFitness/Custom Views/View Controllers/MFAlertVC.swift"; sourceTree = SOURCE_ROOT; };
 		CC8708912408BF5C0065D328 /* MFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFBodyLabel.swift; sourceTree = "<group>"; };
 		CC8708932408C59A0065D328 /* AddWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutVC.swift; sourceTree = "<group>"; };
 		CC8708952408C8450065D328 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		CC937A66240F46890062D8C0 /* MFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTextView.swift; sourceTree = "<group>"; };
-		CCBB28462411A6C9001FF616 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersistenceManager.swift; path = MyFitness/Screens/PersistenceManager.swift; sourceTree = SOURCE_ROOT; };
+		CCBB28462411A6C9001FF616 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersistenceManager.swift; path = MyFitness/Managers/PersistenceManager.swift; sourceTree = SOURCE_ROOT; };
 		CCBB28482412C381001FF616 /* MFSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		CCBE387C240ADD0600130347 /* MFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFTextField.swift; sourceTree = "<group>"; };
 		CCBE387E240D74BA00130347 /* MealDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsVC.swift; sourceTree = "<group>"; };
-		CCBE3880240D752800130347 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIHelper.swift; path = MyFitness/Screens/UIHelper.swift; sourceTree = SOURCE_ROOT; };
+		CCBE3880240D752800130347 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIHelper.swift; path = MyFitness/Utilities/UIHelper.swift; sourceTree = SOURCE_ROOT; };
 		CCBE3882240D765D00130347 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		CCBE3885240D76BF00130347 /* MFMealImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFMealImageView.swift; sourceTree = "<group>"; };
-		CCBE3887240D820800130347 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = "MyFitness/Custom Views/ImageViews/NetworkManager.swift"; sourceTree = SOURCE_ROOT; };
-		CCBE3889240D841400130347 /* MFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFError.swift; path = "MyFitness/Custom Views/ImageViews/MFError.swift"; sourceTree = SOURCE_ROOT; };
-		CCBE388B240D88BB00130347 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIKeys.swift; path = "MyFitness/Custom Views/ImageViews/APIKeys.swift"; sourceTree = SOURCE_ROOT; };
-		CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFMealInfoHeaderVC.swift; path = "MyFitness/Custom Views/ImageViews/MFMealInfoHeaderVC.swift"; sourceTree = SOURCE_ROOT; };
-		CCBE388F240E003F00130347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "MyFitness/Custom Views/ImageViews/Constants.swift"; sourceTree = SOURCE_ROOT; };
-		CCFC4D162410A209000D1740 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Notification+Extension.swift"; path = "MyFitness/Custom Views/Chart Views/Notification+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		CCBE3887240D820800130347 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = MyFitness/Managers/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
+		CCBE3889240D841400130347 /* MFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFError.swift; path = MyFitness/Utilities/MFError.swift; sourceTree = SOURCE_ROOT; };
+		CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFMealInfoHeaderVC.swift; path = "MyFitness/Custom Views/View Controllers/MFMealInfoHeaderVC.swift"; sourceTree = SOURCE_ROOT; };
+		CCBE388F240E003F00130347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = MyFitness/Utilities/Constants.swift; sourceTree = SOURCE_ROOT; };
+		CCFC4D162410A209000D1740 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Notification+Extension.swift"; path = "MyFitness/Extensions/Notification+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		CCFC4D182410A43F000D1740 /* WeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +102,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29D6B22725490E7800E4BD1C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE3880240D752800130347 /* UIHelper.swift */,
+				CCBE3889240D841400130347 /* MFError.swift */,
+				CCBE388F240E003F00130347 /* Constants.swift */,
+				299016E725490AEE0071079F /* APIKeys.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		29D6B22825490E9800E4BD1C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE3887240D820800130347 /* NetworkManager.swift */,
+				CCBB28462411A6C9001FF616 /* PersistenceManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		29D6B22925490EB200E4BD1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CCFC4D162410A209000D1740 /* Notification+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		29D6B22A25490EC200E4BD1C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC87088F2408BD870065D328 /* MFAlertVC.swift */,
+				CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		3E9F3D9CA5DCD7CD2FE3AA2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,18 +189,10 @@
 				CCBE387B240ADCF400130347 /* TextFields */,
 				CC87088C2408BD2E0065D328 /* Labels */,
 				CC0C7D202407564400639A8F /* Tab Bar Controllers */,
-				CC0C7D212407566500639A8F /* View Controllers */,
+				29D6B22A25490EC200E4BD1C /* View Controllers */,
 				CC8708892408BCE60065D328 /* Cells */,
 			);
 			path = "Custom Views";
-			sourceTree = "<group>";
-		};
-		CC0C7D1C240755FC00639A8F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				CCFC4D162410A209000D1740 /* Notification+Extension.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CC0C7D1D2407560100639A8F /* Models */ = {
@@ -205,15 +234,6 @@
 			path = "Tab Bar Controllers";
 			sourceTree = "<group>";
 		};
-		CC0C7D212407566500639A8F /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				CC87088F2408BD870065D328 /* MFAlertVC.swift */,
-				CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */,
-			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
 		CC58AC7B240624C7008F4FC6 = {
 			isa = PBXGroup;
 			children = (
@@ -235,11 +255,10 @@
 		CC58AC86240624C7008F4FC6 /* MyFitness */ = {
 			isa = PBXGroup;
 			children = (
-				CC64240524C8A68E004107C8 /* MyFitness.entitlements */,
-				CC0C7D1F2407563000639A8F /* Utilities */,
-				CC0C7D1E2407560F00639A8F /* Managers */,
+				29D6B22925490EB200E4BD1C /* Extensions */,
+				29D6B22825490E9800E4BD1C /* Managers */,
+				29D6B22725490E7800E4BD1C /* Utilities */,
 				CC0C7D1D2407560100639A8F /* Models */,
-				CC0C7D1C240755FC00639A8F /* Extensions */,
 				CC0C7D1B240755EC00639A8F /* Custom Views */,
 				CC0C7D1A240755DB00639A8F /* Screens */,
 				CC0C7D19240755AF00639A8F /* Support */,
@@ -408,13 +427,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBE3886240D76BF00130347 /* MFMealImageView.swift in Sources */,
-				CC64240B24C8A88B004107C8 /* HealthKitSetupAssistant.swift in Sources */,
+				299016E825490AEE0071079F /* APIKeys.swift in Sources */,
 				CCBE3883240D765D00130347 /* MealCell.swift in Sources */,
 				CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */,
 				CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */,
 				CCBE3888240D820800130347 /* NetworkManager.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
-				CCBE388C240D88BB00130347 /* APIKeys.swift in Sources */,
 				CCBE3890240E003F00130347 /* Constants.swift in Sources */,
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
 				CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */,
