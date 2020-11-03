@@ -22,12 +22,12 @@ class WeightCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(weight: Double) {
+    func set(weight: Weight) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
-        titleDateLabel.text = dateFormatter.string(from: Date())
+        titleDateLabel.text = dateFormatter.string(from: weight.date ?? Date())
         
-        bodyLabel.text = "\(weight) lbs"
+        bodyLabel.text = "\(weight.value) lbs"
     }
     
     private func configure() {

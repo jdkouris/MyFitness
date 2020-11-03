@@ -8,13 +8,17 @@
 
 import UIKit
 import SwiftChart
+import CoreData
 
 class ProgressVC: UIViewController {
     
-    var weightLog = [Double]()
     let chartView = Chart(frame: .zero)
     let tableView = UITableView()
     let padding: CGFloat = 20
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var fetchedWeightsRC: NSFetchedResultsController<Weight>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,30 +27,30 @@ class ProgressVC: UIViewController {
         configureChartView()
         configureTableView()
         layoutUIElements()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWeightLog), name: .weightLogChanged, object: nil)
+        
         
         getWeights()
+        plotChartView()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWeightLog), name: .weightLogChanged, object: nil)
     }
     
     func getWeights() {
-        PersistenceManager.retrieveWeights { [weak self] (result) in
-            guard let self = self else { return }
+        do {
+            let request = Weight.fetchRequest() as NSFetchRequest<Weight>
             
-            switch result {
-            case .success(let weights):
-                if weights.isEmpty {
-                    print("no weights saved")
-                } else {
-                    self.weightLog = weights
-                    NotificationCenter.default.post(name: .weightLogChanged, object: nil)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
-                
-            case .failure(let error):
-                print("Error retrieving weights: \(error)")
+            let dateSort = NSSortDescriptor(key: "date", ascending: true)
+            request.sortDescriptors = [dateSort]
+            
+            fetchedWeightsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            try fetchedWeightsRC?.performFetch()
+            
+            NotificationCenter.default.post(name: .weightLogChanged, object: nil)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
+        } catch {
+            print("Error fetching weights")
         }
     }
     
@@ -79,17 +83,11 @@ class ProgressVC: UIViewController {
                 return
             }
             
-            self.weightLog.append(entryAsDouble)
+            let weight = Weight(context: self.context)
+            weight.date = Date()
+            weight.value = entryAsDouble
             
-            PersistenceManager.updateWith(weight: entryAsDouble, actionType: .add) { (error) in
-                
-                guard let error = error else {
-                    print("Successfully added weight")
-                    return
-                }
-                
-                print("Error: \(error)")
-            }
+            self.appDelegate.saveContext()
             
             NotificationCenter.default.post(name: .weightLogChanged, object: nil)
         }))
@@ -104,15 +102,16 @@ class ProgressVC: UIViewController {
     
     func plotChartView() {
         var weightCountSeries = [Double]()
+        guard let fetchedWeights = fetchedWeightsRC?.fetchedObjects else { return }
         
-        for log in weightLog {
-            weightCountSeries.append(Double(log))
+        for log in fetchedWeights {
+            weightCountSeries.append(Double(log.value))
         }
         
         let series = ChartSeries(weightCountSeries)
         
         series.color = ChartColors.blueColor()
-        series.area = true
+        series.area = false
         chartView.add(series)
     }
     
@@ -152,13 +151,13 @@ class ProgressVC: UIViewController {
 
 extension ProgressVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weightLog.count
+        return fetchedWeightsRC?.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeightCell.reuseID) as? WeightCell else { return UITableViewCell() }
         
-        let weight = weightLog[indexPath.row]
+        guard let weight = fetchedWeightsRC?.object(at: indexPath) else { return UITableViewCell() }
         cell.set(weight: weight)
         
         return cell
