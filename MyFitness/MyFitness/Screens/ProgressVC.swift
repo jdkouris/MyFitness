@@ -28,9 +28,9 @@ class ProgressVC: UIViewController {
         configureTableView()
         layoutUIElements()
         
-        
         getWeights()
         plotChartView()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateWeightLog), name: .weightLogChanged, object: nil)
     }
     
@@ -38,7 +38,7 @@ class ProgressVC: UIViewController {
         do {
             let request = Weight.fetchRequest() as NSFetchRequest<Weight>
             
-            let dateSort = NSSortDescriptor(key: "date", ascending: true)
+            let dateSort = NSSortDescriptor(key: "date", ascending: false)
             request.sortDescriptors = [dateSort]
             
             fetchedWeightsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -118,6 +118,8 @@ class ProgressVC: UIViewController {
     func configureChartView() {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         chartView.hideHighlightLineOnTouchEnd = true
+        chartView.showXLabelsAndGrid = false
+        chartView.isHighlighted = false
         view.addSubview(chartView)
     }
     
