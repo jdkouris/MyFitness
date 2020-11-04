@@ -15,9 +15,9 @@ protocol AddExerciseDelegate {
 class AddExerciseVC: UIViewController {
     
     let cardView = UIView(frame: .zero)
-    let exerciseNameTextField = UITextField(frame: .zero)
-    let exerciseWeightTextField = UITextField(frame: .zero)
-    let exerciseRepsTextField = UITextField(frame: .zero)
+    let exerciseNameTextField = MFTextField()
+    let exerciseWeightTextField = MFTextField()
+    let exerciseRepsTextField = MFTextField()
     let textFieldStack = UIStackView()
     
     let cancelButton = UIButton(frame: .zero)
@@ -47,19 +47,60 @@ class AddExerciseVC: UIViewController {
     }
     
     private func configureViews() {
+        view.backgroundColor = .clear
+        
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.backgroundColor = .white
+        
+        cardView.layer.cornerRadius = 20
+        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        cardView.layer.shadowOpacity = 1
+        cardView.layer.shadowOffset = .zero
+        cardView.layer.shadowRadius = 20
+        
+        textFieldStack.translatesAutoresizingMaskIntoConstraints = false
         textFieldStack.axis = .vertical
         textFieldStack.distribution = .equalSpacing
+        textFieldStack.alignment = .fill
         textFieldStack.addArrangedSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField)
         
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.layer.borderWidth = 2
+        cancelButton.layer.borderColor = UIColor.red.cgColor
+        cancelButton.layer.cornerRadius = 20
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.backgroundColor = .blue
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.layer.cornerRadius = 20
+        
+        buttonStack.translatesAutoresizingMaskIntoConstraints = false
         buttonStack.axis = .horizontal
         buttonStack.distribution = .fillEqually
+        buttonStack.alignment = .fill
         buttonStack.addArrangedSubviews(cancelButton, saveButton)
-        
     }
     
     private func layoutUI() {
         view.addSubview(cardView)
         cardView.addSubviews(textFieldStack, buttonStack)
+        
+        NSLayoutConstraint.activate([
+            cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width),
+            
+            textFieldStack.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
+            textFieldStack.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
+            textFieldStack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
+            textFieldStack.heightAnchor.constraint(equalToConstant: 200),
+            
+            buttonStack.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
+            buttonStack.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
+            buttonStack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
+            buttonStack.heightAnchor.constraint(equalToConstant: 100)
+        ])
     }
     
     private func updateData() {
