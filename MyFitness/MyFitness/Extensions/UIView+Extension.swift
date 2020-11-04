@@ -1,5 +1,5 @@
 //
-//  UIStackView+Extension.swift
+//  UIView+Extension.swift
 //  MyFitness
 //
 //  Created by John Kouris on 11/3/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UIStackView {
+extension UIView {
     
-    func addArrangedSubviews(_ views: UIView...) {
+    func addSubviews(_ views: UIView...) {
         for view in views {
             addSubview(view)
         }
