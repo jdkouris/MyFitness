@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol AddWorkoutVCDelegate: class {
-    func updateWorkout()
-}
-
 class AddWorkoutVC: UIViewController {
     
     let tableView = UITableView()
@@ -20,15 +16,17 @@ class AddWorkoutVC: UIViewController {
     let notesTextView = MFTextView(frame: .zero)
     let saveButton = UIButton()
     
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var workout: Workout? {
         didSet {
             configureWorkoutDetails()
         }
     }
     
-    var delegate: AddWorkoutVCDelegate?
-    
     var exercises = [Exercise]()
+    var exercise: Exercise?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +52,10 @@ class AddWorkoutVC: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        presentAlert()
+        let addExerciseVC = AddExerciseVC()
+        addExerciseVC.workout = workout
+        addExerciseVC.modalPresentationStyle = .automatic
+        present(addExerciseVC, animated: true, completion: nil)
     }
     
     @objc func close() {
@@ -64,45 +65,6 @@ class AddWorkoutVC: UIViewController {
     func configureWorkoutDetails() {
         guard let workout = workout else { return }
         notesTextView.text = workout.notes
-    }
-    
-    func presentAlert() {
-        let alertController = UIAlertController(title: "Add Exercise", message: "", preferredStyle: .alert)
-        
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Enter the exercise name here"
-            textField.keyboardType = .default
-        }
-        
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Enter the weight you lifted here"
-            textField.keyboardType = .decimalPad
-        }
-        
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Enter the number of reps here"
-            textField.keyboardType = .numberPad
-        }
-        
-        alertController.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (action) in
-            let exerciseNameText = alertController.textFields![0].text!
-            let exerciseWeightText = alertController.textFields![1].text!
-            let exerciseRepsText = alertController.textFields![2].text!
-            
-            guard !exerciseNameText.isEmpty,
-                let exerciseWeightAsDouble = Double(exerciseWeightText),
-                let exerciseRepsAsInt = Int(exerciseRepsText) else {
-                print("Error")
-                return
-            }
-            
-            
-            self.tableView.reloadData()
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        self.present(alertController, animated: true, completion: nil)
     }
     
     private func configureWorkoutTypeLabel() {
@@ -172,8 +134,6 @@ class AddWorkoutVC: UIViewController {
     }
     
     @objc func saveTapped() {
-        
-        
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
