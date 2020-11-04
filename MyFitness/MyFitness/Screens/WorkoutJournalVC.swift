@@ -65,7 +65,7 @@ class WorkoutJournalVC: UIViewController {
     
     @objc func addButtonTapped() {
         let destinationVC = AddWorkoutVC()
-        destinationVC.delegate = self
+        
         let navController = UINavigationController(rootViewController: destinationVC)
         present(navController, animated: true, completion: nil)
     }
@@ -86,11 +86,4 @@ extension WorkoutJournalVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-}
-
-extension WorkoutJournalVC: AddWorkoutVCDelegate {
-    func updateWorkout() {
-        getWorkouts()
-        tableView.reloadData()
-    }
 }
