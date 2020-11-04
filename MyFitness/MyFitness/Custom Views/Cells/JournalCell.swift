@@ -8,14 +8,14 @@
 
 import UIKit
 
-class JournalCell: UICollectionViewCell {
+class JournalCell: UITableViewCell {
     static let reuseID = "JournalCell"
     let titleDateLabel = MFTitleLabel(textAlignment: .left, fontSize: 20)
     let workoutTypeLabel = MFSecondaryTitleLabel(fontSize: 18)
     let bodyLabel = MFBodyLabel(textAlignment: .left)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
     }
     
@@ -34,6 +34,7 @@ class JournalCell: UICollectionViewCell {
     private func configure() {
         self.backgroundColor = .systemGray5
         self.layer.cornerRadius = 10
+        
         addSubview(titleDateLabel)
         addSubview(workoutTypeLabel)
         addSubview(bodyLabel)

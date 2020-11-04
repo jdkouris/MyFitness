@@ -11,14 +11,10 @@ import HealthKit
 
 class WorkoutJournalVC: UIViewController {
     
-    enum Section {
-        case main
-    }
-    
-    var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Workout>!
+    let tableView = UITableView()
     var workouts = [Workout]()
-    let healthStore = HKHealthStore()
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -31,37 +27,19 @@ class WorkoutJournalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
-        configureCollectionView()
-        configureDataSource()
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getWorkouts()
-        if HKHealthStore.isHealthDataAvailable() {
-            
-        }
     }
     
     func getWorkouts() {
-        PersistenceManager.retrieveWorkouts { [weak self] (result) in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let workouts):
-                if workouts.isEmpty {
-                    print("no workouts saved")
-                } else {
-                    self.workouts = workouts
-                    self.updateData(on: workouts)
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                }
-                
-            case .failure(let error):
-                print("Error retrieving workouts: \(error)")
-            }
+        do {
+            workouts = try context.fetch(Workout.fetchRequest())
+        } catch {
+            print("Error retrieving workouts from CD")
         }
     }
     
@@ -73,51 +51,16 @@ class WorkoutJournalVC: UIViewController {
         navigationItem.rightBarButtonItem = addBarButton
     }
     
-    private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createSingleColumnFlowLayout(in: view))
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.backgroundColor = .systemBackground
-        collectionView.register(JournalCell.self, forCellWithReuseIdentifier: JournalCell.reuseID)
-    }
-    
-    @objc func swipeToDelete(sender: UISwipeGestureRecognizer) {
-        let cell = sender.view as! JournalCell
-        let itemIndex = self.collectionView.indexPath(for: cell)!.item
+    private func configureTableView() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.rowHeight = 80
         
-        let workout = workouts[itemIndex]
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        workouts.remove(at: itemIndex)
-        updateData(on: workouts)
-        
-        PersistenceManager.updateWith(workout: workout, actionType: .remove) { (error) in
-            guard let error = error else { return }
-            print("unable to remove: \(error)")
-        }
-        
-        self.collectionView.reloadData()
-    }
-    
-    func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Workout>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, workout) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JournalCell.reuseID, for: indexPath) as! JournalCell
-            cell.set(workout: workout)
-            
-            let swipeAction = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeToDelete(sender:)))
-            swipeAction.direction = UISwipeGestureRecognizer.Direction.right
-            cell.addGestureRecognizer(swipeAction)
-            
-            return cell
-        })
-    }
-    
-    func updateData(on workouts: [Workout]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Workout>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(workouts)
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
-        }
+        tableView.backgroundColor = .systemBackground
+        tableView.register(JournalCell.self, forCellReuseIdentifier: JournalCell.reuseID)
     }
     
     @objc func addButtonTapped() {
@@ -129,23 +72,25 @@ class WorkoutJournalVC: UIViewController {
 
 }
 
-extension WorkoutJournalVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let workout = workouts[indexPath.item]
-        
-        let destinationVC = AddWorkoutVC()
-        destinationVC.workout = workout
-        destinationVC.notesTextView.text = workout.notes
-        destinationVC.delegate = self
-        
-        let navController = UINavigationController(rootViewController: destinationVC)
-        present(navController, animated: true, completion: nil)
+extension WorkoutJournalVC: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return workouts.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: JournalCell.reuseID, for: indexPath) as? JournalCell else { return UITableViewCell() }
+        
+        let workout = workouts[indexPath.row]
+        cell.set(workout: workout)
+        
+        return cell
+    }
+    
 }
 
 extension WorkoutJournalVC: AddWorkoutVCDelegate {
     func updateWorkout() {
         getWorkouts()
-        collectionView.reloadData()
+        tableView.reloadData()
     }
 }
