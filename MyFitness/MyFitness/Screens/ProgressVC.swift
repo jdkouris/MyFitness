@@ -12,6 +12,8 @@ import CoreData
 
 class ProgressVC: UIViewController {
     
+    // MARK: - Properties and Variables
+    
     let chartView = Chart(frame: .zero)
     let tableView = UITableView()
     let padding: CGFloat = 20
@@ -20,6 +22,8 @@ class ProgressVC: UIViewController {
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var fetchedWeightsRC: NSFetchedResultsController<Weight>?
 
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,18 +56,6 @@ class ProgressVC: UIViewController {
         } catch {
             print("Error fetching weights")
         }
-    }
-    
-    func configureVC() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addBarButton
-    }
-    
-    @objc func addButtonTapped() {
-        presentAlert()
     }
     
     func presentAlert() {
@@ -115,6 +107,20 @@ class ProgressVC: UIViewController {
         chartView.add(series)
     }
     
+    // MARK: - Configuration
+    
+    func configureVC() {
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addBarButton
+    }
+    
+    @objc func addButtonTapped() {
+        presentAlert()
+    }
+    
     func configureChartView() {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         chartView.hideHighlightLineOnTouchEnd = true
@@ -150,6 +156,8 @@ class ProgressVC: UIViewController {
     }
     
 }
+
+// MARK: - Extension: Table Delegate and Data Source
 
 extension ProgressVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
