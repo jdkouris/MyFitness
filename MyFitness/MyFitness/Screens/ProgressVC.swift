@@ -34,21 +34,17 @@ class ProgressVC: UIViewController {
         
         getWeights()
         plotChartView()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWeightLog), name: .weightLogChanged, object: nil)
     }
     
     func getWeights() {
         do {
             let request = Weight.fetchRequest() as NSFetchRequest<Weight>
             
-            let dateSort = NSSortDescriptor(key: "date", ascending: false)
+            let dateSort = NSSortDescriptor(key: "date", ascending: true)
             request.sortDescriptors = [dateSort]
             
             fetchedWeightsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
             try fetchedWeightsRC?.performFetch()
-            
-            NotificationCenter.default.post(name: .weightLogChanged, object: nil)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -80,19 +76,15 @@ class ProgressVC: UIViewController {
             weight.value = entryAsDouble
             
             self.appDelegate.saveContext()
-            
-            NotificationCenter.default.post(name: .weightLogChanged, object: nil)
+            self.getWeights()
+            self.plotChartView()
         }))
         
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc func updateWeightLog() {
-        plotChartView()
-        tableView.reloadData()
-    }
-    
     func plotChartView() {
+        chartView.clearsContextBeforeDrawing = true
         var weightCountSeries = [Double]()
         guard let fetchedWeights = fetchedWeightsRC?.fetchedObjects else { return }
         
