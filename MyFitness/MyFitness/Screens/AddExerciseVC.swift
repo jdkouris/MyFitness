@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddExerciseDelegate {
     func exerciseAdded()
@@ -14,19 +15,24 @@ protocol AddExerciseDelegate {
 
 class AddExerciseVC: UIViewController {
     
+    // MARK: - Properties and Variables
+    
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     let cardView = UIView(frame: .zero)
     let exerciseNameTextField = MFTextField()
     let exerciseWeightTextField = MFTextField()
     let exerciseRepsTextField = MFTextField()
-    let textFieldStack = UIStackView()
     
     let cancelButton = UIButton(frame: .zero)
     let saveButton = UIButton(frame: .zero)
-    let buttonStack = UIStackView()
     
     var exercise: Exercise?
     var workout: Workout?
     var delegate: AddExerciseDelegate?
+    
+    // MARK: - Initialization
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -36,27 +42,88 @@ class AddExerciseVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
         layoutUI()
+        configureCancelButton()
+        configureSaveButton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // MARK: - Configure Button Actions
+    
+    private func configureCancelButton() {
+        cancelButton.addTarget(self, action: #selector(dismissAddExercise), for: .touchUpInside)
     }
+    
+    @objc func dismissAddExercise() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func configureSaveButton() {
+        saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
+    }
+    
+    @objc func saveAction() {
+        guard let name = exerciseNameTextField.text, let reps = Int64(exerciseRepsTextField.text!), let weight = Double(exerciseWeightTextField.text!) else { return }
+        if exercise == nil {
+            self.exercise = Exercise(context: context)
+            
+            exercise!.name = name
+            exercise!.reps = reps
+            exercise!.weight = weight
+            exercise!.workout = workout
+        } else {
+            exercise?.name = name
+            exercise?.reps = reps
+            exercise?.weight = weight
+            exercise?.workout = workout
+        }
+        
+        appDelegate.saveContext()
+        
+        delegate?.exerciseAdded()
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Handle Data
+    
+    private func updateData() {
+//        if self.exercise == nil {
+//            self.exercise = Exercise(context: self.context)
+//
+//            self.exercise!.name = exerciseNameText
+//            self.exercise!.reps = exerciseRepsAsInt
+//            self.exercise!.weight = exerciseWeightAsDouble
+//            self.exercise!.workout = self.workout
+//
+//            self.exercises.append(self.exercise!)
+//        } else {
+//            self.exercise!.name = exerciseNameText
+//            self.exercise!.reps = exerciseRepsAsInt
+//            self.exercise!.weight = exerciseWeightAsDouble
+//            self.exercise!.workout = self.workout
+//
+//            self.exercises.append(self.exercise!)
+//        }
+//
+//        self.appDelegate.saveContext()
+//        self.delegate?.updateWorkout()
+    }
+    
+    
+    // MARK: - Configure Views and Layout UI
     
     private func configureViews() {
         view.backgroundColor = .clear
         
         cardView.translatesAutoresizingMaskIntoConstraints = false
         cardView.backgroundColor = .white
-        
         cardView.layer.cornerRadius = 20
-        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        cardView.layer.shadowOpacity = 1
-        cardView.layer.shadowOffset = .zero
-        cardView.layer.shadowRadius = 20
         
         exerciseNameTextField.placeholder = "exercise name"
         exerciseWeightTextField.placeholder = "weight lifted"
@@ -80,60 +147,41 @@ class AddExerciseVC: UIViewController {
         view.addSubview(cardView)
         cardView.addSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField, cancelButton, saveButton)
         
+        let padding: CGFloat = 20
+        
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             cardView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
             cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width),
             
-            exerciseNameTextField.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
-            exerciseNameTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
-            exerciseNameTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
+            exerciseNameTextField.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
+            exerciseNameTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            exerciseNameTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             exerciseNameTextField.heightAnchor.constraint(equalToConstant: 30),
             
             exerciseWeightTextField.topAnchor.constraint(equalTo: exerciseNameTextField.bottomAnchor, constant: 4),
-            exerciseWeightTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
-            exerciseWeightTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
+            exerciseWeightTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            exerciseWeightTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             exerciseWeightTextField.heightAnchor.constraint(equalToConstant: 30),
             
             exerciseRepsTextField.topAnchor.constraint(equalTo: exerciseWeightTextField.bottomAnchor, constant: 4),
-            exerciseRepsTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
-            exerciseRepsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
+            exerciseRepsTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            exerciseRepsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 30),
             
-            cancelButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -20),
-            cancelButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
-            cancelButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
+            cancelButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -padding),
+            cancelButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            cancelButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             cancelButton.heightAnchor.constraint(equalToConstant: 40),
             
-            saveButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
-            saveButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
+            saveButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            saveButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             saveButton.heightAnchor.constraint(equalToConstant: 40),
-            saveButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
+            saveButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -padding),
         ])
     }
     
-    private func updateData() {
-//        if self.exercise == nil {
-//            self.exercise = Exercise(context: self.context)
-//            
-//            self.exercise!.name = exerciseNameText
-//            self.exercise!.reps = exerciseRepsAsInt
-//            self.exercise!.weight = exerciseWeightAsDouble
-//            self.exercise!.workout = self.workout
-//            
-//            self.exercises.append(self.exercise!)
-//        } else {
-//            self.exercise!.name = exerciseNameText
-//            self.exercise!.reps = exerciseRepsAsInt
-//            self.exercise!.weight = exerciseWeightAsDouble
-//            self.exercise!.workout = self.workout
-//            
-//            self.exercises.append(self.exercise!)
-//        }
-//        
-//        self.appDelegate.saveContext()
-//        self.delegate?.updateWorkout()
-    }
+    
     
 }

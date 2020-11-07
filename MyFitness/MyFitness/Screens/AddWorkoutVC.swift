@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddWorkoutVC: UIViewController {
     
@@ -18,15 +19,9 @@ class AddWorkoutVC: UIViewController {
     
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var fetchedExerciseRC: NSFetchedResultsController<Exercise>?
     
-    var workout: Workout? {
-        didSet {
-            configureWorkoutDetails()
-        }
-    }
-    
-    var exercises = [Exercise]()
-    var exercise: Exercise?
+    var workout: Workout?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +32,12 @@ class AddWorkoutVC: UIViewController {
         configureTableView()
         configureSaveButton()
         createDismissKeyboardTapGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refresh()
     }
     
     func configureVC() {
@@ -54,12 +55,43 @@ class AddWorkoutVC: UIViewController {
     @objc func addButtonTapped() {
         let addExerciseVC = AddExerciseVC()
         addExerciseVC.workout = workout
+        addExerciseVC.delegate = self
+        
         addExerciseVC.modalPresentationStyle = .automatic
         present(addExerciseVC, animated: true, completion: nil)
     }
     
     @objc func close() {
         navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func refresh() {
+        // check if there's a place set
+        guard let workout = workout else { return }
+        
+        // get a fetch request for the places
+        let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        request.predicate = NSPredicate(format: "workout = %@", workout)
+        
+        // set a sort descriptor
+//        let dateSort = NSSortDescriptor(key: "date", ascending: false)
+//        request.sortDescriptors = [dateSort]
+        
+        do {
+            // assign the fetched results controller
+            fetchedExerciseRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            
+            // execute the fetch
+            try fetchedExerciseRC!.performFetch()
+            print(fetchedExerciseRC?.fetchedObjects)
+        } catch {
+            print("Error fetching notes")
+        }
+        
+        // refresh the table view
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func configureWorkoutDetails() {
@@ -147,20 +179,40 @@ class AddWorkoutVC: UIViewController {
 extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercises.count
+        return fetchedExerciseRC?.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutCell.reuseID) as? WorkoutCell else { return UITableViewCell() }
+        guard let exercise = fetchedExerciseRC?.object(at: indexPath) else { return UITableViewCell() }
         
-        let exercise = exercises[indexPath.row]
         cell.set(exercise: exercise)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let exercise = self.fetchedExerciseRC?.object(at: indexPath) else { return }
+        
+        let addExerciseVC = AddExerciseVC()
+        
+        addExerciseVC.workout = workout
+        addExerciseVC.exercise = exercise
+        addExerciseVC.delegate = self
+        
+        addExerciseVC.modalPresentationStyle = .automatic
+        
+        present(addExerciseVC, animated: true, completion: nil)
+        
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+}
+
+extension AddWorkoutVC: AddExerciseDelegate {
+    
+    func exerciseAdded() {
+        refresh()
     }
     
 }
