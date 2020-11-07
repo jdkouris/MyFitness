@@ -29,7 +29,7 @@ class MFTextField: UITextField {
         textColor = .label
         tintColor = .label
         textAlignment = .center
-        font = UIFont.preferredFont(forTextStyle: .title2)
+        font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontSizeToFitWidth = true
         minimumFontSize = 12
 

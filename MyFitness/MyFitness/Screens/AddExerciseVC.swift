@@ -65,25 +65,25 @@ class AddExerciseVC: UIViewController {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.layer.borderWidth = 2
         cancelButton.layer.borderColor = UIColor.red.cgColor
-        cancelButton.tintColor = .blue
         cancelButton.layer.cornerRadius = 20
-        
+        cancelButton.setTitleColor(.red, for: .normal)
         cancelButton.setTitle("Cancel", for: .normal)
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.backgroundColor = .blue
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.layer.cornerRadius = 20
+        saveButton.setTitle("Save", for: .normal)
     }
     
     private func layoutUI() {
         view.addSubview(cardView)
-        cardView.addSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField, cancelButton)
+        cardView.addSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField, cancelButton, saveButton)
         
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cardView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
             cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width),
             
             exerciseNameTextField.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
@@ -101,10 +101,15 @@ class AddExerciseVC: UIViewController {
             exerciseRepsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
             exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 30),
             
-            cancelButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
+            cancelButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -20),
             cancelButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
             cancelButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
-            cancelButton.heightAnchor.constraint(equalToConstant: 30)
+            cancelButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            saveButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
+            saveButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
+            saveButton.heightAnchor.constraint(equalToConstant: 40),
+            saveButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
         ])
     }
     
