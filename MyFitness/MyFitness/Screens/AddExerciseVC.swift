@@ -58,32 +58,27 @@ class AddExerciseVC: UIViewController {
         cardView.layer.shadowOffset = .zero
         cardView.layer.shadowRadius = 20
         
-        textFieldStack.translatesAutoresizingMaskIntoConstraints = false
-        textFieldStack.axis = .vertical
-        textFieldStack.distribution = .equalSpacing
-        textFieldStack.alignment = .fill
-        textFieldStack.addArrangedSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField)
+        exerciseNameTextField.placeholder = "exercise name"
+        exerciseWeightTextField.placeholder = "weight lifted"
+        exerciseRepsTextField.placeholder = "number of reps"
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.layer.borderWidth = 2
         cancelButton.layer.borderColor = UIColor.red.cgColor
+        cancelButton.tintColor = .blue
         cancelButton.layer.cornerRadius = 20
+        
+        cancelButton.setTitle("Cancel", for: .normal)
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.backgroundColor = .blue
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.layer.cornerRadius = 20
-        
-        buttonStack.translatesAutoresizingMaskIntoConstraints = false
-        buttonStack.axis = .horizontal
-        buttonStack.distribution = .fillEqually
-        buttonStack.alignment = .fill
-        buttonStack.addArrangedSubviews(cancelButton, saveButton)
     }
     
     private func layoutUI() {
         view.addSubview(cardView)
-        cardView.addSubviews(textFieldStack, buttonStack)
+        cardView.addSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField, cancelButton)
         
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -91,15 +86,25 @@ class AddExerciseVC: UIViewController {
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width),
             
-            textFieldStack.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
-            textFieldStack.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
-            textFieldStack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
-            textFieldStack.heightAnchor.constraint(equalToConstant: 200),
+            exerciseNameTextField.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
+            exerciseNameTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
+            exerciseNameTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
+            exerciseNameTextField.heightAnchor.constraint(equalToConstant: 30),
             
-            buttonStack.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
-            buttonStack.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
-            buttonStack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
-            buttonStack.heightAnchor.constraint(equalToConstant: 100)
+            exerciseWeightTextField.topAnchor.constraint(equalTo: exerciseNameTextField.bottomAnchor, constant: 4),
+            exerciseWeightTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
+            exerciseWeightTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
+            exerciseWeightTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            exerciseRepsTextField.topAnchor.constraint(equalTo: exerciseWeightTextField.bottomAnchor, constant: 4),
+            exerciseRepsTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
+            exerciseRepsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
+            exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            cancelButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
+            cancelButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
+            cancelButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8),
+            cancelButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
