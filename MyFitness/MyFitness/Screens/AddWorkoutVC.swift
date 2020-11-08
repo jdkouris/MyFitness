@@ -13,7 +13,7 @@ class AddWorkoutVC: UIViewController {
     
     let tableView = UITableView()
     let workoutTypeLabel = MFTitleLabel(textAlignment: .left, fontSize: 20)
-    let workoutNameTextField = UITextField()
+    let workoutNameTextField = MFTextField()
     let notesTextView = MFTextView(frame: .zero)
     let saveButton = UIButton()
     
@@ -25,6 +25,7 @@ class AddWorkoutVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        workout = Workout(context: context)
         configureVC()
         configureWorkoutTypeLabel()
         configureWorkoutName()
@@ -73,9 +74,8 @@ class AddWorkoutVC: UIViewController {
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         request.predicate = NSPredicate(format: "workout = %@", workout)
         
-        // set a sort descriptor
-//        let dateSort = NSSortDescriptor(key: "date", ascending: false)
-//        request.sortDescriptors = [dateSort]
+        let sort = NSSortDescriptor(key: "name", ascending: false)
+        request.sortDescriptors = [sort]
         
         do {
             // assign the fetched results controller
@@ -97,6 +97,7 @@ class AddWorkoutVC: UIViewController {
     func configureWorkoutDetails() {
         guard let workout = workout else { return }
         notesTextView.text = workout.notes
+        workoutNameTextField.text = workout.name
     }
     
     private func configureWorkoutTypeLabel() {
@@ -113,13 +114,13 @@ class AddWorkoutVC: UIViewController {
     
     private func configureWorkoutName() {
         view.addSubview(workoutNameTextField)
-        workoutNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        workoutNameTextField.placeholder = "workout name"
         
         NSLayoutConstraint.activate([
             workoutNameTextField.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor, constant: 8),
             workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutNameTextField.heightAnchor.constraint(equalToConstant: 80)
+            workoutNameTextField.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
@@ -129,6 +130,9 @@ class AddWorkoutVC: UIViewController {
         notesTextView.isEditable = true
         notesTextView.isSelectable = true
         notesTextView.isScrollEnabled = true
+        notesTextView.text = "workout notes"
+        
+        notesTextView.delegate = self
         
         NSLayoutConstraint.activate([
             notesTextView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 8),
@@ -158,10 +162,10 @@ class AddWorkoutVC: UIViewController {
         saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            saveButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16),
+            saveButton.topAnchor.constraint(equalTo: tableView.bottomAnchor),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -215,4 +219,12 @@ extension AddWorkoutVC: AddExerciseDelegate {
         refresh()
     }
     
+}
+
+extension AddWorkoutVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if notesTextView.text == "workout notes" {
+            notesTextView.text = ""
+        }
+    }
 }

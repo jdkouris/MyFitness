@@ -92,29 +92,6 @@ class AddExerciseVC: UIViewController {
     
     // MARK: - Handle Data
     
-    private func updateData() {
-//        if self.exercise == nil {
-//            self.exercise = Exercise(context: self.context)
-//
-//            self.exercise!.name = exerciseNameText
-//            self.exercise!.reps = exerciseRepsAsInt
-//            self.exercise!.weight = exerciseWeightAsDouble
-//            self.exercise!.workout = self.workout
-//
-//            self.exercises.append(self.exercise!)
-//        } else {
-//            self.exercise!.name = exerciseNameText
-//            self.exercise!.reps = exerciseRepsAsInt
-//            self.exercise!.weight = exerciseWeightAsDouble
-//            self.exercise!.workout = self.workout
-//
-//            self.exercises.append(self.exercise!)
-//        }
-//
-//        self.appDelegate.saveContext()
-//        self.delegate?.updateWorkout()
-    }
-    
     
     // MARK: - Configure Views and Layout UI
     
@@ -126,6 +103,8 @@ class AddExerciseVC: UIViewController {
         cardView.layer.cornerRadius = 20
         
         exerciseNameTextField.placeholder = "exercise name"
+        exerciseNameTextField.becomeFirstResponder()
+        
         exerciseWeightTextField.placeholder = "weight lifted"
         exerciseRepsTextField.placeholder = "number of reps"
         

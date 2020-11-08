@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import HealthKit
+import CoreData
 
 class WorkoutJournalVC: UIViewController {
     
@@ -15,6 +15,9 @@ class WorkoutJournalVC: UIViewController {
     var workouts = [Workout]()
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var fetchedWorkoutsRC: NSFetchedResultsController<Workout>?
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)
