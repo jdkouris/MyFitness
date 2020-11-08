@@ -75,11 +75,18 @@ class MFMealInfoHeaderVC: UIViewController {
     }
     
     func downloadRecipeImage() {
-        NetworkManager.shared.downloadImage(from: recipe.image) { [weak self] (image) in
-            guard let self = self else { return }
-            
+        let placeholderImage = UIImage(named: "food-placeholder")
+        if let image = recipe.image {
+            NetworkManager.shared.downloadImage(from: image) { [weak self](image) in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.recipeImageView.image = image
+                }
+            }
+        } else {
             DispatchQueue.main.async {
-                self.recipeImageView.image = image
+                self.recipeImageView.image = placeholderImage
             }
         }
     }

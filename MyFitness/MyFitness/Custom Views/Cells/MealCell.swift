@@ -24,13 +24,22 @@ class MealCell: UICollectionViewCell {
     
     func set(recipe: Recipe) {
         mealTitleLabel.text = recipe.title
-        NetworkManager.shared.downloadImage(from: recipe.image) { [weak self](image) in
-            guard let self = self else { return }
-            
+        
+        let placeholderImage = UIImage(named: "food-placeholder")
+        if let image = recipe.image {
+            NetworkManager.shared.downloadImage(from: image) { [weak self](image) in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.mealImageView.image = image
+                }
+            }
+        } else {
             DispatchQueue.main.async {
-                self.mealImageView.image = image
+                self.mealImageView.image = placeholderImage
             }
         }
+        
     }
     
     private func configure() {

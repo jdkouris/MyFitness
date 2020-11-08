@@ -17,7 +17,7 @@ struct Recipe: Codable, Hashable {
     let title: String
     let readyInMinutes: Int
     let servings: Int
-    let image: String
+    let image: String?
     let summary: String
     let instructions: String
     let extendedIngredients: [Ingredients]
