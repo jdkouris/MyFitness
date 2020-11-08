@@ -9,10 +9,13 @@
 import UIKit
 import CoreData
 
+protocol AddWorkoutDelegate {
+    func workoutAdded()
+}
+
 class AddWorkoutVC: UIViewController {
     
     let tableView = UITableView()
-    let workoutTypeLabel = MFTitleLabel(textAlignment: .left, fontSize: 20)
     let workoutNameTextField = MFTextField()
     let notesTextView = MFTextView(frame: .zero)
     let saveButton = UIButton()
@@ -22,12 +25,12 @@ class AddWorkoutVC: UIViewController {
     var fetchedExerciseRC: NSFetchedResultsController<Exercise>?
     
     var workout: Workout?
+    var delegate: AddWorkoutDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         workout = Workout(context: context)
         configureVC()
-        configureWorkoutTypeLabel()
         configureWorkoutName()
         configureNotesTextView()
         configureTableView()
@@ -100,24 +103,12 @@ class AddWorkoutVC: UIViewController {
         workoutNameTextField.text = workout.name
     }
     
-    private func configureWorkoutTypeLabel() {
-        view.addSubview(workoutTypeLabel)
-        workoutTypeLabel.text = "WORKOUT TYPE"
-        
-        NSLayoutConstraint.activate([
-            workoutTypeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            workoutTypeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            workoutTypeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutTypeLabel.heightAnchor.constraint(equalToConstant: 24)
-        ])
-    }
-    
     private func configureWorkoutName() {
         view.addSubview(workoutNameTextField)
         workoutNameTextField.placeholder = "workout name"
         
         NSLayoutConstraint.activate([
-            workoutNameTextField.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor, constant: 8),
+            workoutNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             workoutNameTextField.heightAnchor.constraint(equalToConstant: 30)
@@ -171,6 +162,20 @@ class AddWorkoutVC: UIViewController {
     
     @objc func saveTapped() {
         navigationController?.dismiss(animated: true, completion: nil)
+        
+        if workout == nil {
+            self.workout = Workout(context: context)
+            
+            workout?.date = Date()
+            
+        } else {
+            workout?.date = Date()
+            
+        }
+        
+        appDelegate.saveContext()
+        
+        delegate?.workoutAdded()
     }
     
     func createDismissKeyboardTapGesture() {

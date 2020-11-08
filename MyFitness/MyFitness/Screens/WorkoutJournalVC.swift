@@ -57,7 +57,7 @@ class WorkoutJournalVC: UIViewController {
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.rowHeight = 200
+        tableView.rowHeight = 100
         
         tableView.separatorStyle = .none
         
@@ -89,6 +89,14 @@ extension WorkoutJournalVC: UITableViewDataSource, UITableViewDelegate {
         cell.set(workout: workout)
         
         return cell
+    }
+    
+}
+
+extension WorkoutJournalVC: AddWorkoutDelegate {
+    
+    func workoutAdded() {
+        getWorkouts()
     }
     
 }

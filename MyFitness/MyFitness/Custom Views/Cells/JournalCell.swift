@@ -32,7 +32,7 @@ class JournalCell: UITableViewCell {
     }
     
     private func configure() {
-        let cardView = UIView(frame: self.frame)
+        let cardView = UIView(frame: self.contentView.frame)
         cardView.backgroundColor = .systemGray6
         cardView.layer.cornerRadius = 10
         
