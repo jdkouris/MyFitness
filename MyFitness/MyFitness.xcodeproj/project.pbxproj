@@ -12,6 +12,7 @@
 		29420608255254A3009BB963 /* AddExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29420607255254A3009BB963 /* AddExerciseVC.swift */; };
 		2942060C25525760009BB963 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942060B25525760009BB963 /* UIStackView+Extension.swift */; };
 		2942060F25525862009BB963 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942060E25525862009BB963 /* UIView+Extension.swift */; };
+		2942062E2558A55E009BB963 /* MFDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942062D2558A55E009BB963 /* MFDataLoadingVC.swift */; };
 		299016E825490AEE0071079F /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299016E725490AEE0071079F /* APIKeys.swift */; };
 		29D6B23D2549117B00E4BD1C /* MyFitness.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29D6B23B2549117B00E4BD1C /* MyFitness.xcdatamodeld */; };
 		29D6B2432549144500E4BD1C /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D6B2422549144500E4BD1C /* Workout+CoreDataProperties.swift */; };
@@ -59,6 +60,7 @@
 		29420607255254A3009BB963 /* AddExerciseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseVC.swift; sourceTree = "<group>"; };
 		2942060B25525760009BB963 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		2942060E25525862009BB963 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		2942062D2558A55E009BB963 /* MFDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFDataLoadingVC.swift; sourceTree = "<group>"; };
 		299016E725490AEE0071079F /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		29D6B23C2549117B00E4BD1C /* MyFitness.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFitness.xcdatamodel; sourceTree = "<group>"; };
 		29D6B23F2549144500E4BD1C /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataClass.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Exercise+CoreDataClass.swift"; sourceTree = "<absolute>"; };
@@ -150,6 +152,7 @@
 			children = (
 				CC87088F2408BD870065D328 /* MFAlertVC.swift */,
 				CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */,
+				2942062D2558A55E009BB963 /* MFDataLoadingVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
 				CC8708962408C8450065D328 /* WorkoutCell.swift in Sources */,
 				CC8708942408C59A0065D328 /* AddWorkoutVC.swift in Sources */,
+				2942062E2558A55E009BB963 /* MFDataLoadingVC.swift in Sources */,
 				CCBE387F240D74BA00130347 /* MealDetailsVC.swift in Sources */,
 				CC8708922408BF5C0065D328 /* MFBodyLabel.swift in Sources */,
 				29D6B2462549144500E4BD1C /* Workout+CoreDataClass.swift in Sources */,
