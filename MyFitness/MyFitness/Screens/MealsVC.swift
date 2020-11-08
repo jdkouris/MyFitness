@@ -18,6 +18,7 @@ class MealsVC: UIViewController {
     var recipes: [Recipe] = []
     var filteredRecipes: [Recipe] = []
     var isSearching = false
+    var activityIndicator: UIActivityIndicatorView?
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Recipe>!
@@ -39,9 +40,23 @@ class MealsVC: UIViewController {
         configureDataSource()
     }
     
+    private func showActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator?.center = CGPoint(x: view.center.x, y: view.center.y - 100)
+        collectionView.addSubview(activityIndicator!)
+        activityIndicator?.startAnimating()
+    }
+    
+    private func hideActivityIndicator() {
+        if activityIndicator != nil {
+            activityIndicator?.stopAnimating()
+        }
+    }
+    
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+//        showLoadingView()
     }
     
     private func configureCollectionView() {
@@ -50,6 +65,7 @@ class MealsVC: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.register(MealCell.self, forCellWithReuseIdentifier: MealCell.reuseID)
+        showActivityIndicator()
     }
     
     func configureSearchController() {
@@ -64,6 +80,7 @@ class MealsVC: UIViewController {
     func getMeals() {
         NetworkManager.shared.getRecipes { [weak self] result in
             guard let self = self else { return }
+            self.hideActivityIndicator()
             
             switch result {
             case .success(let recipes):
