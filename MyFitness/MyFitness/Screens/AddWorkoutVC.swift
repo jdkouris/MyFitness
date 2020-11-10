@@ -179,6 +179,8 @@ class AddWorkoutVC: UIViewController {
         appDelegate.saveContext()
         
         delegate?.workoutAdded()
+        
+        dismiss(animated: true, completion: nil)
     }
     
     func createDismissKeyboardTapGesture() {
