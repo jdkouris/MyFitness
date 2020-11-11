@@ -41,6 +41,8 @@ class JournalCell: UITableViewCell {
         cardView.layer.shadowOffset = .zero
         cardView.layer.shadowRadius = 4
         
+        bodyLabel.textAlignment = .natural
+        
         addSubview(cardView)
         cardView.addSubviews(titleDateLabel, workoutTypeLabel, bodyLabel)
         
@@ -64,7 +66,7 @@ class JournalCell: UITableViewCell {
 
             bodyLabel.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor),
             bodyLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
-            bodyLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
+            bodyLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             bodyLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -padding)
         ])
     }

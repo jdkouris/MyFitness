@@ -224,6 +224,8 @@ extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    #warning("add editing to delete rows")
+    
 }
 
 extension AddWorkoutVC: AddExerciseDelegate {
