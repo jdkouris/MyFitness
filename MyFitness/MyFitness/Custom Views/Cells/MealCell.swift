@@ -63,14 +63,14 @@ class MealCell: UICollectionViewCell {
             cardView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding / 2),
             cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding / 2),
             
-            mealImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            mealImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            mealImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            mealImageView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
+            mealImageView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            mealImageView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             mealImageView.heightAnchor.constraint(equalTo: mealImageView.widthAnchor),
             
             mealTitleLabel.topAnchor.constraint(equalTo: mealImageView.bottomAnchor),
-            mealTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            mealTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            mealTitleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            mealTitleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             mealTitleLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }

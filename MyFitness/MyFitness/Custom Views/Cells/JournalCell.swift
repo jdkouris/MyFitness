@@ -41,7 +41,7 @@ class JournalCell: UITableViewCell {
         cardView.layer.shadowOffset = .zero
         cardView.layer.shadowRadius = 4
         
-        self.addSubview(cardView)
+        addSubview(cardView)
         cardView.addSubviews(titleDateLabel, workoutTypeLabel, bodyLabel)
         
         let padding: CGFloat = 20
