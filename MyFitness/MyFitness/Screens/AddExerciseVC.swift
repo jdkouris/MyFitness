@@ -106,7 +106,10 @@ class AddExerciseVC: UIViewController {
         exerciseNameTextField.becomeFirstResponder()
         
         exerciseWeightTextField.placeholder = "weight lifted"
+        exerciseWeightTextField.keyboardType = .decimalPad
+        
         exerciseRepsTextField.placeholder = "number of reps"
+        exerciseRepsTextField.keyboardType = .numberPad
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.layer.borderWidth = 2

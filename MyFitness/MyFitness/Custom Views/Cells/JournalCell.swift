@@ -33,32 +33,37 @@ class JournalCell: UITableViewCell {
     
     private func configure() {
         let cardView = UIView(frame: self.contentView.frame)
-        cardView.backgroundColor = .systemGray6
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.backgroundColor = .systemBackground
         cardView.layer.cornerRadius = 10
+        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        cardView.layer.shadowOpacity = 1
+        cardView.layer.shadowOffset = .zero
+        cardView.layer.shadowRadius = 4
         
-        self.contentView.addSubview(cardView)
+        self.addSubview(cardView)
         cardView.addSubviews(titleDateLabel, workoutTypeLabel, bodyLabel)
         
-        let padding: CGFloat = 12
+        let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            cardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            cardView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding / 2),
+            cardView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            cardView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding / 2),
             
-            titleDateLabel.topAnchor.constraint(equalTo: cardView.topAnchor),
-            titleDateLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor),
+            titleDateLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
+            titleDateLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             titleDateLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
-            titleDateLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor),
+            titleDateLabel.heightAnchor.constraint(equalToConstant: 30),
 
-            workoutTypeLabel.topAnchor.constraint(equalTo: titleDateLabel.bottomAnchor, constant: padding / 2),
-            workoutTypeLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor),
+            workoutTypeLabel.topAnchor.constraint(equalTo: titleDateLabel.bottomAnchor),
+            workoutTypeLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             workoutTypeLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
             workoutTypeLabel.heightAnchor.constraint(equalToConstant: 24),
 
-            bodyLabel.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor, constant: padding),
-            bodyLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor),
+            bodyLabel.topAnchor.constraint(equalTo: workoutTypeLabel.bottomAnchor),
+            bodyLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             bodyLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
             bodyLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -padding)
         ])

@@ -68,7 +68,7 @@ class WorkoutJournalVC: UIViewController {
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.rowHeight = 100
+        tableView.estimatedRowHeight = 200
         
         tableView.separatorStyle = .none
         
