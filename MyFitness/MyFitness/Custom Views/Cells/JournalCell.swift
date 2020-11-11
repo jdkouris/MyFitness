@@ -42,6 +42,7 @@ class JournalCell: UITableViewCell {
         cardView.layer.shadowRadius = 4
         
         bodyLabel.textAlignment = .natural
+        selectionStyle = .none
         
         addSubview(cardView)
         cardView.addSubviews(titleDateLabel, workoutTypeLabel, bodyLabel)

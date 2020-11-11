@@ -79,7 +79,7 @@ class AddWorkoutVC: UIViewController {
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         request.predicate = NSPredicate(format: "workout = %@", workout)
         
-        let sort = NSSortDescriptor(key: "name", ascending: false)
+        let sort = NSSortDescriptor(key: "workout", ascending: true)
         request.sortDescriptors = [sort]
         
         do {
