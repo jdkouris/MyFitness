@@ -29,13 +29,14 @@ class AddWorkoutVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        workout = Workout(context: context)
+        
         configureVC()
         configureWorkoutName()
         configureNotesTextView()
         configureTableView()
         configureSaveButton()
         createDismissKeyboardTapGesture()
+        configureWorkoutDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +87,6 @@ class AddWorkoutVC: UIViewController {
             
             // execute the fetch
             try fetchedExerciseRC!.performFetch()
-            print(fetchedExerciseRC?.fetchedObjects)
         } catch {
             print("Error fetching notes")
         }
