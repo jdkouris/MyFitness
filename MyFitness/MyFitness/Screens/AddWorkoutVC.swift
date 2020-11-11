@@ -37,6 +37,7 @@ class AddWorkoutVC: UIViewController {
         configureSaveButton()
         createDismissKeyboardTapGesture()
         configureWorkoutDetails()
+        layoutUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,33 +105,16 @@ class AddWorkoutVC: UIViewController {
     }
     
     private func configureWorkoutName() {
-        view.addSubview(workoutNameTextField)
         workoutNameTextField.placeholder = "workout name"
-        
-        NSLayoutConstraint.activate([
-            workoutNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutNameTextField.heightAnchor.constraint(equalToConstant: 30)
-        ])
     }
     
     private func configureNotesTextView() {
-        view.addSubview(notesTextView)
-        
         notesTextView.isEditable = true
         notesTextView.isSelectable = true
         notesTextView.isScrollEnabled = true
         notesTextView.text = "workout notes"
         
         notesTextView.delegate = self
-        
-        NSLayoutConstraint.activate([
-            notesTextView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 8),
-            notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            notesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            notesTextView.heightAnchor.constraint(equalToConstant: 70)
-        ])
     }
     
     private func configureTableView() {
@@ -145,19 +129,38 @@ class AddWorkoutVC: UIViewController {
     }
     
     func configureSaveButton() {
-        view.addSubview(saveButton)
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         saveButton.setTitle("Save", for: .normal)
         saveButton.backgroundColor = .systemBlue
         saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
+    }
+    
+    private func layoutUI() {
+        view.addSubviews(workoutNameTextField, notesTextView, tableView, saveButton)
         
         NSLayoutConstraint.activate([
-            saveButton.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            workoutNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            workoutNameTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            notesTextView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 8),
+            notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            notesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            notesTextView.heightAnchor.constraint(equalToConstant: 80),
+            
+            tableView.topAnchor.constraint(equalTo: notesTextView.bottomAnchor, constant: 16),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            tableView.heightAnchor.constraint(equalToConstant: 300),
+            
+            saveButton.heightAnchor.constraint(equalToConstant: 80),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
     }
     
     @objc func saveTapped() {
