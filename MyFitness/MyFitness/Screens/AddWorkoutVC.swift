@@ -15,6 +15,8 @@ protocol AddWorkoutDelegate {
 
 class AddWorkoutVC: UIViewController {
     
+    // MARK: - Variables and Properties
+    
     let tableView = UITableView()
     let workoutNameTextField = MFTextField()
     let notesTextView = MFTextView(frame: .zero)
@@ -27,26 +29,28 @@ class AddWorkoutVC: UIViewController {
     var workout: Workout?
     var delegate: AddWorkoutDelegate?
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureVC()
         configureWorkoutName()
         configureNotesTextView()
         configureTableView()
         configureSaveButton()
-        createDismissKeyboardTapGesture()
         configureWorkoutDetails()
+        createDismissKeyboardTapGesture()
         layoutUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         refresh()
     }
     
-    func configureVC() {
+    // MARK: - Configuration Methods
+    
+    private func configureVC() {
         view.backgroundColor = .systemBackground
         title = "Add Workout Details"
         navigationItem.largeTitleDisplayMode = .never
@@ -58,24 +62,80 @@ class AddWorkoutVC: UIViewController {
         navigationItem.leftBarButtonItem = closeBarButton
     }
     
-    @objc func addButtonTapped() {
-        let addExerciseVC = AddExerciseVC()
-        addExerciseVC.workout = workout
-        addExerciseVC.delegate = self
-        
-        addExerciseVC.modalPresentationStyle = .automatic
-        present(addExerciseVC, animated: true, completion: nil)
+    private func configureWorkoutName() {
+        workoutNameTextField.placeholder = "workout name"
     }
     
-    @objc func close() {
-        navigationController?.dismiss(animated: true, completion: nil)
+    private func configureNotesTextView() {
+        notesTextView.isEditable = true
+        notesTextView.isSelectable = true
+        notesTextView.isScrollEnabled = true
+        notesTextView.text = "workout notes"
+        notesTextView.delegate = self
     }
+    
+    private func configureTableView() {
+        view.addSubview(tableView)
+        tableView.frame = CGRect(x: 0, y: view.bounds.height / 3, width: view.bounds.width, height: view.bounds.height / 2)
+        tableView.rowHeight = 120
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(WorkoutCell.self, forCellReuseIdentifier: WorkoutCell.reuseID)
+    }
+    
+    private func configureSaveButton() {
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.backgroundColor = .systemBlue
+        saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
+    }
+    
+    private func configureWorkoutDetails() {
+        guard let workout = workout else { return }
+        notesTextView.text = workout.notes
+        workoutNameTextField.text = workout.name
+    }
+    
+    private func createDismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private func layoutUI() {
+        view.addSubviews(workoutNameTextField, notesTextView, tableView, saveButton)
+        
+        let padding: CGFloat = 16
+        NSLayoutConstraint.activate([
+            workoutNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            workoutNameTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            notesTextView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: padding / 2),
+            notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            notesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            notesTextView.heightAnchor.constraint(equalToConstant: 80),
+            
+            tableView.topAnchor.constraint(equalTo: notesTextView.bottomAnchor, constant: padding),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding / 2),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding / 2),
+            tableView.heightAnchor.constraint(equalToConstant: 300),
+            
+            saveButton.heightAnchor.constraint(equalToConstant: 80),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    // MARK: - Data Method
     
     func refresh() {
-        // check if there's a place set
+        // check if there's a workout set
         guard let workout = workout else { return }
         
-        // get a fetch request for the places
+        // get a fetch request for the exercises
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         request.predicate = NSPredicate(format: "workout = %@", workout)
         
@@ -98,69 +158,19 @@ class AddWorkoutVC: UIViewController {
         }
     }
     
-    func configureWorkoutDetails() {
-        guard let workout = workout else { return }
-        notesTextView.text = workout.notes
-        workoutNameTextField.text = workout.name
+    // MARK: - Button Actions
+    
+    @objc func addButtonTapped() {
+        let addExerciseVC = AddExerciseVC()
+        addExerciseVC.workout = workout
+        addExerciseVC.delegate = self
+        
+        addExerciseVC.modalPresentationStyle = .automatic
+        present(addExerciseVC, animated: true, completion: nil)
     }
     
-    private func configureWorkoutName() {
-        workoutNameTextField.placeholder = "workout name"
-    }
-    
-    private func configureNotesTextView() {
-        notesTextView.isEditable = true
-        notesTextView.isSelectable = true
-        notesTextView.isScrollEnabled = true
-        notesTextView.text = "workout notes"
-        
-        notesTextView.delegate = self
-    }
-    
-    private func configureTableView() {
-        view.addSubview(tableView)
-        tableView.frame = CGRect(x: 0, y: view.bounds.height / 3, width: view.bounds.width, height: view.bounds.height / 2)
-        tableView.rowHeight = 120
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        tableView.register(WorkoutCell.self, forCellReuseIdentifier: WorkoutCell.reuseID)
-    }
-    
-    func configureSaveButton() {
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.backgroundColor = .systemBlue
-        saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
-    }
-    
-    private func layoutUI() {
-        view.addSubviews(workoutNameTextField, notesTextView, tableView, saveButton)
-        
-        NSLayoutConstraint.activate([
-            workoutNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            workoutNameTextField.heightAnchor.constraint(equalToConstant: 30),
-            
-            notesTextView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: 8),
-            notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            notesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            notesTextView.heightAnchor.constraint(equalToConstant: 80),
-            
-            tableView.topAnchor.constraint(equalTo: notesTextView.bottomAnchor, constant: 16),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            tableView.heightAnchor.constraint(equalToConstant: 300),
-            
-            saveButton.heightAnchor.constraint(equalToConstant: 80),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
+    @objc func close() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @objc func saveTapped() {
@@ -185,13 +195,10 @@ class AddWorkoutVC: UIViewController {
         
         dismiss(animated: true, completion: nil)
     }
-    
-    func createDismissKeyboardTapGesture() {
-        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
-    }
 
 }
+
+// MARK: - Extensions
 
 extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -224,7 +231,14 @@ extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    #warning("add editing to delete rows")
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let exercise = self.fetchedExerciseRC?.object(at: indexPath) else { return }
+            context.delete(exercise)
+            appDelegate.saveContext()
+            refresh()
+        }
+    }
     
 }
 
