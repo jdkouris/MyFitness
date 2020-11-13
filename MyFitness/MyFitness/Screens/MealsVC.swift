@@ -14,6 +14,8 @@ class MealsVC: UIViewController {
         case main
     }
     
+    // MARK: - Variables and Properties
+    
     var recipeName: String!
     var recipes: [Recipe] = []
     var filteredRecipes: [Recipe] = []
@@ -23,6 +25,8 @@ class MealsVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Recipe>!
     
+    // MARK: - Initialization
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -30,6 +34,8 @@ class MealsVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,23 +46,11 @@ class MealsVC: UIViewController {
         configureDataSource()
     }
     
-    private func showActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator?.center = CGPoint(x: view.center.x, y: view.center.y - 100)
-        collectionView.addSubview(activityIndicator!)
-        activityIndicator?.startAnimating()
-    }
-    
-    private func hideActivityIndicator() {
-        if activityIndicator != nil {
-            activityIndicator?.stopAnimating()
-        }
-    }
+    // MARK: - Configuration Methods
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-//        showLoadingView()
     }
     
     private func configureCollectionView() {
@@ -77,6 +71,8 @@ class MealsVC: UIViewController {
         navigationItem.searchController = searchController
     }
     
+    // MARK: - Data Methods
+    
     func getMeals() {
         NetworkManager.shared.getRecipes { [weak self] result in
             guard let self = self else { return }
@@ -93,14 +89,6 @@ class MealsVC: UIViewController {
         }
     }
     
-    func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Recipe>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, recipe) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCell.reuseID, for: indexPath) as! MealCell
-            cell.set(recipe: recipe)
-            return cell
-        })
-    }
-    
     func updateData(on recipes: [Recipe]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Recipe>()
         snapshot.appendSections([.main])
@@ -109,8 +97,33 @@ class MealsVC: UIViewController {
             self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
         }
     }
+    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Recipe>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, recipe) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MealCell.reuseID, for: indexPath) as! MealCell
+            cell.set(recipe: recipe)
+            return cell
+        })
+    }
+    
+    // MARK: Activity Indicator Methods
+    
+    private func showActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator?.center = CGPoint(x: view.center.x, y: view.center.y - 100)
+        collectionView.addSubview(activityIndicator!)
+        activityIndicator?.startAnimating()
+    }
+    
+    private func hideActivityIndicator() {
+        if activityIndicator != nil {
+            activityIndicator?.stopAnimating()
+        }
+    }
 
 }
+
+// MARK: - Extensions
 
 extension MealsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

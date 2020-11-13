@@ -26,17 +26,17 @@ class ProgressVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureVC()
         configureChartView()
         configureTableView()
         layoutUIElements()
-        
         getWeights()
         plotChartView()
     }
     
-    func getWeights() {
+    // MARK: - Data Method and Charting Method
+    
+    private func getWeights() {
         do {
             let request = Weight.fetchRequest() as NSFetchRequest<Weight>
             
@@ -53,6 +53,24 @@ class ProgressVC: UIViewController {
             print("Error fetching weights")
         }
     }
+    
+    private func plotChartView() {
+        chartView.clearsContextBeforeDrawing = true
+        var weightCountSeries = [Double]()
+        guard let fetchedWeights = fetchedWeightsRC?.fetchedObjects else { return }
+        
+        for log in fetchedWeights {
+            weightCountSeries.append(Double(log.value))
+        }
+        
+        let series = ChartSeries(weightCountSeries)
+        
+        series.color = ChartColors.blueColor()
+        series.area = false
+        chartView.add(series)
+    }
+    
+    // MARK: - Alert
     
     func presentAlert() {
         let alertController = UIAlertController(title: "Add Weight", message: "Enter your weight to track your progress.", preferredStyle: .alert)
@@ -81,22 +99,6 @@ class ProgressVC: UIViewController {
         }))
         
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func plotChartView() {
-        chartView.clearsContextBeforeDrawing = true
-        var weightCountSeries = [Double]()
-        guard let fetchedWeights = fetchedWeightsRC?.fetchedObjects else { return }
-        
-        for log in fetchedWeights {
-            weightCountSeries.append(Double(log.value))
-        }
-        
-        let series = ChartSeries(weightCountSeries)
-        
-        series.color = ChartColors.blueColor()
-        series.area = false
-        chartView.add(series)
     }
     
     // MARK: - Configuration

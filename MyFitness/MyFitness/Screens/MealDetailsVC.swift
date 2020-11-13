@@ -10,6 +10,8 @@ import UIKit
 
 class MealDetailsVC: UIViewController {
     
+    // MARK: - Properties and Variables
+    
     let headerView = UIView()
     let recipeInstructionsTextView = MFTextView()
     
@@ -17,6 +19,8 @@ class MealDetailsVC: UIViewController {
     
     var recipe: Recipe!
 
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -24,10 +28,36 @@ class MealDetailsVC: UIViewController {
         configureUIElements(with: recipe)
     }
     
+    // MARK: - Configuration Methods
+    
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneBarButton
+    }
+    
+    private func layoutUI() {
+        let padding: CGFloat = 20
+        
+        itemViews = [headerView, recipeInstructionsTextView]
+        
+        for itemView in itemViews {
+            view.addSubview(itemView)
+            itemView.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+            ])
+        }
+        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: view.bounds.height / 3),
+            
+            recipeInstructionsTextView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            recipeInstructionsTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding)
+        ])
     }
     
     private func configureUIElements(with recipe: Recipe) {
@@ -50,30 +80,6 @@ class MealDetailsVC: UIViewController {
             .replacingOccurrences(of: "</ol>", with: "")
             .replacingOccurrences(of: "<span>", with: "")
             .replacingOccurrences(of: "</span>", with: "")
-    }
-    
-    func layoutUI() {
-        let padding: CGFloat = 20
-        
-        itemViews = [headerView, recipeInstructionsTextView]
-        
-        for itemView in itemViews {
-            view.addSubview(itemView)
-            itemView.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
-            ])
-        }
-        
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: view.bounds.height / 3),
-            
-            recipeInstructionsTextView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
-            recipeInstructionsTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding)
-        ])
     }
     
     func add(childVC: UIViewController, to containerView: UIView) {

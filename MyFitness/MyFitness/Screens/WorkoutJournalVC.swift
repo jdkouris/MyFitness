@@ -11,6 +11,8 @@ import CoreData
 
 class WorkoutJournalVC: UIViewController {
     
+    // MARK: - Variables and Properties
+    
     let tableView = UITableView()
     var workouts = [Workout]()
     
@@ -18,6 +20,7 @@ class WorkoutJournalVC: UIViewController {
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var fetchedWorkoutsRC: NSFetchedResultsController<Workout>?
     
+    // MARK: - Initialization
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -26,6 +29,8 @@ class WorkoutJournalVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,26 +43,9 @@ class WorkoutJournalVC: UIViewController {
         getWorkouts()
     }
     
-    func getWorkouts() {
-        do {
-            let request: NSFetchRequest<Workout> = Workout.fetchRequest()
-            
-            let dateSort = NSSortDescriptor(key: "date", ascending: false)
-            request.sortDescriptors = [dateSort]
-            
-            fetchedWorkoutsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-            try fetchedWorkoutsRC!.performFetch()
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        } catch {
-            print("Error fetching workouts")
-        }
-        
-    }
+    // MARK: - Configuration Methods
     
-    func configureVC() {
+    private func configureVC() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -79,6 +67,29 @@ class WorkoutJournalVC: UIViewController {
         tableView.register(JournalCell.self, forCellReuseIdentifier: JournalCell.reuseID)
     }
     
+    // MARK: - Data Method
+    
+    func getWorkouts() {
+        do {
+            let request: NSFetchRequest<Workout> = Workout.fetchRequest()
+            
+            let dateSort = NSSortDescriptor(key: "date", ascending: false)
+            request.sortDescriptors = [dateSort]
+            
+            fetchedWorkoutsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            try fetchedWorkoutsRC!.performFetch()
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            print("Error fetching workouts")
+        }
+        
+    }
+    
+    // MARK: - Button Actions
+    
     @objc func addButtonTapped() {
         let destinationVC = AddWorkoutVC()
         destinationVC.delegate = self
@@ -88,6 +99,8 @@ class WorkoutJournalVC: UIViewController {
     }
 
 }
+
+// MARK: - Extensions
 
 extension WorkoutJournalVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

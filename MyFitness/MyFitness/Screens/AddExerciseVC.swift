@@ -46,10 +46,10 @@ class AddExerciseVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViews()
-        layoutUI()
         configureCancelButton()
         configureSaveButton()
+        configureViews()
+        layoutUI()
     }
     
     // MARK: - Configure Button Actions
