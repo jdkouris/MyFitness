@@ -2,7 +2,7 @@
 //  Workout+CoreDataProperties.swift
 //  
 //
-//  Created by John Kouris on 10/27/20.
+//  Created by John Kouris on 11/14/20.
 //
 //
 
@@ -16,9 +16,9 @@ extension Workout {
         return NSFetchRequest<Workout>(entityName: "Workout")
     }
 
-    @NSManaged public var date: Date?
-    @NSManaged public var notes: String?
+    @NSManaged public var date: String?
     @NSManaged public var name: String?
+    @NSManaged public var notes: String?
     @NSManaged public var exercises: NSOrderedSet?
 
 }
