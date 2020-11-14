@@ -45,7 +45,7 @@ class AddWorkoutVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refresh()
+        refreshData()
     }
     
     // MARK: - Configuration Methods
@@ -87,7 +87,7 @@ class AddWorkoutVC: UIViewController {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         saveButton.setTitle("Save", for: .normal)
-        saveButton.backgroundColor = .systemBlue
+        saveButton.backgroundColor = .blue
         saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
     }
     
@@ -131,7 +131,7 @@ class AddWorkoutVC: UIViewController {
     
     // MARK: - Data Method
     
-    func refresh() {
+    func refreshData() {
         // check if there's a workout set
         guard let workout = workout else { return }
         
@@ -174,7 +174,19 @@ class AddWorkoutVC: UIViewController {
     }
     
     @objc func saveTapped() {
-        navigationController?.dismiss(animated: true, completion: nil)
+        guard workoutNameTextField.text != "" else {
+            let ac = UIAlertController(title: "Error saving", message: "You can't save a workout until you've given it a name. Please add a name and try again", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            present(ac, animated: true, completion: nil)
+            return
+        }
+        
+        guard let exercises = fetchedExerciseRC?.fetchedObjects, exercises.count > 0 else {
+            let ac = UIAlertController(title: "Error saving", message: "You can't save a workout until you've added at least one exercise. Please add an exercise and try again", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            present(ac, animated: true, completion: nil)
+            return
+        }
         
         workout?.date = Date()
         workout?.name = workoutNameTextField.text
@@ -227,18 +239,20 @@ extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
             guard let exercise = self.fetchedExerciseRC?.object(at: indexPath) else { return }
             context.delete(exercise)
             appDelegate.saveContext()
-            refresh()
+            refreshData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
 }
 
 extension AddWorkoutVC: AddExerciseDelegate {
-    
     func exerciseAdded() {
-        refresh()
+        refreshData()
     }
-    
 }
 
 extension AddWorkoutVC: UITextViewDelegate {
