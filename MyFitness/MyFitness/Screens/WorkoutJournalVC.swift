@@ -94,6 +94,9 @@ class WorkoutJournalVC: UIViewController {
         let destinationVC = AddWorkoutVC()
         destinationVC.delegate = self
         
+        let workout = Workout(context: context)
+        destinationVC.workout = workout
+        
         let navController = UINavigationController(rootViewController: destinationVC)
         present(navController, animated: true, completion: nil)
     }
