@@ -28,6 +28,11 @@ class AddWorkoutVC: UIViewController {
     
     var workout: Workout?
     var delegate: AddWorkoutDelegate?
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        return formatter
+    }
     
     // MARK: - View Lifecycle
     
@@ -188,7 +193,7 @@ class AddWorkoutVC: UIViewController {
             return
         }
         
-        workout?.date = Date()
+        workout?.date = dateFormatter.string(from: Date())
         workout?.name = workoutNameTextField.text
         workout?.notes = notesTextView.text
         
