@@ -176,18 +176,9 @@ class AddWorkoutVC: UIViewController {
     @objc func saveTapped() {
         navigationController?.dismiss(animated: true, completion: nil)
         
-        if workout == nil {
-            self.workout = Workout(context: context)
-            
-            workout!.date = Date()
-            workout!.name = workoutNameTextField.text
-            workout!.notes = notesTextView.text
-            
-        } else {
-            workout?.date = Date()
-            workout?.name = workoutNameTextField.text
-            workout?.notes = notesTextView.text
-        }
+        workout?.date = Date()
+        workout?.name = workoutNameTextField.text
+        workout?.notes = notesTextView.text
         
         appDelegate.saveContext()
         
