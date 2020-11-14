@@ -16,6 +16,7 @@ Fitness tracking iOS application that you can use to track workouts, display you
 - UIKit
 - Programmatic UI
 - Autolayout
+- CocoaPods
 - URLSession
 - Diffable Data Source
 - Core Data
