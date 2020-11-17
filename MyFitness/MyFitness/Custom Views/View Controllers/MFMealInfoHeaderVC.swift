@@ -49,13 +49,13 @@ class MFMealInfoHeaderVC: UIViewController {
             recipeImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
             recipeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             recipeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            recipeImageView.heightAnchor.constraint(equalToConstant: view.bounds.height / 4),
+            recipeImageView.heightAnchor.constraint(equalToConstant: view.bounds.height / 5),
             
             recipeNameLabel.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: textImagePadding),
             recipeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             recipeNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            timeToCookImageView.topAnchor.constraint(equalTo: recipeNameLabel.bottomAnchor, constant: textImagePadding),
+            timeToCookImageView.topAnchor.constraint(equalTo: recipeNameLabel.bottomAnchor),
             timeToCookImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             
             timeLabel.topAnchor.constraint(equalTo: recipeNameLabel.bottomAnchor),
@@ -66,6 +66,8 @@ class MFMealInfoHeaderVC: UIViewController {
     
     func configureUIElements() {
         downloadRecipeImage()
+        
+        recipeImageView.contentMode = .scaleAspectFill
         
         recipeNameLabel.text = recipe.title
         timeLabel.text = "\(recipe.readyInMinutes) minutes"
