@@ -73,7 +73,7 @@ class WorkoutJournalVC: UIViewController {
         do {
             let request: NSFetchRequest<Workout> = Workout.fetchRequest()
             
-            let dateSort = NSSortDescriptor(key: "date", ascending: false)
+            let dateSort = NSSortDescriptor(key: "date", ascending: true)
             request.sortDescriptors = [dateSort]
             
             fetchedWorkoutsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
