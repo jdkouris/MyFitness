@@ -135,7 +135,7 @@ class AddExerciseVC: UIViewController {
             cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             cardView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
-            cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width),
+            cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width + 20),
             
             exerciseNameTextField.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
             exerciseNameTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
@@ -152,7 +152,7 @@ class AddExerciseVC: UIViewController {
             exerciseRepsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 30),
             
-            cancelButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -padding),
+            cancelButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -padding/2),
             cancelButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             cancelButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             cancelButton.heightAnchor.constraint(equalToConstant: 40),
