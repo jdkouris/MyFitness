@@ -24,6 +24,7 @@ class AddExerciseVC: UIViewController {
     let exerciseNameTextField = MFTextField()
     let exerciseWeightTextField = MFTextField()
     let exerciseRepsTextField = MFTextField()
+    let numberOfSetsTextField = MFTextField()
     
     let cancelButton = UIButton(frame: .zero)
     let saveButton = UIButton(frame: .zero)
@@ -111,6 +112,9 @@ class AddExerciseVC: UIViewController {
         exerciseRepsTextField.placeholder = "number of reps"
         exerciseRepsTextField.keyboardType = .numberPad
         
+        numberOfSetsTextField.placeholder = "number of sets"
+        numberOfSetsTextField.keyboardType = .numberPad
+        
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.layer.borderWidth = 2
         cancelButton.layer.borderColor = UIColor.red.cgColor
@@ -127,7 +131,7 @@ class AddExerciseVC: UIViewController {
     
     private func layoutUI() {
         view.addSubview(cardView)
-        cardView.addSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField, cancelButton, saveButton)
+        cardView.addSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField, numberOfSetsTextField, cancelButton, saveButton)
         
         let padding: CGFloat = 20
         
@@ -151,6 +155,11 @@ class AddExerciseVC: UIViewController {
             exerciseRepsTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             exerciseRepsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            numberOfSetsTextField.topAnchor.constraint(equalTo: exerciseRepsTextField.bottomAnchor, constant: 4),
+            numberOfSetsTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            numberOfSetsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
+            numberOfSetsTextField.heightAnchor.constraint(equalToConstant: 30),
             
             cancelButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -padding/2),
             cancelButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
