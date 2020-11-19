@@ -46,10 +46,6 @@ class AddWorkoutVC: UIViewController {
         configureWorkoutDetails()
         createDismissKeyboardTapGesture()
         layoutUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         refreshData()
     }
     
@@ -175,6 +171,7 @@ class AddWorkoutVC: UIViewController {
     }
     
     @objc func close() {
+        workout = nil
         navigationController?.dismiss(animated: true, completion: nil)
     }
     

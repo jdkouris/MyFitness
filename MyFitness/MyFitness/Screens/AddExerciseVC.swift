@@ -60,6 +60,7 @@ class AddExerciseVC: UIViewController {
     }
     
     @objc func dismissAddExercise() {
+        workout = nil
         dismiss(animated: true, completion: nil)
     }
     
@@ -89,10 +90,6 @@ class AddExerciseVC: UIViewController {
         
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    // MARK: - Handle Data
-    
     
     // MARK: - Configure Views and Layout UI
     
@@ -131,7 +128,12 @@ class AddExerciseVC: UIViewController {
     
     private func layoutUI() {
         view.addSubview(cardView)
-        cardView.addSubviews(exerciseNameTextField, exerciseWeightTextField, exerciseRepsTextField, numberOfSetsTextField, cancelButton, saveButton)
+        cardView.addSubviews(exerciseNameTextField,
+                             exerciseWeightTextField,
+                             exerciseRepsTextField,
+                             numberOfSetsTextField,
+                             cancelButton,
+                             saveButton)
         
         let padding: CGFloat = 20
         
