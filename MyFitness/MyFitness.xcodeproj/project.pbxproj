@@ -29,7 +29,6 @@
 		CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */; };
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
 		CC58AC94240624C8008F4FC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC92240624C8008F4FC6 /* LaunchScreen.storyboard */; };
-		CC64240724C8A68E004107C8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC64240624C8A68E004107C8 /* HealthKit.framework */; };
 		CC87088B2408BD100065D328 /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088A2408BD100065D328 /* JournalCell.swift */; };
 		CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088D2408BD5E0065D328 /* MFTitleLabel.swift */; };
 		CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87088F2408BD870065D328 /* MFAlertVC.swift */; };
@@ -108,7 +107,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F17C9F9F6C8A36BD6937386 /* Pods_MyFitness.framework in Frameworks */,
-				CC64240724C8A68E004107C8 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
