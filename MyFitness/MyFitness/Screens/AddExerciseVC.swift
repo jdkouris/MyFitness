@@ -60,7 +60,7 @@ class AddExerciseVC: UIViewController {
     }
     
     @objc func dismissAddExercise() {
-        workout = nil
+        context.rollback()
         dismiss(animated: true, completion: nil)
     }
     
@@ -83,8 +83,6 @@ class AddExerciseVC: UIViewController {
             exercise?.weight = weight
             exercise?.workout = workout
         }
-        
-        appDelegate.saveContext()
         
         delegate?.exerciseAdded()
         

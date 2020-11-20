@@ -31,8 +31,7 @@ class WeightCell: UITableViewCell {
     }
     
     private func configure() {
-        addSubview(titleDateLabel)
-        addSubview(bodyLabel)
+        addSubviews(titleDateLabel, bodyLabel)
         
         let padding: CGFloat = 12
         

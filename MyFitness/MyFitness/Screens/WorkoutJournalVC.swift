@@ -14,7 +14,6 @@ class WorkoutJournalVC: UIViewController {
     // MARK: - Variables and Properties
     
     let tableView = UITableView()
-    var workouts = [Workout]()
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -74,12 +73,11 @@ class WorkoutJournalVC: UIViewController {
             let request: NSFetchRequest<Workout> = Workout.fetchRequest()
             
             let dateSort = NSSortDescriptor(key: "date", ascending: false)
-            let nameSort = NSSortDescriptor(key: "name", ascending: false)
-            request.sortDescriptors = [dateSort, nameSort]
+            request.sortDescriptors = [dateSort]
             
             fetchedWorkoutsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
             try fetchedWorkoutsRC!.performFetch()
-            
+            print(fetchedWorkoutsRC?.fetchedObjects?.count)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

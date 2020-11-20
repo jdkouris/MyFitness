@@ -166,7 +166,7 @@ class AddWorkoutVC: UIViewController {
     }
     
     @objc func close() {
-        workout = nil
+        context.rollback()
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
@@ -235,7 +235,6 @@ extension AddWorkoutVC: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             guard let exercise = self.fetchedExerciseRC?.object(at: indexPath) else { return }
             context.delete(exercise)
-            appDelegate.saveContext()
             refreshData()
         }
     }

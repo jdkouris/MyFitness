@@ -31,9 +31,7 @@ class WorkoutCell: UITableViewCell {
     }
     
     private func configure() {
-        addSubview(exerciseNameLabel)
-        addSubview(exerciseWeightLabel)
-        addSubview(exerciseRepsLabel)
+        addSubviews(exerciseNameLabel, exerciseWeightLabel, exerciseRepsLabel)
         
         let padding: CGFloat = 16
         
