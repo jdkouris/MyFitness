@@ -77,7 +77,6 @@ class WorkoutJournalVC: UIViewController {
             
             fetchedWorkoutsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
             try fetchedWorkoutsRC!.performFetch()
-            print(fetchedWorkoutsRC?.fetchedObjects?.count)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
