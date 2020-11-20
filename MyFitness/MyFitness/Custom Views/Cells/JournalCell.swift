@@ -24,7 +24,15 @@ class JournalCell: UITableViewCell {
     }
     
     func set(workout: Workout) {
-        titleDateLabel.text = workout.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        
+        if let date = workout.date {
+            titleDateLabel.text = dateFormatter.string(from: date)
+        } else {
+            titleDateLabel.text = dateFormatter.string(from: Date())
+        }
+        
         workoutTypeLabel.text = workout.name
         bodyLabel.text = workout.notes
     }

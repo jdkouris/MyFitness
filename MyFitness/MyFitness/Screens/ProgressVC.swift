@@ -40,7 +40,7 @@ class ProgressVC: UIViewController {
         do {
             let request = Weight.fetchRequest() as NSFetchRequest<Weight>
             
-            let dateSort = NSSortDescriptor(key: "date", ascending: true)
+            let dateSort = NSSortDescriptor(key: "date", ascending: false)
             request.sortDescriptors = [dateSort]
             
             fetchedWeightsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -63,6 +63,7 @@ class ProgressVC: UIViewController {
             weightCountSeries.append(Double(log.value))
         }
         
+        weightCountSeries.reverse()
         let series = ChartSeries(weightCountSeries)
         
         series.color = ChartColors.blueColor()

@@ -2,7 +2,7 @@
 //  Weight+CoreDataClass.swift
 //  
 //
-//  Created by John Kouris on 10/27/20.
+//  Created by John Kouris on 11/19/20.
 //
 //
 

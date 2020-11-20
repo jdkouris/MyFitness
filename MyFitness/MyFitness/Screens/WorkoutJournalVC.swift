@@ -73,8 +73,9 @@ class WorkoutJournalVC: UIViewController {
         do {
             let request: NSFetchRequest<Workout> = Workout.fetchRequest()
             
-            let dateSort = NSSortDescriptor(key: "date", ascending: true)
-            request.sortDescriptors = [dateSort]
+            let dateSort = NSSortDescriptor(key: "date", ascending: false)
+            let nameSort = NSSortDescriptor(key: "name", ascending: false)
+            request.sortDescriptors = [dateSort, nameSort]
             
             fetchedWorkoutsRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
             try fetchedWorkoutsRC!.performFetch()

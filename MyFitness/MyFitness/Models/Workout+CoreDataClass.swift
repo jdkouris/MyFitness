@@ -2,7 +2,7 @@
 //  Workout+CoreDataClass.swift
 //  
 //
-//  Created by John Kouris on 11/14/20.
+//  Created by John Kouris on 11/19/20.
 //
 //
 
