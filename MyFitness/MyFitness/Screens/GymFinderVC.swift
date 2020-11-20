@@ -27,7 +27,26 @@ class GymFinderVC: UIViewController {
         
         setupGymMapView()
         setupUserTrackingButton()
+        attemptLocationAccess()
         searchInMap()
+    }
+    
+    func attemptLocationAccess() {
+        // 1
+        guard CLLocationManager.locationServicesEnabled() else {
+            return
+        }
+        // 2
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        // 3
+        locationManager.delegate = self
+        // 4
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.requestLocation()
+        }
+
     }
     
     func searchInMap() {
@@ -60,6 +79,7 @@ class GymFinderVC: UIViewController {
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
             annotation.title = title
+            annotation.subtitle = "\(location.latitude)"
             gymMapView.addAnnotation(annotation)
         }
     }
@@ -88,4 +108,19 @@ class GymFinderVC: UIViewController {
         ])
     }
     
+}
+
+extension GymFinderVC: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        guard status == .authorizedWhenInUse else { return }
+        manager.requestLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+    }
 }
