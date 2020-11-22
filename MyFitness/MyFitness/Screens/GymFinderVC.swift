@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Contacts
 
 class GymFinderVC: UIViewController {
     
@@ -24,6 +25,8 @@ class GymFinderVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         locationManager.requestWhenInUseAuthorization()
+        
+        
         
         setupGymMapView()
         setupUserTrackingButton()
@@ -80,6 +83,26 @@ class GymFinderVC: UIViewController {
             annotation.title = title
             annotation.subtitle = "\(location.latitude)"
             gymMapView.addAnnotation(annotation)
+            navigateTo(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    private func navigateTo(latitude: Double, longitude: Double) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.787359, longitude: -122.408227), addressDictionary: nil))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), addressDictionary: nil))
+        request.requestsAlternateRoutes = true
+        request.transportType = .automobile
+        
+        let directions = MKDirections(request: request)
+        
+        directions.calculate { [unowned self] response, error in
+            guard let unwrappedResponse = response else { return }
+            
+            for route in unwrappedResponse.routes {
+                self.gymMapView.addOverlay(route.polyline)
+                self.gymMapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            }
         }
     }
     
@@ -87,6 +110,7 @@ class GymFinderVC: UIViewController {
         gymMapView = MKMapView(frame: view.bounds)
         gymMapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(gymMapView)
+        gymMapView.delegate = self
         
         NSLayoutConstraint.activate([
             gymMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -114,12 +138,21 @@ extension GymFinderVC: CLLocationManagerDelegate {
         guard status == .authorizedWhenInUse else { return }
         manager.requestLocation()
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
+}
+
+extension GymFinderVC: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
+        renderer.strokeColor = UIColor.blue
+        return renderer
     }
 }
