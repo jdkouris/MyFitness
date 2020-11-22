@@ -32,15 +32,14 @@ class GymFinderVC: UIViewController {
     }
     
     func attemptLocationAccess() {
-        // 1
         guard CLLocationManager.locationServicesEnabled() else {
             return
         }
-        // 2
+
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        // 3
+        
         locationManager.delegate = self
-        // 4
+        
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
         } else {

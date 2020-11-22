@@ -17,7 +17,7 @@ class MFTabBarController: UITabBarController {
         viewControllers = [createWorkoutJournalNC(),
                            createProgressNC(),
                            createMealsNC()
-//                           ,createGymFinderNC()
+                           ,createGymFinderNC()
         ]
     }
     
@@ -47,7 +47,7 @@ class MFTabBarController: UITabBarController {
     
     func createGymFinderNC() -> UINavigationController {
         let gymFinderVC = GymFinderVC()
-        gymFinderVC.title = "Find Gym"
+        gymFinderVC.title = "Find a Gym"
         gymFinderVC.tabBarItem = UITabBarItem(title: "Gym Finder", image: UIImage(systemName: SFSymbols.gymSearch), tag: 3)
         
         return UINavigationController(rootViewController: gymFinderVC)
