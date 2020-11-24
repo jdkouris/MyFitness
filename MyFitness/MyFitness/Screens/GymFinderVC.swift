@@ -60,10 +60,6 @@ class GymFinderVC: UIViewController {
         let search = MKLocalSearch(request: request)
         search.start(completionHandler: { (response, error) in
             
-            if response == nil {
-                print("error")
-            }
-            
             if let response = response {
                 for item in response.mapItems {
                     self.addPinToMapView(title: item.name,
