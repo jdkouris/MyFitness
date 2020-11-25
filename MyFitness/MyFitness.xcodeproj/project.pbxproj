@@ -20,6 +20,7 @@
 		29A0C3A5256DE6EB00CF846E /* DemoExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0C3A4256DE6EB00CF846E /* DemoExercise.swift */; };
 		29A0C3A8256DEC6300CF846E /* DemoExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0C3A7256DEC6300CF846E /* DemoExercisesVC.swift */; };
 		29A0C3AC256DF2F900CF846E /* ExerciseCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0C3AB256DF2F900CF846E /* ExerciseCategoryCell.swift */; };
+		29A0C3AF256DF39F00CF846E /* MFExerciseCategoryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0C3AE256DF39F00CF846E /* MFExerciseCategoryImageView.swift */; };
 		29D6B23D2549117B00E4BD1C /* MyFitness.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29D6B23B2549117B00E4BD1C /* MyFitness.xcdatamodeld */; };
 		5F17C9F9F6C8A36BD6937386 /* Pods_MyFitness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BF34E570924E8FD9E8B054 /* Pods_MyFitness.framework */; };
 		CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D22240756A500639A8F /* MFTabBarController.swift */; };
@@ -68,6 +69,7 @@
 		29A0C3A4256DE6EB00CF846E /* DemoExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoExercise.swift; sourceTree = "<group>"; };
 		29A0C3A7256DEC6300CF846E /* DemoExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoExercisesVC.swift; sourceTree = "<group>"; };
 		29A0C3AB256DF2F900CF846E /* ExerciseCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCategoryCell.swift; sourceTree = "<group>"; };
+		29A0C3AE256DF39F00CF846E /* MFExerciseCategoryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFExerciseCategoryImageView.swift; sourceTree = "<group>"; };
 		29D6B23C2549117B00E4BD1C /* MyFitness.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFitness.xcdatamodel; sourceTree = "<group>"; };
 		B93347B68824A3AF137D9B24 /* Pods-MyFitness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.debug.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.debug.xcconfig"; sourceTree = "<group>"; };
 		C8506F6B2D9B997573B11C75 /* Pods-MyFitness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFitness.release.xcconfig"; path = "Target Support Files/Pods-MyFitness/Pods-MyFitness.release.xcconfig"; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBE3885240D76BF00130347 /* MFMealImageView.swift */,
+				29A0C3AE256DF39F00CF846E /* MFExerciseCategoryImageView.swift */,
 			);
 			path = ImageViews;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				29A0C3882567463B00CF846E /* Weight+CoreDataProperties.swift in Sources */,
 				29A0C3A5256DE6EB00CF846E /* DemoExercise.swift in Sources */,
 				CC937A67240F46890062D8C0 /* MFTextView.swift in Sources */,
+				29A0C3AF256DF39F00CF846E /* MFExerciseCategoryImageView.swift in Sources */,
 				CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */,
 				29A0C3892567463B00CF846E /* Exercise+CoreDataProperties.swift in Sources */,
 				CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */,
