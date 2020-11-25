@@ -14,10 +14,12 @@ class MFTabBarController: UITabBarController {
         super.viewDidLoad()
 
         UITabBar.appearance().tintColor = .systemBlue
-        viewControllers = [createWorkoutJournalNC(),
-                           createProgressNC(),
-                           createMealsNC()
-                           ,createGymFinderNC()
+        viewControllers = [
+            createWorkoutJournalNC()
+            ,createDemoExercisesNC()
+            ,createProgressNC()
+            ,createMealsNC()
+            ,createGymFinderNC()
         ]
     }
     
@@ -29,10 +31,18 @@ class MFTabBarController: UITabBarController {
         return UINavigationController(rootViewController: workoutJournalVC)
     }
     
+    func createDemoExercisesNC() -> UINavigationController {
+        let demoExercisesVC = DemoExercisesVC()
+        demoExercisesVC.title = "Exercises"
+        demoExercisesVC.tabBarItem = UITabBarItem(title: "Exercises", image: UIImage(systemName: SFSymbols.exercises), tag: 1)
+        
+        return UINavigationController(rootViewController: demoExercisesVC)
+    }
+    
     func createProgressNC() -> UINavigationController {
         let progressVC = ProgressVC()
         progressVC.title = "Progress"
-        progressVC.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: SFSymbols.progress), tag: 1)
+        progressVC.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: SFSymbols.progress), tag: 2)
         
         return UINavigationController(rootViewController: progressVC)
     }
@@ -40,7 +50,7 @@ class MFTabBarController: UITabBarController {
     func createMealsNC() -> UINavigationController {
         let mealsVC = MealsVC()
         mealsVC.title = "Recipes"
-        mealsVC.tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: SFSymbols.recipe), tag: 2)
+        mealsVC.tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: SFSymbols.recipe), tag: 3)
         
         return UINavigationController(rootViewController: mealsVC)
     }
@@ -48,7 +58,7 @@ class MFTabBarController: UITabBarController {
     func createGymFinderNC() -> UINavigationController {
         let gymFinderVC = GymFinderVC()
         gymFinderVC.title = "Find a Gym"
-        gymFinderVC.tabBarItem = UITabBarItem(title: "Gym Finder", image: UIImage(systemName: SFSymbols.gymSearch), tag: 3)
+        gymFinderVC.tabBarItem = UITabBarItem(title: "Gym Finder", image: UIImage(systemName: SFSymbols.gymSearch), tag: 4)
         
         return UINavigationController(rootViewController: gymFinderVC)
     }

@@ -196,9 +196,9 @@
 				CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */,
 				CC8708932408C59A0065D328 /* AddWorkoutVC.swift */,
 				29420607255254A3009BB963 /* AddExerciseVC.swift */,
+				29A0C3A7256DEC6300CF846E /* DemoExercisesVC.swift */,
 				CC0C7D292407576500639A8F /* ProgressVC.swift */,
 				CC0C7D272407574600639A8F /* MealsVC.swift */,
-				29A0C3A7256DEC6300CF846E /* DemoExercisesVC.swift */,
 				CCBE387E240D74BA00130347 /* MealDetailsVC.swift */,
 				CC0C7D24240756F200639A8F /* GymFinderVC.swift */,
 			);

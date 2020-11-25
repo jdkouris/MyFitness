@@ -10,21 +10,35 @@ import UIKit
 
 class DemoExercisesVC: UIViewController {
 
+    var categories: [ExerciseCategory] = []
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        getDemoExercises()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func getDemoExercises() {
+        NetworkManager.shared.getExerciseCategories { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let categories):
+                self.categories.append(contentsOf: categories.results)
+                print(self.categories)
+                
+            case .failure(let error):
+                print("Error fetching categories: \(error)")
+            }
+        }
     }
-    */
-
+    
 }
