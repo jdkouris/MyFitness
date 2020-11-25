@@ -16,7 +16,6 @@ class MealsVC: UIViewController {
     
     // MARK: - Variables and Properties
     
-    var recipeName: String!
     var recipes: [Recipe] = []
     var filteredRecipes: [Recipe] = []
     var isSearching = false
