@@ -14,4 +14,5 @@ enum SFSymbols {
     static let journal = "square.and.pencil"
     static let progress = "heart.fill"
     static let gymSearch = "magnifyingglass"
+    static let exercises = "figure.walk"
 }
