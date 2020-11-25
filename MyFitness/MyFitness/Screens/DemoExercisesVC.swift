@@ -95,6 +95,7 @@ class DemoExercisesVC: UIViewController {
     
     
     // MARK: - Activity Indicator Methods
+    
     private func showActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator?.center = CGPoint(x: view.center.x, y: view.center.y - 100)
