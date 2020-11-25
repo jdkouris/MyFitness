@@ -85,7 +85,8 @@ class GymFinderVC: UIViewController {
     
     private func navigateTo(latitude: Double, longitude: Double) {
         let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.787359, longitude: -122.408227), addressDictionary: nil))
+        guard let userLocation = locationManager.location else { return }
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), addressDictionary: nil))
         request.requestsAlternateRoutes = true
         request.transportType = .automobile
