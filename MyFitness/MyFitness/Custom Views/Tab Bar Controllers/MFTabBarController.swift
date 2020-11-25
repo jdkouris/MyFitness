@@ -33,7 +33,7 @@ class MFTabBarController: UITabBarController {
     
     func createDemoExercisesNC() -> UINavigationController {
         let demoExercisesVC = DemoExercisesVC()
-        demoExercisesVC.title = "Exercises"
+        demoExercisesVC.title = "Exercise Categories"
         demoExercisesVC.tabBarItem = UITabBarItem(title: "Exercises", image: UIImage(systemName: SFSymbols.exercises), tag: 1)
         
         return UINavigationController(rootViewController: demoExercisesVC)
