@@ -119,7 +119,7 @@ class NetworkManager {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        request.addValue("Token \(exerciseApiKey)", forHTTPHeaderField: "Autorization")
+        request.addValue("Token \(exerciseApiKey)", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let _ = error {
@@ -148,7 +148,6 @@ class NetworkManager {
                 let categories = try decoder.decode(Categories.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(categories))
-                    print(categories)
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -159,6 +158,54 @@ class NetworkManager {
         
         task.resume()
         
+    }
+    
+    func getExercises(completion: @escaping (Result<Exercises, MFError>) -> Void) {
+        let exercisesURLString = exerciseBaseURL + "/exercise/"
+        guard let url = URL(string: exercisesURLString) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        request.addValue("Token \(exerciseApiKey)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let _ = error {
+                DispatchQueue.main.async {
+                    completion(.failure(.unableToComplete))
+                }
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidResponse))
+                }
+                return
+            }
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let exercises = try decoder.decode(Exercises.self, from: data)
+                DispatchQueue.main.async {
+                    completion(.success(exercises))
+                    print(exercises)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
+            }
+        }
+        
+        task.resume()
     }
     
 }
