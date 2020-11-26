@@ -160,9 +160,14 @@ class NetworkManager {
         
     }
     
-    func getExercises(completion: @escaping (Result<Exercises, MFError>) -> Void) {
+    func getExercises(for category: ExerciseCategory, completion: @escaping (Result<Exercises, MFError>) -> Void) {
         let exercisesURLString = exerciseBaseURL + "/exercise/"
-        guard let url = URL(string: exercisesURLString) else { return }
+        var urlComponents = URLComponents(string: exercisesURLString)
+        
+        let queryItems = [URLQueryItem(name: "language", value: "2"), URLQueryItem(name: "category", value: "\(category.id)")]
+        urlComponents?.queryItems = queryItems
+        
+        guard let url = urlComponents?.url else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
