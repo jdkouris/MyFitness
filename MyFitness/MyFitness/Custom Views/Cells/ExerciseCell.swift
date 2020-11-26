@@ -31,11 +31,11 @@ class ExerciseCell: UITableViewCell {
         let cardView = UIView(frame: self.contentView.frame)
         cardView.translatesAutoresizingMaskIntoConstraints = false
         cardView.backgroundColor = .systemBackground
-        cardView.layer.cornerRadius = 10
-        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        cardView.layer.shadowOpacity = 1
-        cardView.layer.shadowOffset = .zero
-        cardView.layer.shadowRadius = 4
+//        cardView.layer.cornerRadius = 10
+//        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        cardView.layer.shadowOpacity = 1
+//        cardView.layer.shadowOffset = .zero
+//        cardView.layer.shadowRadius = 4
         
         exerciseDescriptionLabel.textAlignment = .natural
         selectionStyle = .none
