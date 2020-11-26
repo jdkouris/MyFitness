@@ -164,7 +164,7 @@ class NetworkManager {
         let exercisesURLString = exerciseBaseURL + "/exercise/"
         var urlComponents = URLComponents(string: exercisesURLString)
         
-        let queryItems = [URLQueryItem(name: "language", value: "2"), URLQueryItem(name: "category", value: "\(category.id)")]
+        let queryItems = [URLQueryItem(name: "language", value: "2"), URLQueryItem(name: "category", value: "\(category.id)"), URLQueryItem(name: "limit", value: "100")]
         urlComponents?.queryItems = queryItems
         
         guard let url = urlComponents?.url else { return }
