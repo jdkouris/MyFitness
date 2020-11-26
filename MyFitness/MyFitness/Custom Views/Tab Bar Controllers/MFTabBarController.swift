@@ -16,10 +16,10 @@ class MFTabBarController: UITabBarController {
         UITabBar.appearance().tintColor = .systemBlue
         viewControllers = [
             createWorkoutJournalNC()
-            ,createDemoExercisesNC()
+//            ,createDemoExercisesNC()
             ,createProgressNC()
             ,createMealsNC()
-            ,createGymFinderNC()
+//            ,createGymFinderNC()
         ]
     }
     
