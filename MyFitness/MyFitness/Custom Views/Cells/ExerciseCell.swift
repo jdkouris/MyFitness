@@ -24,7 +24,7 @@ class ExerciseCell: UITableViewCell {
     
     func set(exercise: DemoExercise) {
         exerciseNameLabel.text = exercise.name
-        exerciseDescriptionLabel.text = exercise.description
+        exerciseDescriptionLabel.text = exercise.description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
     
     private func configure() {
