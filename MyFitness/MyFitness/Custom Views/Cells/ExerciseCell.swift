@@ -31,11 +31,11 @@ class ExerciseCell: UITableViewCell {
         let cardView = UIView(frame: self.contentView.frame)
         cardView.translatesAutoresizingMaskIntoConstraints = false
         cardView.backgroundColor = .systemBackground
-//        cardView.layer.cornerRadius = 10
-//        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-//        cardView.layer.shadowOpacity = 1
-//        cardView.layer.shadowOffset = .zero
-//        cardView.layer.shadowRadius = 4
+        cardView.layer.cornerRadius = 10
+        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        cardView.layer.shadowOpacity = 1
+        cardView.layer.shadowOffset = .zero
+        cardView.layer.shadowRadius = 1
         
         exerciseDescriptionLabel.textAlignment = .natural
         selectionStyle = .none
@@ -53,12 +53,12 @@ class ExerciseCell: UITableViewCell {
             
             exerciseNameLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
             exerciseNameLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
-            exerciseNameLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
+            exerciseNameLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             exerciseNameLabel.heightAnchor.constraint(equalToConstant: 30),
 
             exerciseDescriptionLabel.topAnchor.constraint(equalTo: exerciseNameLabel.bottomAnchor),
             exerciseDescriptionLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
-            exerciseDescriptionLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
+            exerciseDescriptionLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             exerciseDescriptionLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -padding)
         ])
     }
