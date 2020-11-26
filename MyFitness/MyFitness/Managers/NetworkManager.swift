@@ -201,7 +201,6 @@ class NetworkManager {
                 let exercises = try decoder.decode(Exercises.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(exercises))
-                    print(exercises)
                 }
             } catch {
                 DispatchQueue.main.async {
