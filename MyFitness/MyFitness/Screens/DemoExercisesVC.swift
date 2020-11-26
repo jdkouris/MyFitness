@@ -38,7 +38,7 @@ class DemoExercisesVC: UIViewController {
 
         configureViewController()
         configureCollectionView()
-        getDemoExercises()
+        getExerciseCategories()
         configureDataSource()
     }
     
@@ -60,7 +60,7 @@ class DemoExercisesVC: UIViewController {
     
     // MARK: - Data Methods
     
-    private func getDemoExercises() {
+    private func getExerciseCategories() {
         NetworkManager.shared.getExerciseCategories { [weak self] result in
             guard let self = self else { return }
             self.hideActivityIndicator()
@@ -112,5 +112,13 @@ class DemoExercisesVC: UIViewController {
 }
 
 extension DemoExercisesVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = categories[indexPath.item]
+        
+        let destinationVC = CategoryExercisesVC()
+        destinationVC.category = category
+        
+        let navController = UINavigationController(rootViewController: destinationVC)
+        present(navController, animated: true, completion: nil)
+    }
 }
