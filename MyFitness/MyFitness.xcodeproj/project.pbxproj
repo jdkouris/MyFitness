@@ -12,6 +12,7 @@
 		2942060F25525862009BB963 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942060E25525862009BB963 /* UIView+Extension.swift */; };
 		29871895256F683B00D38890 /* CategoryExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29871894256F683B00D38890 /* CategoryExercisesVC.swift */; };
 		29871898256F6C5900D38890 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29871897256F6C5900D38890 /* ExerciseCell.swift */; };
+		298718A125730D7900D38890 /* Gym.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298718A025730D7900D38890 /* Gym.swift */; };
 		299016E825490AEE0071079F /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299016E725490AEE0071079F /* APIKeys.swift */; };
 		29A0C3882567463B00CF846E /* Weight+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0C3842567463A00CF846E /* Weight+CoreDataProperties.swift */; };
 		29A0C3892567463B00CF846E /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0C3822567463A00CF846E /* Exercise+CoreDataProperties.swift */; };
@@ -63,6 +64,7 @@
 		2942060E25525862009BB963 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		29871894256F683B00D38890 /* CategoryExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExercisesVC.swift; sourceTree = "<group>"; };
 		29871897256F6C5900D38890 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		298718A025730D7900D38890 /* Gym.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym.swift; sourceTree = "<group>"; };
 		299016E725490AEE0071079F /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		29A0C3822567463A00CF846E /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataProperties.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Exercise+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		29A0C3832567463A00CF846E /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Exercise+CoreDataClass.swift"; path = "/Users/johnkouris/Desktop/JohnKouris_Apps/MyFitness/MyFitness/MyFitness/Models/Exercise+CoreDataClass.swift"; sourceTree = "<absolute>"; };
@@ -239,6 +241,7 @@
 				29A0C3842567463A00CF846E /* Weight+CoreDataProperties.swift */,
 				CC0C7D3124075BBF00639A8F /* Recipe.swift */,
 				29A0C3A4256DE6EB00CF846E /* DemoExercise.swift */,
+				298718A025730D7900D38890 /* Gym.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */,
 				29A0C3A8256DEC6300CF846E /* DemoExercisesVC.swift in Sources */,
 				29420608255254A3009BB963 /* AddExerciseVC.swift in Sources */,
+				298718A125730D7900D38890 /* Gym.swift in Sources */,
 				29A0C3AC256DF2F900CF846E /* ExerciseCategoryCell.swift in Sources */,
 				29871898256F6C5900D38890 /* ExerciseCell.swift in Sources */,
 				2942060C25525760009BB963 /* UIStackView+Extension.swift in Sources */,
