@@ -26,8 +26,6 @@ class GymFinderVC: UIViewController {
         
         locationManager.requestWhenInUseAuthorization()
         
-        
-        
         setupGymMapView()
         setupUserTrackingButton()
         attemptLocationAccess()
@@ -48,7 +46,9 @@ class GymFinderVC: UIViewController {
         } else {
             locationManager.requestLocation()
         }
-
+        
+        guard let location = locationManager.location else { return }
+        gymMapView.centerToLocation(location)
     }
     
     func searchInMap() {
@@ -77,29 +77,7 @@ class GymFinderVC: UIViewController {
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
             annotation.title = title
-            annotation.subtitle = "\(location.latitude)"
             gymMapView.addAnnotation(annotation)
-            navigateTo(latitude: latitude, longitude: longitude)
-        }
-    }
-    
-    private func navigateTo(latitude: Double, longitude: Double) {
-        let request = MKDirections.Request()
-        guard let userLocation = locationManager.location else { return }
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), addressDictionary: nil))
-        request.requestsAlternateRoutes = true
-        request.transportType = .automobile
-        
-        let directions = MKDirections(request: request)
-        
-        directions.calculate { [unowned self] response, error in
-            guard let unwrappedResponse = response else { return }
-            
-            for route in unwrappedResponse.routes {
-                self.gymMapView.addOverlay(route.polyline)
-                self.gymMapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-            }
         }
     }
     
@@ -130,6 +108,15 @@ class GymFinderVC: UIViewController {
     
 }
 
+extension MKMapView {
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 2000) {
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius,
+                                                  longitudinalMeters: regionRadius)
+        setRegion(coordinateRegion, animated: true)
+    }
+}
+
 extension GymFinderVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard status == .authorizedWhenInUse else { return }
@@ -147,9 +134,7 @@ extension GymFinderVC: CLLocationManagerDelegate {
 }
 
 extension GymFinderVC: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
-        renderer.strokeColor = UIColor.blue
-        return renderer
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
     }
 }

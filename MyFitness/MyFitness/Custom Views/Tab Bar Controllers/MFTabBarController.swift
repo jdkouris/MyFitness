@@ -19,7 +19,7 @@ class MFTabBarController: UITabBarController {
             ,createDemoExercisesNC()
             ,createProgressNC()
             ,createMealsNC()
-//            ,createGymFinderNC()
+            ,createGymFinderNC()
         ]
     }
     
