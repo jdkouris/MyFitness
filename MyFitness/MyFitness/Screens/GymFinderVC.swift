@@ -13,12 +13,16 @@ import Contacts
 
 class GymFinderVC: UIViewController {
     
+    // MARK: - Properties and Variables
+    
     var gymMapView: MKMapView!
     private let locationManager = CLLocationManager()
     private var userTrackingButton: MKUserTrackingButton!
     var arrayOfResults: [MKMapItem] = []
     
     var gym: MKPointOfInterestCategory = .fitnessCenter
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,8 @@ class GymFinderVC: UIViewController {
         attemptLocationAccess()
         searchInMap()
     }
+    
+    // MARK: - Location Methods
     
     func attemptLocationAccess() {
         guard CLLocationManager.locationServicesEnabled() else {
@@ -81,6 +87,8 @@ class GymFinderVC: UIViewController {
         }
     }
     
+    // MARK: - Configure Methods
+    
     private func setupGymMapView() {
         gymMapView = MKMapView(frame: view.bounds)
         gymMapView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +116,8 @@ class GymFinderVC: UIViewController {
     
 }
 
+// MARK: - Extensions for Maps
+
 extension MKMapView {
     func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 2000) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
@@ -134,7 +144,42 @@ extension GymFinderVC: CLLocationManagerDelegate {
 }
 
 extension GymFinderVC: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+            annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
+    }
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let pin = view.annotation as? MKPointAnnotation {
+            
+            let latitude: CLLocationDegrees = pin.coordinate.latitude
+            let longitude: CLLocationDegrees = pin.coordinate.longitude
+            
+            let regionDistance:CLLocationDistance = 1000
+            let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+            let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+            let options = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+            ]
+            
+            let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            mapItem.name = pin.title
+            mapItem.openInMaps(launchOptions: options)
+        }
         
     }
 }
