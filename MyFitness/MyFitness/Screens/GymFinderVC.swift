@@ -24,6 +24,11 @@ class GymFinderVC: UIViewController {
     
     // MARK: - View Lifecycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        attemptLocationAccess()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -32,29 +37,45 @@ class GymFinderVC: UIViewController {
         
         setupGymMapView()
         setupUserTrackingButton()
-        attemptLocationAccess()
-        searchInMap()
     }
     
     // MARK: - Location Methods
     
     func attemptLocationAccess() {
-        guard CLLocationManager.locationServicesEnabled() else {
-            return
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined, .restricted, .denied:
+                
+                let ac = UIAlertController(title: "Error Finding Gyms", message: "You need to enable location services in order to get gyms near you.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                let settingsAction = UIAlertAction(title: "Settings", style: .default) { (alertAction) in
+                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(appSettings)
+                    }
+                }
+                ac.addAction(settingsAction)
+                
+                present(ac, animated: true, completion: nil)
+                
+                return
+            case .authorizedAlways, .authorizedWhenInUse:
+                
+                locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+                locationManager.delegate = self
+                locationManager.requestLocation()
+                
+                guard let location = locationManager.location else { return }
+                gymMapView.centerToLocation(location)
+                gymMapView.showsUserLocation = true
+                
+                searchInMap()
+                
+            @unknown default:
+                break
+            }
         }
-
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        
-        locationManager.delegate = self
-        
-        if CLLocationManager.authorizationStatus() == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-        } else {
-            locationManager.requestLocation()
-        }
-        
-        guard let location = locationManager.location else { return }
-        gymMapView.centerToLocation(location)
     }
     
     func searchInMap() {
@@ -65,7 +86,7 @@ class GymFinderVC: UIViewController {
         // Run search
         let search = MKLocalSearch(request: request)
         search.start(completionHandler: { (response, error) in
-            
+            self.arrayOfResults.removeAll()
             if let response = response {
                 for item in response.mapItems {
                     self.addPinToMapView(title: item.name,
@@ -180,6 +201,6 @@ extension GymFinderVC: MKMapViewDelegate {
             mapItem.name = pin.title
             mapItem.openInMaps(launchOptions: options)
         }
-        
     }
+    
 }
