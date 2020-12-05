@@ -10,6 +10,7 @@
 		29420608255254A3009BB963 /* AddExerciseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29420607255254A3009BB963 /* AddExerciseVC.swift */; };
 		2942060C25525760009BB963 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942060B25525760009BB963 /* UIStackView+Extension.swift */; };
 		2942060F25525862009BB963 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942060E25525862009BB963 /* UIView+Extension.swift */; };
+		294FBCDE257B2A2200482AC1 /* MFAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294FBCDD257B2A2200482AC1 /* MFAlertContainerView.swift */; };
 		29871895256F683B00D38890 /* CategoryExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29871894256F683B00D38890 /* CategoryExercisesVC.swift */; };
 		29871898256F6C5900D38890 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29871897256F6C5900D38890 /* ExerciseCell.swift */; };
 		299016E825490AEE0071079F /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299016E725490AEE0071079F /* APIKeys.swift */; };
@@ -61,6 +62,7 @@
 		29420607255254A3009BB963 /* AddExerciseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseVC.swift; sourceTree = "<group>"; };
 		2942060B25525760009BB963 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		2942060E25525862009BB963 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		294FBCDD257B2A2200482AC1 /* MFAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAlertContainerView.swift; sourceTree = "<group>"; };
 		29871894256F683B00D38890 /* CategoryExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExercisesVC.swift; sourceTree = "<group>"; };
 		29871897256F6C5900D38890 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 		299016E725490AEE0071079F /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		294FBCDC257B2A0200482AC1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				294FBCDD257B2A2200482AC1 /* MFAlertContainerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		29D6B22725490E7800E4BD1C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +227,7 @@
 		CC0C7D1B240755EC00639A8F /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				294FBCDC257B2A0200482AC1 /* Views */,
 				CC937A65240F46730062D8C0 /* TextViews */,
 				CCBE3884240D76A500130347 /* ImageViews */,
 				CCBE387B240ADCF400130347 /* TextFields */,
@@ -452,6 +463,7 @@
 				299016E825490AEE0071079F /* APIKeys.swift in Sources */,
 				CCBE3883240D765D00130347 /* MealCell.swift in Sources */,
 				CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */,
+				294FBCDE257B2A2200482AC1 /* MFAlertContainerView.swift in Sources */,
 				CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */,
 				CCBE3888240D820800130347 /* NetworkManager.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
