@@ -47,17 +47,19 @@ class GymFinderVC: UIViewController {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
                 
-                let ac = UIAlertController(title: "Error Finding Gyms", message: "You need to enable location services in order to get gyms near you.", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//                let ac = UIAlertController(title: "Error Finding Gyms", message: "You need to enable location services in order to get gyms near you.", preferredStyle: .alert)
+//                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//
+//                let settingsAction = UIAlertAction(title: "Settings", style: .default) { (alertAction) in
+//                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+//                        UIApplication.shared.open(appSettings)
+//                    }
+//                }
+//                ac.addAction(settingsAction)
+//
+//                present(ac, animated: true, completion: nil)
                 
-                let settingsAction = UIAlertAction(title: "Settings", style: .default) { (alertAction) in
-                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(appSettings)
-                    }
-                }
-                ac.addAction(settingsAction)
-                
-                present(ac, animated: true, completion: nil)
+                presentMFAlertOnMainThread(title: "Need Location Access", message: "You need to enable location services in your settings in order to find gyms near you.", buttonTitle: "Open Settings")
                 
                 return
             case .authorizedAlways, .authorizedWhenInUse:
