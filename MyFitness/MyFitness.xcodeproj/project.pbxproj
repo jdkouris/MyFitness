@@ -35,6 +35,7 @@
 		CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */; };
 		CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D3124075BBF00639A8F /* Recipe.swift */; };
 		CC37C9B72595548300B3FDF0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9B62595548300B3FDF0 /* LocationManager.swift */; };
+		CC37C9BA2595553D00B3FDF0 /* FoursquareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9B92595553D00B3FDF0 /* FoursquareAPI.swift */; };
 		CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC87240624C7008F4FC6 /* AppDelegate.swift */; };
 		CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */; };
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutJournalVC.swift; sourceTree = "<group>"; };
 		CC0C7D3124075BBF00639A8F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		CC37C9B62595548300B3FDF0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CC37C9B92595553D00B3FDF0 /* FoursquareAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoursquareAPI.swift; sourceTree = "<group>"; };
 		CC58AC84240624C7008F4FC6 /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC58AC87240624C7008F4FC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				CCBE3887240D820800130347 /* NetworkManager.swift */,
 				CC37C9B62595548300B3FDF0 /* LocationManager.swift */,
+				CC37C9B92595553D00B3FDF0 /* FoursquareAPI.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				29A0C3AF256DF39F00CF846E /* MFExerciseCategoryImageView.swift in Sources */,
 				CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */,
 				294FBCE2257B2AE900482AC1 /* MFButton.swift in Sources */,
+				CC37C9BA2595553D00B3FDF0 /* FoursquareAPI.swift in Sources */,
 				29A0C3892567463B00CF846E /* Exercise+CoreDataProperties.swift in Sources */,
 				CC8708902408BD870065D328 /* MFAlertVC.swift in Sources */,
 				CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */,
