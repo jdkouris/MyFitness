@@ -34,6 +34,7 @@
 		CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D292407576500639A8F /* ProgressVC.swift */; };
 		CC0C7D2C2407578600639A8F /* WorkoutJournalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */; };
 		CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D3124075BBF00639A8F /* Recipe.swift */; };
+		CC37C9B72595548300B3FDF0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9B62595548300B3FDF0 /* LocationManager.swift */; };
 		CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC87240624C7008F4FC6 /* AppDelegate.swift */; };
 		CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */; };
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		CC0C7D292407576500639A8F /* ProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressVC.swift; sourceTree = "<group>"; };
 		CC0C7D2B2407578600639A8F /* WorkoutJournalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutJournalVC.swift; sourceTree = "<group>"; };
 		CC0C7D3124075BBF00639A8F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		CC37C9B62595548300B3FDF0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CC58AC84240624C7008F4FC6 /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC58AC87240624C7008F4FC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBE3887240D820800130347 /* NetworkManager.swift */,
+				CC37C9B62595548300B3FDF0 /* LocationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				29A0C38A2567463B00CF846E /* Workout+CoreDataClass.swift in Sources */,
 				29871895256F683B00D38890 /* CategoryExercisesVC.swift in Sources */,
 				CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */,
+				CC37C9B72595548300B3FDF0 /* LocationManager.swift in Sources */,
 				CCFC4D192410A43F000D1740 /* WeightCell.swift in Sources */,
 				29D6B23D2549117B00E4BD1C /* MyFitness.xcdatamodeld in Sources */,
 				CC87088B2408BD100065D328 /* JournalCell.swift in Sources */,
