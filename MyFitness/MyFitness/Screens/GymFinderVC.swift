@@ -16,83 +16,60 @@ class GymFinderVC: UIViewController {
     // MARK: - Properties and Variables
     
     var gymMapView: MKMapView!
-    private let locationManager = CLLocationManager()
-    private var userTrackingButton: MKUserTrackingButton!
-    var arrayOfResults: [MKMapItem] = []
+    private let locationManager = LocationManager()
     
-    var gym: MKPointOfInterestCategory = .fitnessCenter
+    var places = [[String: Any]]()
+    var isQueryPending = false
     
     // MARK: - View Lifecycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        attemptLocationAccess()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemBackground
-        
-        locationManager.requestWhenInUseAuthorization()
-        
         setupGymMapView()
-        setupUserTrackingButton()
-    }
-    
-    // MARK: - Location Methods
-    
-    func attemptLocationAccess() {
+        gymMapView?.delegate = self
         
-        if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
-            case .notDetermined, .restricted, .denied:
-                presentMFAlertOnMainThread(title: "Need Location Access", message: "You need to enable location services in your settings in order to find gyms near you.", buttonTitle: "Open Settings")
-                return
-                
-            case .authorizedAlways, .authorizedWhenInUse:
-                locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-                locationManager.delegate = self
-                locationManager.requestLocation()
-                
-                guard let location = locationManager.location else { return }
-                gymMapView.centerToLocation(location)
-                gymMapView.showsUserLocation = true
-                
-                searchInMap()
-                
-            @unknown default:
-                break
-            }
+        locationManager.start { location in
+            self.centerMapView(on: location)
+            self.queryFoursquare(with: location)
         }
     }
     
-    func searchInMap() {
-        // Create request
-        let request = MKLocalSearch.Request()
-        // Including array of MLPointOfInterestCategory
-        request.pointOfInterestFilter = MKPointOfInterestFilter(including: [gym])
-        // Run search
-        let search = MKLocalSearch(request: request)
-        search.start(completionHandler: { (response, error) in
-            self.arrayOfResults.removeAll()
-            if let response = response {
-                for item in response.mapItems {
-                    self.addPinToMapView(title: item.name,
-                                         latitude: item.placemark.location!.coordinate.latitude,
-                                         longitude: item.placemark.location!.coordinate.longitude)
-                    self.arrayOfResults.append(item)
-                }
-            }
-        })
+    // MARK: - Update Places on Map
+    
+    func centerMapView(on location: CLLocation) {
+        guard gymMapView != nil else { return }
+
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
+        let adjustedRegion = gymMapView!.regionThatFits(region)
+
+        gymMapView!.setRegion(adjustedRegion, animated: true)
     }
     
-    func addPinToMapView(title: String?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        if let title = title {
-            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
-            annotation.title = title
-            gymMapView.addAnnotation(annotation)
+    func queryFoursquare(with location: CLLocation) {
+        FoursquareAPI.shared.query(location: location) { (places) in
+            self.places = places
+            self.updatePlaces()
+//            self.tableView.reloadData()
+        }
+    }
+    
+    private func updatePlaces() {
+        guard gymMapView != nil else { return }
+        
+        gymMapView.removeAnnotations(gymMapView.annotations)
+        
+        for place in places {
+            if let name = place["name"] as? String,
+               let latitude = place["latitude"] as? CLLocationDegrees,
+               let longitude = place["longitude"] as? CLLocationDegrees {
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                annotation.title = name
+                gymMapView.addAnnotation(annotation)
+            }
         }
     }
     
@@ -101,8 +78,10 @@ class GymFinderVC: UIViewController {
     private func setupGymMapView() {
         gymMapView = MKMapView(frame: view.bounds)
         gymMapView.translatesAutoresizingMaskIntoConstraints = false
+        gymMapView.showsUserLocation = true
+        gymMapView.showsBuildings = true
+        gymMapView.showsCompass = true
         view.addSubview(gymMapView)
-        gymMapView.delegate = self
         
         NSLayoutConstraint.activate([
             gymMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -112,62 +91,25 @@ class GymFinderVC: UIViewController {
         ])
     }
     
-    private func setupUserTrackingButton() {
-        userTrackingButton = MKUserTrackingButton(mapView: gymMapView)
-        userTrackingButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(userTrackingButton)
-        
-        NSLayoutConstraint.activate([
-            userTrackingButton.leadingAnchor.constraint(equalTo: gymMapView.leadingAnchor, constant: 30),
-            userTrackingButton.bottomAnchor.constraint(equalTo: gymMapView.bottomAnchor, constant: -30)
-        ])
-    }
-    
 }
 
-// MARK: - Extensions for Maps
-
-extension MKMapView {
-    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 2000) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                  latitudinalMeters: regionRadius,
-                                                  longitudinalMeters: regionRadius)
-        setRegion(coordinateRegion, animated: true)
-    }
-}
-
-extension GymFinderVC: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        guard status == .authorizedWhenInUse else { return }
-        manager.requestLocation()
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-
-    }
-    
-}
+// MARK: - Map Extensions
 
 extension GymFinderVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
+        if annotation.isKind(of: MKUserLocation.self) { return nil }
         
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        var view = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView")
         
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-            annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        if view == nil {
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotationView")
+            view!.canShowCallout = true
+//            view!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         } else {
-            annotationView!.annotation = annotation
+            view!.annotation = annotation
         }
         
-        return annotationView
+        return view
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -176,7 +118,7 @@ extension GymFinderVC: MKMapViewDelegate {
             let latitude: CLLocationDegrees = pin.coordinate.latitude
             let longitude: CLLocationDegrees = pin.coordinate.longitude
             
-            let regionDistance:CLLocationDistance = 1000
+            let regionDistance: CLLocationDistance = 1000
             let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
             let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
             let options = [
