@@ -36,6 +36,7 @@
 		CC0C7D3224075BBF00639A8F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C7D3124075BBF00639A8F /* Recipe.swift */; };
 		CC37C9B72595548300B3FDF0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9B62595548300B3FDF0 /* LocationManager.swift */; };
 		CC37C9BA2595553D00B3FDF0 /* FoursquareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9B92595553D00B3FDF0 /* FoursquareAPI.swift */; };
+		CC37C9BD259A492300B3FDF0 /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9BC259A492300B3FDF0 /* PlaceCell.swift */; };
 		CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC87240624C7008F4FC6 /* AppDelegate.swift */; };
 		CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */; };
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
@@ -93,6 +94,7 @@
 		CC0C7D3124075BBF00639A8F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		CC37C9B62595548300B3FDF0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CC37C9B92595553D00B3FDF0 /* FoursquareAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoursquareAPI.swift; sourceTree = "<group>"; };
+		CC37C9BC259A492300B3FDF0 /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		CC58AC84240624C7008F4FC6 /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC58AC87240624C7008F4FC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				CCFC4D182410A43F000D1740 /* WeightCell.swift */,
 				29A0C3AB256DF2F900CF846E /* ExerciseCategoryCell.swift */,
 				29871897256F6C5900D38890 /* ExerciseCell.swift */,
+				CC37C9BC259A492300B3FDF0 /* PlaceCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29A0C38D2567463B00CF846E /* Workout+CoreDataProperties.swift in Sources */,
+				CC37C9BD259A492300B3FDF0 /* PlaceCell.swift in Sources */,
 				CCBE3886240D76BF00130347 /* MFMealImageView.swift in Sources */,
 				299016E825490AEE0071079F /* APIKeys.swift in Sources */,
 				CCBE3883240D765D00130347 /* MealCell.swift in Sources */,
