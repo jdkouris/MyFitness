@@ -16,7 +16,7 @@ class FoursquareAPI {
 
     private init() { }
 
-    func query(location: CLLocation, completionHandler: @escaping ([[String: Any]]) -> Void) {
+    func query(location: CLLocation, completion: @escaping (Result<[[String: Any]], MFError>) -> Void) {
         if isQueryPending { return }
         isQueryPending = true
         var places = [[String: Any]]()
@@ -38,13 +38,23 @@ class FoursquareAPI {
             }
             
             if error != nil {
-                print("***** ERROR ***** \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(.failure(.unableToComplete))
+                }
                 return
             }
             
-            if data == nil || response == nil {
-                print("***** SOMETHING WENT WRONG *****")
+            if data == nil {
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
                 return
+            }
+            
+            if response == nil {
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidResponse))
+                }
             }
             
             do {
@@ -78,16 +88,19 @@ class FoursquareAPI {
                     return distance1 < distance2
                 }
                 
+                DispatchQueue.main.async {
+                    completion(.success(places))
+                }
+                
             } catch {
-                print("*** JSON ERROR *** \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
                 return
             }
             
             self.isQueryPending = false
             
-            DispatchQueue.main.async {
-                completionHandler(places)
-            }
         }
         task.resume()
     }

@@ -88,9 +88,9 @@ class MFAlertVC: UIViewController {
     }
     
     @objc func dismissVC() {
-        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.open(appSettings)
-        }
+//        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+//            UIApplication.shared.open(appSettings)
+//        }
         dismiss(animated: true, completion: nil)
     }
 

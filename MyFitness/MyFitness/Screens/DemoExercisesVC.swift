@@ -71,7 +71,7 @@ class DemoExercisesVC: UIViewController {
                 self.updateData(on: self.categories)
                 
             case .failure(let error):
-                print("Error fetching categories: \(error)")
+                self.presentMFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Dismiss")
             }
         }
     }

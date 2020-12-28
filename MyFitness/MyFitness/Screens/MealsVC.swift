@@ -83,7 +83,7 @@ class MealsVC: UIViewController {
                 self.updateData(on: self.recipes)
                 
             case .failure(let error):
-                print("Error fetching: \(error)")
+                self.presentMFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Dismiss")
             }
         }
     }

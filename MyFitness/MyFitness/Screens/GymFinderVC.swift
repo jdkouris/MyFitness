@@ -48,9 +48,18 @@ class GymFinderVC: UIViewController {
     }
     
     func queryFoursquare(with location: CLLocation) {
-        FoursquareAPI.shared.query(location: location) { (places) in
-            self.places = places
-            self.updatePlaces()
+        FoursquareAPI.shared.query(location: location) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let places):
+                self.places = places
+                self.updatePlaces()
+                
+            case .failure(let error):
+                self.presentMFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Dismiss")
+            }
+            
 //            self.tableView.reloadData()
         }
     }
