@@ -16,9 +16,11 @@ class GymFinderVC: UIViewController {
     // MARK: - Properties and Variables
     
     var gymMapView: MKMapView!
+    var tableView: UITableView!
+    
     private let locationManager = LocationManager()
     
-    var places = [[String: Any]]()
+    var places = [Place]()
     var isQueryPending = false
     
     // MARK: - View Lifecycle
@@ -28,6 +30,8 @@ class GymFinderVC: UIViewController {
         
         view.backgroundColor = .systemBackground
         setupGymMapView()
+        setupTableView()
+        layoutUI()
         gymMapView?.delegate = self
         
         locationManager.start { location in
@@ -60,7 +64,7 @@ class GymFinderVC: UIViewController {
                 self.presentMFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Dismiss")
             }
             
-//            self.tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
@@ -70,15 +74,14 @@ class GymFinderVC: UIViewController {
         gymMapView.removeAnnotations(gymMapView.annotations)
         
         for place in places {
-            if let name = place["name"] as? String,
-               let latitude = place["latitude"] as? CLLocationDegrees,
-               let longitude = place["longitude"] as? CLLocationDegrees {
-                
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                annotation.title = name
-                gymMapView.addAnnotation(annotation)
-            }
+            let name = place.name
+            let latitude = place.latitude
+            let longitude = place.longitude
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            annotation.title = name
+            gymMapView.addAnnotation(annotation)
         }
     }
     
@@ -91,12 +94,34 @@ class GymFinderVC: UIViewController {
         gymMapView.showsBuildings = true
         gymMapView.showsCompass = true
         view.addSubview(gymMapView)
+    }
+    
+    private func setupTableView() {
+        tableView = UITableView(frame: view.bounds)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 50
+        tableView.backgroundColor = .systemBackground
+        tableView.register(PlaceCell.self, forCellReuseIdentifier: PlaceCell.reuseID)
+        
+        view.addSubview(tableView)
+    }
+    
+    private func layoutUI() {
         NSLayoutConstraint.activate([
             gymMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             gymMapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             gymMapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            gymMapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            gymMapView.heightAnchor.constraint(equalToConstant: view.bounds.height / 2),
+            
+            tableView.topAnchor.constraint(equalTo: gymMapView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -142,4 +167,32 @@ extension GymFinderVC: MKMapViewDelegate {
         }
     }
     
+}
+
+
+// MARK: - Table View Extensions
+
+extension GymFinderVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        places.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaceCell.reuseID, for: indexPath) as? PlaceCell else { return UITableViewCell() }
+        cell.set(place: places[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tappedName = places[indexPath.row].name
+        
+        for annotation in gymMapView.annotations {
+            gymMapView.deselectAnnotation(annotation, animated: true)
+            
+            if tappedName == annotation.title {
+                gymMapView.selectAnnotation(annotation, animated: true)
+                gymMapView.setCenter(annotation.coordinate, animated: true)
+            }
+        }
+    }
 }
