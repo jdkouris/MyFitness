@@ -16,10 +16,10 @@ class FoursquareAPI {
 
     private init() { }
 
-    func query(location: CLLocation, completion: @escaping (Result<[[String: Any]], MFError>) -> Void) {
+    func query(location: CLLocation, completion: @escaping (Result<[Place], MFError>) -> Void) {
         if isQueryPending { return }
         isQueryPending = true
-        var places = [[String: Any]]()
+        var places = [Place]()
         
         let clientId        = URLQueryItem(name: "client_id", value: APIKeys.foursquareClientID)
         let clientSecret    = URLQueryItem(name: "client_secret", value: APIKeys.foursquareClientSecret)
@@ -71,19 +71,16 @@ class FoursquareAPI {
                            let longitude = location["lng"] as? Double,
                            let formattedAddress = location["formattedAddress"] as? [String] {
                             
-                            places.append([
-                                "name": name,
-                                "address": formattedAddress.joined(separator: " "),
-                                "latitude": latitude,
-                                "longitude": longitude
-                            ])
+                            let place = Place(name: name, address: formattedAddress.joined(separator: " "), latitude: latitude, longitude: longitude)
+                            
+                            places.append(place)
                         }
                     }
                 }
                 
                 places.sort() { item1, item2 in
-                    let distance1 = location.distance(from: CLLocation(latitude: item1["latitude"] as! CLLocationDegrees, longitude: item1["longitude"] as! CLLocationDegrees))
-                    let distance2 = location.distance(from: CLLocation(latitude: item2["latitude"] as! CLLocationDegrees, longitude: item2["longitude"] as! CLLocationDegrees))
+                    let distance1 = location.distance(from: CLLocation(latitude: item1.latitude, longitude: item1.longitude))
+                    let distance2 = location.distance(from: CLLocation(latitude: item2.latitude, longitude: item2.longitude))
 
                     return distance1 < distance2
                 }
