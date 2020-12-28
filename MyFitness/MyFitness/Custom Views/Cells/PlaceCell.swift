@@ -9,16 +9,59 @@
 import UIKit
 
 class PlaceCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    static let reuseID = "PlaceCell"
+    let placeNameLabel = MFTitleLabel(textAlignment: .left, fontSize: 16)
+    let addressLabel = MFBodyLabel(textAlignment: .left)
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func set(place: Place) {
+        placeNameLabel.text = place.name
+        addressLabel.text = place.address
+    }
+    
+    private func configure() {
+        let cardView = UIView(frame: self.contentView.frame)
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.backgroundColor = .systemBackground
+        cardView.layer.cornerRadius = 10
+        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        cardView.layer.shadowOpacity = 1
+        cardView.layer.shadowOffset = .zero
+        cardView.layer.shadowRadius = 4
+        
+        selectionStyle = .none
+        
+        addSubview(cardView)
+        cardView.addSubviews(placeNameLabel, addressLabel)
+        
+        let padding: CGFloat = 20
+        
+        NSLayoutConstraint.activate([
+            cardView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding / 2),
+            cardView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            cardView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding / 2),
+            
+            placeNameLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
+            placeNameLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            placeNameLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
+            placeNameLabel.heightAnchor.constraint(equalToConstant: 30),
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+            addressLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor),
+            addressLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            addressLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
+            addressLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -padding)
+        ])
+        
+        
     }
 
 }
