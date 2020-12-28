@@ -37,6 +37,7 @@
 		CC37C9B72595548300B3FDF0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9B62595548300B3FDF0 /* LocationManager.swift */; };
 		CC37C9BA2595553D00B3FDF0 /* FoursquareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9B92595553D00B3FDF0 /* FoursquareAPI.swift */; };
 		CC37C9BD259A492300B3FDF0 /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9BC259A492300B3FDF0 /* PlaceCell.swift */; };
+		CC37C9C0259A4B6D00B3FDF0 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37C9BF259A4B6D00B3FDF0 /* Place.swift */; };
 		CC58AC88240624C7008F4FC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC87240624C7008F4FC6 /* AppDelegate.swift */; };
 		CC58AC8A240624C7008F4FC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */; };
 		CC58AC91240624C8008F4FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC58AC90240624C8008F4FC6 /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		CC37C9B62595548300B3FDF0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CC37C9B92595553D00B3FDF0 /* FoursquareAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoursquareAPI.swift; sourceTree = "<group>"; };
 		CC37C9BC259A492300B3FDF0 /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
+		CC37C9BF259A4B6D00B3FDF0 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		CC58AC84240624C7008F4FC6 /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC58AC87240624C7008F4FC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC58AC89240624C7008F4FC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				29A0C3842567463A00CF846E /* Weight+CoreDataProperties.swift */,
 				CC0C7D3124075BBF00639A8F /* Recipe.swift */,
 				29A0C3A4256DE6EB00CF846E /* DemoExercise.swift */,
+				CC37C9BF259A4B6D00B3FDF0 /* Place.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				294FBCDE257B2A2200482AC1 /* MFAlertContainerView.swift in Sources */,
 				CCBE387D240ADD0600130347 /* MFTextField.swift in Sources */,
 				CCBE3888240D820800130347 /* NetworkManager.swift in Sources */,
+				CC37C9C0259A4B6D00B3FDF0 /* Place.swift in Sources */,
 				CC0C7D23240756A500639A8F /* MFTabBarController.swift in Sources */,
 				CCBE3890240E003F00130347 /* Constants.swift in Sources */,
 				CC0C7D2A2407576500639A8F /* ProgressVC.swift in Sources */,
