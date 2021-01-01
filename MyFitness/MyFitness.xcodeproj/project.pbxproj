@@ -59,7 +59,6 @@
 		CCBE388A240D841400130347 /* MFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE3889240D841400130347 /* MFError.swift */; };
 		CCBE388E240DFE7500130347 /* MFMealInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */; };
 		CCBE3890240E003F00130347 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE388F240E003F00130347 /* Constants.swift */; };
-		CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC4D162410A209000D1740 /* Notification+Extension.swift */; };
 		CCFC4D192410A43F000D1740 /* WeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC4D182410A43F000D1740 /* WeightCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,7 +120,6 @@
 		CCBE3889240D841400130347 /* MFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFError.swift; path = MyFitness/Utilities/MFError.swift; sourceTree = SOURCE_ROOT; };
 		CCBE388D240DFE7500130347 /* MFMealInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MFMealInfoHeaderVC.swift; path = "MyFitness/Custom Views/View Controllers/MFMealInfoHeaderVC.swift"; sourceTree = SOURCE_ROOT; };
 		CCBE388F240E003F00130347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = MyFitness/Utilities/Constants.swift; sourceTree = SOURCE_ROOT; };
-		CCFC4D162410A209000D1740 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Notification+Extension.swift"; path = "MyFitness/Extensions/Notification+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		CCFC4D182410A43F000D1740 /* WeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,7 +175,6 @@
 		29D6B22925490EB200E4BD1C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CCFC4D162410A209000D1740 /* Notification+Extension.swift */,
 				2942060B25525760009BB963 /* UIStackView+Extension.swift */,
 				2942060E25525862009BB963 /* UIView+Extension.swift */,
 				294FBCE4257B2BED00482AC1 /* UIViewController+Ext.swift */,
@@ -514,7 +511,6 @@
 				CC87088E2408BD5E0065D328 /* MFTitleLabel.swift in Sources */,
 				29A0C38C2567463B00CF846E /* Weight+CoreDataClass.swift in Sources */,
 				CC0C7D25240756F200639A8F /* GymFinderVC.swift in Sources */,
-				CCFC4D172410A209000D1740 /* Notification+Extension.swift in Sources */,
 				29A0C3A8256DEC6300CF846E /* DemoExercisesVC.swift in Sources */,
 				29420608255254A3009BB963 /* AddExerciseVC.swift in Sources */,
 				29A0C3AC256DF2F900CF846E /* ExerciseCategoryCell.swift in Sources */,
