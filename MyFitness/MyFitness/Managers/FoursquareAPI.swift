@@ -25,12 +25,12 @@ class FoursquareAPI {
         let clientSecret    = URLQueryItem(name: "client_secret", value: APIKeys.foursquareClientSecret)
         let version         = URLQueryItem(name: "v", value: "20190401")
         let coordinate      = URLQueryItem(name: "ll", value: "\(location.coordinate.latitude),\(location.coordinate.longitude)")
-        let query           = URLQueryItem(name: "query", value: "fitness")
+        let categoryId      = URLQueryItem(name: "categoryId", value: "4bf58dd8d48988d176941735")
         let intent          = URLQueryItem(name: "intent", value: "browse")
         let radius          = URLQueryItem(name: "radius", value: "1000")
         
         var urlComponents = URLComponents(string: "https://api.foursquare.com/v2/venues/search")!
-        urlComponents.queryItems = [clientId, clientSecret, version, coordinate, query, intent, radius]
+        urlComponents.queryItems = [clientId, clientSecret, version, coordinate, categoryId, intent, radius]
         
         let task = URLSession.shared.dataTask(with: urlComponents.url!) { (data, response, error) in
             defer {
