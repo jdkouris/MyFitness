@@ -35,14 +35,14 @@ class PlaceCell: UITableViewCell {
         cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         cardView.layer.shadowOpacity = 1
         cardView.layer.shadowOffset = .zero
-        cardView.layer.shadowRadius = 4
+        cardView.layer.shadowRadius = 2
         
         selectionStyle = .none
         
         addSubview(cardView)
         cardView.addSubviews(placeNameLabel, addressLabel)
         
-        let padding: CGFloat = 20
+        let padding: CGFloat = 10
         
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding / 2),
@@ -53,7 +53,7 @@ class PlaceCell: UITableViewCell {
             placeNameLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
             placeNameLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             placeNameLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
-            placeNameLabel.heightAnchor.constraint(equalToConstant: 30),
+            placeNameLabel.heightAnchor.constraint(equalToConstant: 26),
 
             addressLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor),
             addressLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),

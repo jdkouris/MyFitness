@@ -116,7 +116,7 @@ class GymFinderVC: UIViewController {
             gymMapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             gymMapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             gymMapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            gymMapView.heightAnchor.constraint(equalToConstant: view.bounds.height / 2),
+            gymMapView.heightAnchor.constraint(equalToConstant: view.bounds.height / 2.5),
             
             tableView.topAnchor.constraint(equalTo: gymMapView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
