@@ -47,6 +47,9 @@ class DemoExercisesVC: UIViewController {
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshExercises))
+        navigationItem.rightBarButtonItem = refreshButton
     }
     
     private func configureCollectionView() {
@@ -58,9 +61,14 @@ class DemoExercisesVC: UIViewController {
         showActivityIndicator()
     }
     
+    @objc func refreshExercises() {
+        getExerciseCategories()
+    }
+    
     // MARK: - Data Methods
     
     private func getExerciseCategories() {
+        categories.removeAll()
         NetworkManager.shared.getExerciseCategories { [weak self] result in
             guard let self = self else { return }
             self.hideActivityIndicator()
@@ -69,9 +77,11 @@ class DemoExercisesVC: UIViewController {
             case .success(let categories):
                 self.categories.append(contentsOf: categories.results)
                 self.updateData(on: self.categories)
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
                 
             case .failure(let error):
                 self.presentMFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Dismiss")
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
             }
         }
     }
