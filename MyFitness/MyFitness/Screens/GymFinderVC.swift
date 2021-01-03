@@ -138,7 +138,10 @@ extension GymFinderVC: MKMapViewDelegate {
         if view == nil {
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotationView")
             view!.canShowCallout = true
-            view!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+            let mapsButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 48, height: 48)))
+            mapsButton.setBackgroundImage(UIImage(named: "Map"), for: .normal)
+            view!.rightCalloutAccessoryView = mapsButton
         } else {
             view!.annotation = annotation
         }
