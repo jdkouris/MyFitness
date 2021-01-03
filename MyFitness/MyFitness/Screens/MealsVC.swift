@@ -50,6 +50,9 @@ class MealsVC: UIViewController {
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshRecipes))
+        navigationItem.rightBarButtonItem = refreshButton
     }
     
     private func configureCollectionView() {
@@ -70,9 +73,15 @@ class MealsVC: UIViewController {
         navigationItem.searchController = searchController
     }
     
+    @objc func refreshRecipes() {
+        showActivityIndicator()
+        getMeals()
+    }
+    
     // MARK: - Data Methods
     
     func getMeals() {
+        recipes.removeAll()
         NetworkManager.shared.getRecipes { [weak self] result in
             guard let self = self else { return }
             self.hideActivityIndicator()
@@ -81,9 +90,11 @@ class MealsVC: UIViewController {
             case .success(let recipes):
                 self.recipes.append(contentsOf: recipes.recipes)
                 self.updateData(on: self.recipes)
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
                 
             case .failure(let error):
                 self.presentMFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Dismiss")
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
             }
         }
     }
