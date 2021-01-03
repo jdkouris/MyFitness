@@ -62,6 +62,7 @@ class DemoExercisesVC: UIViewController {
     }
     
     @objc func refreshExercises() {
+        showActivityIndicator()
         getExerciseCategories()
     }
     
