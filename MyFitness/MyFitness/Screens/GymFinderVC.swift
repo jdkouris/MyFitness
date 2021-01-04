@@ -172,7 +172,6 @@ extension GymFinderVC: MKMapViewDelegate {
     
 }
 
-
 // MARK: - Table View Extensions
 
 extension GymFinderVC: UITableViewDelegate, UITableViewDataSource {

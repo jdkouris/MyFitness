@@ -33,4 +33,19 @@ extension LocationManager: CLLocationManagerDelegate {
 
         onLocationUpdate?(newLocation)
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .denied, .restricted:
+            return
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse, .authorizedAlways:
+            start { (location) in
+                self.locationManager.startUpdatingLocation()
+            }
+        @unknown default:
+            return
+        }
+    }
 }
