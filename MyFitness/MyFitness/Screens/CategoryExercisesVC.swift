@@ -78,13 +78,18 @@ class CategoryExercisesVC: UIViewController {
             
             switch result {
             case .success(let exercises):
-                self.exercises.append(contentsOf: exercises.results)
+                let filteredExercises = exercises.results.filter { (exercise) -> Bool in
+                    let trimmedExercise = exercise.description.trimmingCharacters(in: .whitespaces)
+                    return trimmedExercise.description.count >= 30
+                }
+                
+                self.exercises.append(contentsOf: filteredExercises)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
                 
             case .failure(let error):
-                print("Error fetching exercises: \(error)")
+                self.presentMFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Dismiss")
             }
         }
     }
