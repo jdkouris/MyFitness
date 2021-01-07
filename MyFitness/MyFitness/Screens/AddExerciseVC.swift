@@ -133,7 +133,7 @@ class AddExerciseVC: UIViewController {
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            cardView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width + 20),
             
             exerciseNameTextField.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
