@@ -16,14 +16,16 @@ class LocationManager: NSObject {
     
     func start(completionHandler: @escaping (CLLocation) -> Void) {
         locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            locationManager.distanceFilter = 100.0
+            locationManager.delegate = self
 
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.distanceFilter = 100.0
-        locationManager.delegate = self
+            locationManager.startUpdatingLocation()
 
-        locationManager.startUpdatingLocation()
-
-        onLocationUpdate = completionHandler
+            onLocationUpdate = completionHandler
+        }
     }
 }
 

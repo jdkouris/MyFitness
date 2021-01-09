@@ -28,7 +28,7 @@ class GymFinderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        configureViewController()
         setupGymMapView()
         setupTableView()
         layoutUI()
@@ -86,6 +86,20 @@ class GymFinderVC: UIViewController {
     }
     
     // MARK: - Configure Methods
+    
+    private func configureViewController() {
+        view.backgroundColor = .systemBackground
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshMap))
+        navigationItem.rightBarButtonItem = refreshButton
+    }
+    
+    @objc func refreshMap() {
+        locationManager.start { location in
+            self.centerMapView(on: location)
+            self.queryFoursquare(with: location)
+        }
+    }
     
     private func setupGymMapView() {
         gymMapView = MKMapView(frame: view.bounds)
