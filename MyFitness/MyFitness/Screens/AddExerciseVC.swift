@@ -133,23 +133,23 @@ class AddExerciseVC: UIViewController {
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width + 20),
+            cardView.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
+            cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -view.bounds.width - 20),
             
             exerciseNameTextField.topAnchor.constraint(equalTo: cardView.topAnchor, constant: padding),
             exerciseNameTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             exerciseNameTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
-            exerciseNameTextField.heightAnchor.constraint(equalToConstant: 30),
+            exerciseNameTextField.heightAnchor.constraint(equalToConstant: 40),
             
             exerciseWeightTextField.topAnchor.constraint(equalTo: exerciseNameTextField.bottomAnchor, constant: 4),
             exerciseWeightTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             exerciseWeightTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
-            exerciseWeightTextField.heightAnchor.constraint(equalToConstant: 30),
+            exerciseWeightTextField.heightAnchor.constraint(equalToConstant: 40),
             
             exerciseRepsTextField.topAnchor.constraint(equalTo: exerciseWeightTextField.bottomAnchor, constant: 4),
             exerciseRepsTextField.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             exerciseRepsTextField.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
-            exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 30),
+            exerciseRepsTextField.heightAnchor.constraint(equalToConstant: 40),
             
             cancelButton.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -padding/2),
             cancelButton.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
