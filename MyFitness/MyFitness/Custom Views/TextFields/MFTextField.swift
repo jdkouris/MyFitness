@@ -21,22 +21,19 @@ class MFTextField: UITextField {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        
-        layer.cornerRadius = 10
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.systemGray4.cgColor
-
         textColor = .label
         tintColor = .label
-        textAlignment = .center
         font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontSizeToFitWidth = true
         minimumFontSize = 12
-
-        backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
-        returnKeyType = .default
         clearButtonMode = .whileEditing
+        
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0, y: self.frame.height - 6, width: self.frame.width, height: 2)
+        bottomLine.backgroundColor = UIColor.init(red: 48 / 255, green: 173 / 255, blue: 99 / 255, alpha: 1).cgColor
+        self.borderStyle = .none
+        self.layer.addSublayer(bottomLine)
     }
 
 }
