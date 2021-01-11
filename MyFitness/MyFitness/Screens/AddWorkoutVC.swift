@@ -35,13 +35,15 @@ class AddWorkoutVC: UIViewController {
         super.viewDidLoad()
         configureVC()
         configureWorkoutName()
-        configureNotesTextView()
         configureTableView()
         configureSaveButton()
         configureWorkoutDetails()
         createDismissKeyboardTapGesture()
         layoutUI()
         refreshData()
+        
+        // Moved to bottom so refresh doesn't reset TextView placeholder text
+        configureNotesTextView()
     }
     
     // MARK: - Configuration Methods
@@ -63,11 +65,12 @@ class AddWorkoutVC: UIViewController {
     }
     
     private func configureNotesTextView() {
+        notesTextView.delegate = self
         notesTextView.isEditable = true
         notesTextView.isSelectable = true
         notesTextView.isScrollEnabled = true
         notesTextView.text = "workout notes"
-        notesTextView.delegate = self
+        notesTextView.textColor = UIColor.lightGray
     }
     
     private func configureTableView() {
@@ -106,7 +109,7 @@ class AddWorkoutVC: UIViewController {
             workoutNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             workoutNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             workoutNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            workoutNameTextField.heightAnchor.constraint(equalToConstant: 30),
+            workoutNameTextField.heightAnchor.constraint(equalToConstant: 40),
             
             notesTextView.topAnchor.constraint(equalTo: workoutNameTextField.bottomAnchor, constant: padding / 2),
             notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
@@ -187,7 +190,12 @@ class AddWorkoutVC: UIViewController {
         
         workout?.date = Date()
         workout?.name = workoutNameTextField.text
-        workout?.notes = notesTextView.text
+        
+        if notesTextView.text == "workout notes" {
+            workout?.notes = nil
+        } else {
+            workout?.notes = notesTextView.text
+        }
         
         appDelegate.saveContext()
         
@@ -253,8 +261,16 @@ extension AddWorkoutVC: AddExerciseDelegate {
 
 extension AddWorkoutVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if notesTextView.text == "workout notes" {
-            notesTextView.text = ""
+        if textView.text == "workout notes" {
+            textView.text = nil
+            textView.textColor = .label
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "workout notes"
+            textView.textColor = .systemGray4
         }
     }
 }
