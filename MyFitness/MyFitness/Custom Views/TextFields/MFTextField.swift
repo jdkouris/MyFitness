@@ -35,7 +35,7 @@ class MFTextField: UITextField {
 
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
-        returnKeyType = .go
+        returnKeyType = .default
         clearButtonMode = .whileEditing
     }
 
