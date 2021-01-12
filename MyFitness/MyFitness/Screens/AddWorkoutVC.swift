@@ -191,11 +191,7 @@ class AddWorkoutVC: UIViewController {
         workout?.date = Date()
         workout?.name = workoutNameTextField.text
         
-        if notesTextView.text == "workout notes" {
-            workout?.notes = nil
-        } else {
-            workout?.notes = notesTextView.text
-        }
+        notesTextView.text == "workout notes" ? (workout?.notes = nil) : (workout?.notes = notesTextView.text)
         
         appDelegate.saveContext()
         
