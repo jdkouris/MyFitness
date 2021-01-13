@@ -27,7 +27,7 @@ class FoursquareAPI {
         let coordinate      = URLQueryItem(name: "ll", value: "\(location.coordinate.latitude),\(location.coordinate.longitude)")
         let categoryId      = URLQueryItem(name: "categoryId", value: "4bf58dd8d48988d176941735")
         let intent          = URLQueryItem(name: "intent", value: "browse")
-        let radius          = URLQueryItem(name: "radius", value: "1000")
+        let radius          = URLQueryItem(name: "radius", value: "2000")
         
         var urlComponents = URLComponents(string: "https://api.foursquare.com/v2/venues/search")!
         urlComponents.queryItems = [clientId, clientSecret, version, coordinate, categoryId, intent, radius]
