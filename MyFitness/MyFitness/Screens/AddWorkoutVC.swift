@@ -69,7 +69,11 @@ class AddWorkoutVC: UIViewController {
         notesTextView.isEditable = true
         notesTextView.isSelectable = true
         notesTextView.isScrollEnabled = true
-        notesTextView.text = "workout notes"
+        if workout?.notes == nil {
+            notesTextView.text = "workout notes"
+        } else {
+            notesTextView.text = workout?.notes
+        }
         notesTextView.textColor = UIColor.lightGray
     }
     
