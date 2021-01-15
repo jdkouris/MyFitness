@@ -179,16 +179,12 @@ class AddWorkoutVC: UIViewController {
     
     @objc func saveTapped() {
         guard workoutNameTextField.text != "" else {
-            let ac = UIAlertController(title: "Error saving", message: "You can't save a workout until you've given it a name. Please add a name and try again", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-            present(ac, animated: true, completion: nil)
+            self.presentMFAlertOnMainThread(title: "Error saving", message: "You can't save a workout until you've given it a name. Please add a name and try again.", buttonTitle: "Dismiss")
             return
         }
         
         guard let exercises = fetchedExerciseRC?.fetchedObjects, exercises.count > 0 else {
-            let ac = UIAlertController(title: "Error saving", message: "You can't save a workout until you've added at least one exercise. Please add an exercise and try again", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-            present(ac, animated: true, completion: nil)
+            self.presentMFAlertOnMainThread(title: "Error saving", message: "You can't save a workout until you've added at least one exercise. Please add an exercise and try again.", buttonTitle: "Dismiss")
             return
         }
         
