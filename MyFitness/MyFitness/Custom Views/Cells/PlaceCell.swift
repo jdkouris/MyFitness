@@ -10,7 +10,7 @@ import UIKit
 
 class PlaceCell: UITableViewCell {
     static let reuseID = "PlaceCell"
-    let placeNameLabel = MFTitleLabel(textAlignment: .left, fontSize: 16)
+    let placeNameLabel = MFTitleLabel(textAlignment: .left, fontSize: 18)
     let addressLabel = MFBodyLabel(textAlignment: .left)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
