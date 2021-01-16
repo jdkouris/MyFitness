@@ -42,8 +42,8 @@ class JournalCell: UITableViewCell {
         cardView.translatesAutoresizingMaskIntoConstraints = false
         cardView.backgroundColor = .systemBackground
         cardView.layer.cornerRadius = 10
-        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        cardView.layer.shadowOpacity = 1
+        cardView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        cardView.layer.shadowOpacity = 0.5
         cardView.layer.shadowOffset = .zero
         cardView.layer.shadowRadius = 4
         
